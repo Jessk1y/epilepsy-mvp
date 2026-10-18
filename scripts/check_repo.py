@@ -26,7 +26,7 @@ FORBIDDEN_EXT = {
     ".nii", ".mgz", ".mgh", ".dcm", ".mnc", ".nrrd", ".img", ".hdr",
     ".pt", ".pth", ".ckpt", ".safetensors", ".onnx", ".bin", ".weights", ".keras",
 }
-FORBIDDEN_DIRS = {"data", "datasets", "raw", "weights", "checkpoints", "outputs"}
+FORBIDDEN_DIRS = {"data", "datasets", "raw", "weights", "checkpoints", "outputs", "work", "models_weights"}
 
 ROOT = Path(__file__).resolve().parents[1]
 

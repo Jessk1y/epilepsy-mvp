@@ -15,6 +15,7 @@ mne>=1.6
 
 # Модели (DeepEpilepsy, REVE, CBraMod, LaBraM)
 huggingface_hub>=0.23  # веса DeepEpilepsy / REVE; веса НЕ класть в git
+transformers>=4.40     # REVE: AutoModel.from_pretrained(..., trust_remote_code=True)
 einops>=0.7
 # braindecode>=0.8     # по необходимости
 

@@ -33,12 +33,14 @@ epilepsy-mvp/
 ## Первый запуск (на любой машине)
 
 ```bash
-git clone https://github.com/<аккаунт>/epilepsy-mvp.git
+git clone https://github.com/Jessk1y/epilepsy-mvp.git
 cd epilepsy-mvp
 git config user.name "Имя Фамилия"
 git config user.email "ваша@почта"
 git config core.hooksPath .githooks      # включить проверку перед коммитом
 ```
+
+> **Обязательно:** каждый участник на каждой машине после клонирования выполняет `git config core.hooksPath .githooks`. Без этого проверка перед коммитом не работает, и данные или веса могут попасть в git. Проверить: `git config core.hooksPath` должна вывести `.githooks`.
 
 ### Windows
 Python запускаем через `py`; для кириллицы в выводе — `PYTHONIOENCODING=utf-8`.
@@ -68,7 +70,7 @@ MELD Graph: Docker/Linux, FreeSurfer, >20 ГБ ОЗУ, регистрация и
      ```python
      from kaggle_secrets import UserSecretsClient
      t = UserSecretsClient().get_secret("GITHUB_TOKEN")
-     !git clone https://x-access-token:{t}@github.com/<аккаунт>/epilepsy-mvp.git /kaggle/working/epilepsy-mvp
+     !git clone https://x-access-token:{t}@github.com/Jessk1y/epilepsy-mvp.git /kaggle/working/epilepsy-mvp
      ```
      (вывод этой ячейки со ссылкой на токен перед коммитом очистить);
    - или загрузить папку `common/` как Kaggle Dataset.

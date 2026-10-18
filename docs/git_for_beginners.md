@@ -5,7 +5,7 @@
 ## Один раз на каждой машине
 
 ```bash
-git clone https://github.com/<аккаунт>/epilepsy-mvp.git
+git clone https://github.com/Jessk1y/epilepsy-mvp.git
 cd epilepsy-mvp
 git config user.name "Имя Фамилия"          # локально, без --global
 git config user.email "ваша@почта"
