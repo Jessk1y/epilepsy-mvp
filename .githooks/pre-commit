@@ -1,0 +1,10 @@
+#!/bin/sh
+# Хук включается командой: git config core.hooksPath .githooks   (см. README, «Первый запуск»)
+# Блокирует коммит с данными/весами и предупреждает о тяжёлых блокнотах.
+for PY in py python3 python; do
+  if command -v "$PY" >/dev/null 2>&1; then
+    exec "$PY" scripts/check_repo.py --staged
+  fi
+done
+echo "Python не найден — проверка пропущена. Убедитесь сами, что данные и веса не в коммите."
+exit 0

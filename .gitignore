@@ -1,0 +1,90 @@
+# ====== ДАННЫЕ И ВЕСА — НИКОГДА В GIT ======
+# Данные TUH нельзя передавать третьим лицам, остальные наборы тоже не храним в репозитории.
+data/
+datasets/
+raw/
+weights/
+checkpoints/
+models_weights/
+outputs/
+work/
+
+# Форматы данных ЭЭГ
+*.edf
+*.edf+
+*.bdf
+*.gdf
+*.set
+*.fdt
+*.fif
+*.fif.gz
+*.vhdr
+*.vmrk
+*.eeg
+*.mat
+*.h5
+*.hdf5
+*.npy
+*.npz
+*.parquet
+*.feather
+*.pkl
+*.pickle
+*.joblib
+*.tfrecord
+*.csv.gz
+
+# Форматы МРТ
+*.nii
+*.nii.gz
+*.mgz
+*.mgh
+*.dcm
+*.mnc
+*.nrrd
+*.img
+*.hdr
+*.annot
+*.surf.gii
+
+# Веса моделей
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+*.bin
+*.weights
+*.h5.keras
+*.keras
+
+# Секреты
+.env
+*.key
+*.token
+secrets/
+kaggle.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+*.egg-info/
+
+# Системное и редакторы
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
+
+# Разрешаем небольшие итоговые файлы в results/ (картинки, таблицы)
+!h1_eeg/results/*.png
+!h1_eeg/results/*.csv
+!h2_mri/results/*.png
+!h2_mri/results/*.csv
