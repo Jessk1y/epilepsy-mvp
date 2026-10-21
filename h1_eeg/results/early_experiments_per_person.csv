@@ -1,0 +1,1988 @@
+experiment,data,id,y,score,pred_thr_0.5,pred_youden,pred_sens80
+DE_zs_NMT_eval,NMT eval,0000024.edf,0,0.0006431461661122739,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000036.edf,1,0.00015070753579493612,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0000044.edf,0,0.0012279604561626911,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000046.edf,1,0.0002431527100270614,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000074.edf,0,0.00035766829387284815,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000076.edf,1,7.85913725849241e-05,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0000077.edf,0,0.00030613463604822755,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000080.edf,1,0.0023096217773854733,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000093.edf,1,0.0001550694287288934,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0000116.edf,1,0.000161560601554811,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0000117.edf,0,0.0005431519821286201,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000123.edf,1,0.00017899321392178535,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0000124.edf,0,0.00023505199351347983,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000156.edf,0,0.00017644431500229985,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0000194.edf,0,0.000498446577694267,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000203.edf,1,0.00038437702460214496,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000204.edf,0,0.001492425100877881,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000206.edf,1,0.005391246639192104,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000207.edf,0,0.00037409563083201647,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000214.edf,0,0.00018777539662551135,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0000246.edf,1,0.0008051940822042525,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000254.edf,0,0.0011995489476248622,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000256.edf,1,0.011474869213998318,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000274.edf,0,0.0002234163403045386,0.0,1.0,0.0
+DE_zs_NMT_eval,NMT eval,0000276.edf,0,0.0003144242218695581,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000283.edf,1,0.0008492456981912255,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000286.edf,1,0.0008183335303328931,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000316.edf,1,0.0004399333265610039,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000336.edf,0,0.0010378728620707989,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000346.edf,1,0.00018624230870045722,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0000363.edf,1,0.0003958875604439527,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000396.edf,0,0.002736552618443966,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000406.edf,1,0.0001837845629779622,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0000426.edf,1,0.0014458241639658809,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000436.edf,0,0.0003653937019407749,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000454.edf,0,0.0005452766199596226,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000476.edf,1,0.019762910902500153,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000496.edf,1,0.005490563809871674,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000504.edf,0,0.0009735437924973667,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000506.edf,1,0.0002868540759664029,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000513.edf,1,0.00036047250614501536,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000526.edf,0,0.00023105632863007486,0.0,1.0,0.0
+DE_zs_NMT_eval,NMT eval,0000544.edf,0,0.0009454623213969171,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000546.edf,1,0.32993003726005554,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000566.edf,0,0.00035439294879324734,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000573.edf,1,0.008227658458054066,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000583.edf,1,0.00012881154543720186,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0000584.edf,0,0.00046371284406632185,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000596.edf,0,0.0004610049945767969,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000614.edf,0,0.0009528705268166959,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000616.edf,0,0.0001247807522304356,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0000617.edf,0,5.562206206377596e-05,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0000624.edf,0,0.00018765026470646262,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0000643.edf,1,0.0002115030656568706,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0000666.edf,0,0.001578746596351266,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000676.edf,0,0.0003175618767272681,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000714.edf,0,0.00020825011597480625,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0000744.edf,0,0.38392525911331177,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000746.edf,1,0.0023967307060956955,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000783.edf,1,0.0002704691141843796,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000784.edf,0,0.0004664365842472762,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000786.edf,1,0.0008919481770135462,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000816.edf,1,0.00015875347889959812,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0000823.edf,1,0.000559470965526998,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000824.edf,0,0.0014256113208830357,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000826.edf,1,0.000741166528314352,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000838.edf,1,0.00016459100879728794,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0000844.edf,0,0.0008744718506932259,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000866.edf,1,0.0003744754067156464,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000868.edf,1,0.00020743839559145272,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0000886.edf,1,0.00016603847325313836,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0000894.edf,0,0.0011865843553096056,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000896.edf,1,0.00010958377970382571,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0000906.edf,1,0.00014091856428422034,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0000914.edf,0,0.0009735511848703027,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000916.edf,1,0.00010452304559294134,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0000926.edf,1,0.001995538827031851,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000934.edf,0,0.0001431373821105808,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0000947.edf,0,0.000569207826629281,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000986.edf,0,0.0004822092305403203,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0000993.edf,1,0.0004738355055451393,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001016.edf,1,0.4523872137069702,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001033.edf,1,0.002090269001200795,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001056.edf,0,0.0004342779575381428,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001057.edf,0,0.0005047199665568769,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001096.edf,0,0.0009716460481286049,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001114.edf,0,0.00028247834416106343,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001146.edf,0,0.002167083788663149,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001153.edf,1,0.0023555136285722256,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001156.edf,1,0.0009005088359117508,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001161.edf,1,0.0016633081249892712,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001164.edf,0,0.010535595938563347,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001173.edf,1,0.012446548789739609,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001183.edf,1,0.0013474046718329191,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001196.edf,0,0.0003890521184075624,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001204.edf,0,0.00012608576798811555,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0001216.edf,1,0.0005832698661834002,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001234.edf,0,0.00013113487511873245,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0001264.edf,0,0.0005314074805937707,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001266.edf,1,0.0008442883845418692,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001267.edf,0,0.00075018301140517,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001293.edf,1,0.00524664344266057,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001302.edf,1,0.0051696584559977055,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001306.edf,1,0.0005931761697866023,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001331.edf,1,0.001302053569816053,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001333.edf,1,0.0003001845325343311,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001347.edf,0,0.0003432355588302016,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001353.edf,1,0.0005585438921116292,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001356.edf,0,0.0048203435726463795,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001376.edf,0,0.00025865272618830204,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001383.edf,1,0.00042305802344344556,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001406.edf,1,0.00029711509705521166,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001416.edf,0,0.00011235327838221565,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0001433.edf,1,0.002265050308778882,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001436.edf,1,0.0011809737188741565,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001447.edf,0,0.00016346470511052758,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0001454.edf,0,0.0002314086741534993,0.0,1.0,0.0
+DE_zs_NMT_eval,NMT eval,0001456.edf,0,0.018860427662730217,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001466.edf,1,0.004206969402730465,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001486.edf,1,0.0018895386019721627,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001496.edf,0,0.994471549987793,1.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001513.edf,1,0.0001676755928201601,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0001534.edf,0,0.00011431827442720532,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0001536.edf,0,0.0003168894618283957,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001566.edf,0,0.0004263746668584645,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001573.edf,1,0.00041489844443276525,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001574.edf,0,0.00010252348147332668,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0001583.edf,1,0.006229778286069632,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001586.edf,1,0.005680388305336237,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001593.edf,1,0.0006859226850792766,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001594.edf,0,0.0002985862083733082,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001616.edf,1,0.0005375494947656989,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001653.edf,1,0.00012784436694346368,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0001683.edf,1,0.000420302152633667,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001684.edf,0,0.0012160416226834059,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001703.edf,1,0.0012819613330066204,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001706.edf,0,0.00011061159602832049,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0001713.edf,1,0.0004926507826894522,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001724.edf,0,0.0002708547399379313,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001776.edf,0,0.00041894835885614157,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001794.edf,0,0.00036924550659023225,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001826.edf,0,0.004691430367529392,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001833.edf,1,0.016324440017342567,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001843.edf,1,0.0005219058366492391,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001854.edf,0,0.00020747791859321296,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0001856.edf,0,0.0008247465593740344,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001887.edf,1,0.0006602274952456355,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001893.edf,1,0.0005822767270728946,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001894.edf,0,0.00015711484593339264,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0001896.edf,0,0.0004390453395899385,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001953.edf,1,0.001098731067031622,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001966.edf,0,0.0034296035300940275,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0001967.edf,0,0.0003468368959147483,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0002016.edf,0,0.00034723267890512943,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0002047.edf,0,0.00028999114874750376,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0002053.edf,1,0.08823810517787933,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0002063.edf,1,0.0005790108116343617,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0002064.edf,0,0.0007964007090777159,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0002091.edf,1,0.0006103604100644588,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0002106.edf,0,0.0005748818512074649,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0002114.edf,0,0.000166039724717848,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0002143.edf,1,0.003061688970774412,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0002153.edf,1,0.00014343933435156941,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0002164.edf,0,0.00015356356743723154,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0002166.edf,0,0.0013902775244787335,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0002181.edf,1,0.0002241641777800396,0.0,1.0,0.0
+DE_zs_NMT_eval,NMT eval,0002196.edf,0,0.0011342127108946443,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0002203.edf,1,0.00018058589193969965,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0002244.edf,0,0.0005270062247291207,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0002249.edf,1,0.00037772918585687876,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0002266.edf,1,0.00016474656877107918,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0002276.edf,0,0.00458276504650712,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0002303.edf,1,0.0013121445663273335,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0002304.edf,0,0.00016250956105068326,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0002316.edf,0,0.0002933715586550534,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0002339.edf,1,0.001004416262730956,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0002344.edf,0,0.024024132639169693,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0002366.edf,0,0.00021828364697284997,0.0,1.0,0.0
+DE_zs_NMT_eval,NMT eval,0002373.edf,1,0.014895914122462273,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0002375.edf,0,8.95778794074431e-05,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0002380.edf,1,0.0008097082609310746,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0002384.edf,0,0.0001587462320458144,0.0,0.0,0.0
+DE_zs_NMT_eval,NMT eval,0002406.edf,0,0.002844208385795355,0.0,1.0,1.0
+DE_zs_NMT_eval,NMT eval,0002407.edf,0,0.0012497093994170427,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (1).mat,1,0.13079601526260376,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (10).mat,1,0.03403091058135033,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (11).mat,1,0.0005472543416544795,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (12).mat,1,0.0007943076780065894,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (13).mat,1,0.0037027979269623756,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (14).mat,1,0.011958902701735497,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (15).mat,1,0.00018853283836506307,0.0,0.0,0.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (16).mat,1,0.0027012417558580637,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (17).mat,1,0.14256590604782104,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (18).mat,1,0.09494348615407944,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (19).mat,1,0.000505925330799073,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (2).mat,1,0.5489453673362732,1.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (20).mat,1,0.0015035495162010193,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (21).mat,1,0.0005595970433205366,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (22).mat,1,0.004169214516878128,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (23).mat,1,0.008655652403831482,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (24).mat,1,0.002325993962585926,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (25).mat,1,0.0004258839471731335,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (26).mat,1,0.0010460984194651246,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (27).mat,1,0.0028294820804148912,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (28).mat,1,0.006118123419582844,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (29).mat,1,0.00797810684889555,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (3).mat,1,0.014881636016070843,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (30).mat,1,0.0055380091071128845,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (31).mat,1,0.0003082607581745833,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (32).mat,1,0.02217220328748226,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (33).mat,1,0.023957619443535805,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (34).mat,1,0.9769024848937988,1.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (35).mat,1,0.0007139585795812309,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (36).mat,1,0.0012969328090548515,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (37).mat,1,0.0001986295246751979,0.0,0.0,0.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (38).mat,1,0.0007816668367013335,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (39).mat,1,0.0002592741511762142,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (4).mat,1,0.0009767429437488317,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (40).mat,1,0.0023497759830206633,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (41).mat,1,0.01590762287378311,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (42).mat,1,0.0018694744212552905,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (43).mat,1,0.003967165481299162,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (44).mat,1,0.056833378970623016,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (45).mat,1,0.004415727686136961,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (46).mat,1,0.0075956955552101135,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (47).mat,1,0.002041776664555073,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (48).mat,1,0.0002849112788680941,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (49).mat,1,0.0014143168227747083,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (5).mat,1,0.0007493229932151735,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (50).mat,1,0.00013727202895097435,0.0,0.0,0.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (6).mat,1,0.0002298347681062296,0.0,1.0,0.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (7).mat,1,0.00424684165045619,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (8).mat,1,0.0001791609392967075,0.0,0.0,0.0
+DE_zs_TR_filter_ear,Турция,1_epilepsy (9).mat,1,0.0006081886240281165,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (1).mat,0,0.0010786507045850158,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (10).mat,0,0.0027715596370399,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (11).mat,0,0.0006532102124765515,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (12).mat,0,0.7762286067008972,1.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (13).mat,0,0.005882742814719677,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (14).mat,0,0.0427001416683197,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (15).mat,0,0.051561422646045685,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (16).mat,0,0.04381415247917175,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (17).mat,0,0.009113490581512451,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (18).mat,0,0.003904811106622219,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (19).mat,0,0.0025221919640898705,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (2).mat,0,0.0028169655706733465,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (20).mat,0,0.01158352755010128,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (21).mat,0,0.0056153349578380585,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (22).mat,0,0.0056153349578380585,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (23).mat,0,0.011554799042642117,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (24).mat,0,0.010873731225728989,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (25).mat,0,0.3535021245479584,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (26).mat,0,0.18102318048477173,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (27).mat,0,0.0009804225992411375,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (28).mat,0,0.019015874713659286,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (29).mat,0,0.0010405182838439941,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (3).mat,0,0.0012006411561742425,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (30).mat,0,0.008317663334310055,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (31).mat,0,0.0003882477758452296,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (32).mat,0,0.06449635326862335,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (33).mat,0,0.0004420387267600745,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (34).mat,0,0.006134851835668087,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (35).mat,0,0.015126182697713375,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (36).mat,0,0.007788465823978186,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (37).mat,0,0.00043139600893482566,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (38).mat,0,0.02184082195162773,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (39).mat,0,0.07969723641872406,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (4).mat,0,0.00013238200335763395,0.0,0.0,0.0
+DE_zs_TR_filter_ear,Турция,2_Normal (40).mat,0,0.04786165803670883,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (41).mat,0,0.26589730381965637,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (42).mat,0,0.003244538325816393,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (43).mat,0,0.0017750435508787632,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (44).mat,0,6.544672214658931e-05,0.0,0.0,0.0
+DE_zs_TR_filter_ear,Турция,2_Normal (45).mat,0,0.0037426494527608156,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (46).mat,0,0.013879499398171902,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (47).mat,0,0.008154383860528469,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (48).mat,0,0.002364375162869692,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (49).mat,0,0.0037377120461314917,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (5).mat,0,0.0018903660820797086,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (50).mat,0,0.0013768482021987438,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (51).mat,0,0.006433974951505661,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (52).mat,0,0.00045194372069090605,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (53).mat,0,0.00045194372069090605,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (54).mat,0,0.09829114377498627,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (55).mat,0,0.07702133804559708,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (56).mat,0,0.0032898946665227413,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (57).mat,0,0.039694659411907196,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (58).mat,0,0.008505362085998058,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (59).mat,0,0.0019860602915287018,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (6).mat,0,0.002158156596124172,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (60).mat,0,0.00039872279739938676,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (61).mat,0,0.003941821865737438,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (62).mat,0,0.033561937510967255,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (63).mat,0,0.0016059139743447304,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (64).mat,0,0.0011103630531579256,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (65).mat,0,0.38046956062316895,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (66).mat,0,0.012615324929356575,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (67).mat,0,0.0018363388953730464,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (68).mat,0,0.21510089933872223,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (69).mat,0,0.06010659784078598,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (7).mat,0,0.0007605510763823986,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (70).mat,0,0.015852054581046104,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (71).mat,0,0.10518921911716461,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (8).mat,0,0.014887562021613121,0.0,1.0,1.0
+DE_zs_TR_filter_ear,Турция,2_Normal (9).mat,0,0.004688434302806854,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,1_epilepsy (1).mat,1,0.03724447265267372,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,1_epilepsy (10).mat,1,0.05731126666069031,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,1_epilepsy (11).mat,1,8.853713370626792e-05,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,1_epilepsy (12).mat,1,9.903442696668208e-05,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,1_epilepsy (13).mat,1,0.0006200089701451361,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,1_epilepsy (14).mat,1,0.0007753262761980295,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,1_epilepsy (15).mat,1,0.34422773122787476,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,1_epilepsy (16).mat,1,0.0017567540053278208,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,1_epilepsy (17).mat,1,0.01584434323012829,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,1_epilepsy (18).mat,1,0.0011045495048165321,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,1_epilepsy (19).mat,1,0.0005362086812965572,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,1_epilepsy (2).mat,1,0.001806078478693962,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,1_epilepsy (20).mat,1,0.9971536993980408,1.0,1.0,1.0
+DE_zs_TR_meanref,Турция,1_epilepsy (21).mat,1,0.0002648330992087722,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,1_epilepsy (22).mat,1,0.00012845959281548858,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,1_epilepsy (23).mat,1,0.0086558498442173,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,1_epilepsy (24).mat,1,4.866228482569568e-05,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,1_epilepsy (25).mat,1,0.0001085171097656712,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,1_epilepsy (26).mat,1,7.868501415941864e-05,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,1_epilepsy (27).mat,1,0.00010913787264144048,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,1_epilepsy (28).mat,1,0.00016726713511161506,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,1_epilepsy (29).mat,1,0.00033308257116004825,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,1_epilepsy (3).mat,1,0.0004378902376629412,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,1_epilepsy (30).mat,1,0.3801490068435669,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,1_epilepsy (31).mat,1,5.368163328967057e-05,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,1_epilepsy (32).mat,1,0.00030444489675574005,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,1_epilepsy (33).mat,1,0.0016792542301118374,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,1_epilepsy (34).mat,1,0.39736026525497437,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,1_epilepsy (35).mat,1,0.00019992032321169972,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,1_epilepsy (36).mat,1,0.00023705646162852645,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,1_epilepsy (37).mat,1,4.774179615196772e-05,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,1_epilepsy (38).mat,1,9.068057261174545e-05,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,1_epilepsy (39).mat,1,7.819143502274528e-05,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,1_epilepsy (4).mat,1,0.8327925205230713,1.0,1.0,1.0
+DE_zs_TR_meanref,Турция,1_epilepsy (40).mat,1,0.00016443173808511347,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,1_epilepsy (41).mat,1,0.0001505322870798409,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,1_epilepsy (42).mat,1,0.00020341262279544026,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,1_epilepsy (43).mat,1,0.0002676860895007849,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,1_epilepsy (44).mat,1,8.038633677642792e-05,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,1_epilepsy (45).mat,1,0.0002033512864727527,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,1_epilepsy (46).mat,1,0.0003483135369606316,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,1_epilepsy (47).mat,1,0.013017677702009678,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,1_epilepsy (48).mat,1,0.019638000056147575,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,1_epilepsy (49).mat,1,0.00019069021800532937,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,1_epilepsy (5).mat,1,8.097522368188947e-05,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,1_epilepsy (50).mat,1,0.22644686698913574,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,1_epilepsy (6).mat,1,0.00018455478129908442,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,1_epilepsy (7).mat,1,0.0002490552142262459,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,1_epilepsy (8).mat,1,4.024115696665831e-05,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,1_epilepsy (9).mat,1,8.91094678081572e-05,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (1).mat,0,0.0005113690858706832,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,2_Normal (10).mat,0,7.623215788044035e-05,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (11).mat,0,7.62082272558473e-05,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (12).mat,0,0.015317614190280437,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,2_Normal (13).mat,0,0.00038340489845722914,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,2_Normal (14).mat,0,0.000871676835231483,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,2_Normal (15).mat,0,0.0002865504939109087,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,2_Normal (16).mat,0,0.005383750423789024,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,2_Normal (17).mat,0,0.00021866458700969815,0.0,1.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (18).mat,0,0.00019982631783932447,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (19).mat,0,7.394744170596823e-05,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (2).mat,0,0.00023552939819637686,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,2_Normal (20).mat,0,5.852997855981812e-05,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (21).mat,0,0.0001772507675923407,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (22).mat,0,0.0001772507675923407,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (23).mat,0,0.000697863579262048,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,2_Normal (24).mat,0,0.00024162098998203874,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,2_Normal (25).mat,0,0.00036197080044075847,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,2_Normal (26).mat,0,0.0012383920839056373,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,2_Normal (27).mat,0,0.00016955664614215493,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (28).mat,0,0.00014485782594420016,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (29).mat,0,0.0001463617809349671,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (3).mat,0,0.0003934018895961344,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,2_Normal (30).mat,0,0.0009486543713137507,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,2_Normal (31).mat,0,0.00018501945305615664,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (32).mat,0,0.0005828754510730505,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,2_Normal (33).mat,0,9.987163502955809e-05,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (34).mat,0,6.692926399409771e-05,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (35).mat,0,0.0001444013323634863,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (36).mat,0,0.00044022963265888393,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,2_Normal (37).mat,0,6.544047937495634e-05,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (38).mat,0,8.09229095466435e-05,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (39).mat,0,0.010608287528157234,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,2_Normal (4).mat,0,5.3447634854819626e-05,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (40).mat,0,0.00029966916190460324,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,2_Normal (41).mat,0,0.0008146457257680595,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,2_Normal (42).mat,0,0.0002714737202040851,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,2_Normal (43).mat,0,0.000222722563194111,0.0,1.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (44).mat,0,4.757222632179037e-05,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (45).mat,0,0.0001328658254351467,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (46).mat,0,0.0004191417247056961,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,2_Normal (47).mat,0,0.0006548608071170747,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,2_Normal (48).mat,0,0.0006493729306384921,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,2_Normal (49).mat,0,0.00016980939835775644,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (5).mat,0,0.005087369121611118,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,2_Normal (50).mat,0,0.0002636122517287731,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,2_Normal (51).mat,0,0.00019609395531006157,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (52).mat,0,0.0001920489885378629,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (53).mat,0,0.0001920489885378629,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (54).mat,0,0.00010859080066438764,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (55).mat,0,0.000965435872785747,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,2_Normal (56).mat,0,9.196937025990337e-05,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (57).mat,0,0.0002062464045593515,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (58).mat,0,0.00017510027100797743,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (59).mat,0,0.0002768461708910763,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,2_Normal (6).mat,0,0.00012557601439766586,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (60).mat,0,0.00013702281285077333,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (61).mat,0,0.00010884551011258736,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (62).mat,0,0.0067730918526649475,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,2_Normal (63).mat,0,0.000135378199047409,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (64).mat,0,5.6534583563916385e-05,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (65).mat,0,0.013429494574666023,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,2_Normal (66).mat,0,0.00011692653060890734,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (67).mat,0,5.471832264447585e-05,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (68).mat,0,0.0019066138193011284,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,2_Normal (69).mat,0,0.0003214614116586745,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,2_Normal (7).mat,0,0.0001150278840214014,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (70).mat,0,0.0021442044526338577,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,2_Normal (71).mat,0,0.0006966490764170885,0.0,1.0,1.0
+DE_zs_TR_meanref,Турция,2_Normal (8).mat,0,0.00015699968207627535,0.0,0.0,0.0
+DE_zs_TR_meanref,Турция,2_Normal (9).mat,0,0.00010857931192731485,0.0,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000024.edf,0,0.24313637614250183,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000036.edf,1,0.9945768117904663,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000044.edf,0,0.7648916244506836,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000046.edf,1,0.14739136397838593,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000074.edf,0,0.00010679088154574856,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000076.edf,1,0.9905195236206055,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000077.edf,0,0.00010679270781110972,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000080.edf,1,0.0030574577394872904,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000093.edf,1,0.0005595827242359519,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000116.edf,1,0.9873324036598206,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000117.edf,0,9.973534906748682e-05,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000123.edf,1,0.7789442539215088,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000124.edf,0,0.010704093612730503,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000156.edf,0,0.024171650409698486,,1.0,0.0
+DE_ft_NMT_full,NMT eval,0000194.edf,0,0.6088266372680664,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000203.edf,1,0.99537193775177,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000204.edf,0,0.5736784338951111,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000206.edf,1,0.9780393838882446,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000207.edf,0,0.0001896174217108637,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000214.edf,0,0.044240906834602356,,1.0,0.0
+DE_ft_NMT_full,NMT eval,0000246.edf,1,0.018613329157233238,,1.0,0.0
+DE_ft_NMT_full,NMT eval,0000254.edf,0,0.00025865272618830204,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000256.edf,1,0.9117707014083862,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000274.edf,0,0.008085453882813454,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000276.edf,0,8.448042353847995e-05,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000283.edf,1,0.0189962275326252,,1.0,0.0
+DE_ft_NMT_full,NMT eval,0000286.edf,1,0.9513261914253235,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000316.edf,1,0.0026033828034996986,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000336.edf,0,0.3832824230194092,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000346.edf,1,0.0035510039888322353,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000363.edf,1,0.9235319495201111,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000396.edf,0,0.19326412677764893,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000406.edf,1,0.9917524456977844,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000426.edf,1,0.9899958372116089,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000436.edf,0,0.0006336951046250761,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000454.edf,0,0.0003590676642488688,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000476.edf,1,0.16295990347862244,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000496.edf,1,0.947726845741272,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000504.edf,0,0.00011147904297104105,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000506.edf,1,0.006628239527344704,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000513.edf,1,0.0001482583029428497,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000526.edf,0,0.00019573081226553768,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000544.edf,0,0.29178741574287415,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000546.edf,1,0.014982720836997032,,1.0,0.0
+DE_ft_NMT_full,NMT eval,0000566.edf,0,0.00010975843906635419,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000573.edf,1,0.9933750033378601,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000583.edf,1,0.9801863431930542,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000584.edf,0,0.00020582439901772887,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000596.edf,0,0.00019487277313601226,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000614.edf,0,0.9450074434280396,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000616.edf,0,0.00013160881644580513,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000617.edf,0,0.00010975090117426589,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000624.edf,0,0.00010492029832676053,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000643.edf,1,0.984585702419281,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000666.edf,0,0.0032803525682538748,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000676.edf,0,0.00033961114240810275,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000714.edf,0,9.26017964957282e-05,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000744.edf,0,0.0003346894809510559,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000746.edf,1,0.5217148661613464,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000783.edf,1,0.00583267817273736,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000784.edf,0,0.8974708318710327,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000786.edf,1,0.7778387069702148,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000816.edf,1,0.9835358262062073,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000823.edf,1,0.77466881275177,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000824.edf,0,0.003937177825719118,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000826.edf,1,0.9918661117553711,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000838.edf,1,0.860931932926178,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000844.edf,0,0.00035627433680929244,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000866.edf,1,0.9943301677703857,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000868.edf,1,0.9756118059158325,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000886.edf,1,0.013821961358189583,,1.0,0.0
+DE_ft_NMT_full,NMT eval,0000894.edf,0,0.0001162731641670689,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000896.edf,1,0.9742457866668701,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000906.edf,1,0.009965281933546066,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000914.edf,0,0.010099953971803188,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000916.edf,1,8.767422696109861e-05,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000926.edf,1,0.9883409142494202,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0000934.edf,0,0.0001172855991171673,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0000947.edf,0,0.015013563446700573,,1.0,0.0
+DE_ft_NMT_full,NMT eval,0000986.edf,0,0.02340511977672577,,1.0,0.0
+DE_ft_NMT_full,NMT eval,0000993.edf,1,0.04713311046361923,,1.0,0.0
+DE_ft_NMT_full,NMT eval,0001016.edf,1,0.9687203764915466,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0001033.edf,1,0.9691906571388245,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0001056.edf,0,9.260339720640332e-05,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0001057.edf,0,0.0003036046400666237,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0001096.edf,0,0.0003770285693462938,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0001114.edf,0,0.00010411152470624074,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0001146.edf,0,0.050639837980270386,,1.0,0.0
+DE_ft_NMT_full,NMT eval,0001153.edf,1,0.02650453709065914,,1.0,0.0
+DE_ft_NMT_full,NMT eval,0001156.edf,1,0.9599611163139343,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0001161.edf,1,0.9948654174804688,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0001164.edf,0,0.05125200003385544,,1.0,0.0
+DE_ft_NMT_full,NMT eval,0001173.edf,1,0.9903022050857544,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0001183.edf,1,0.02269098348915577,,1.0,0.0
+DE_ft_NMT_full,NMT eval,0001196.edf,0,9.72442066995427e-05,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0001204.edf,0,9.055495320353657e-05,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0001216.edf,1,0.9882179498672485,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0001234.edf,0,9.054736437974498e-05,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0001264.edf,0,0.01411798968911171,,1.0,0.0
+DE_ft_NMT_full,NMT eval,0001266.edf,1,0.0005285091465339065,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0001267.edf,0,0.00010627081792335957,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0001293.edf,1,0.9914333820343018,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0001302.edf,1,0.9927496910095215,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0001306.edf,1,0.9845553636550903,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0001331.edf,1,0.08599463850259781,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0001333.edf,1,0.9911478757858276,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0001347.edf,0,0.9824156761169434,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0001353.edf,1,0.6533133387565613,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0001356.edf,0,0.01061142049729824,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0001376.edf,0,0.00012267378042452037,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0001383.edf,1,0.5633779764175415,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0001406.edf,1,0.9854614734649658,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0001416.edf,0,0.00011983238073298708,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0001433.edf,1,0.0009907908970490098,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0001436.edf,1,0.2693256139755249,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0001447.edf,0,0.00010170225868932903,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0001454.edf,0,0.002123966347426176,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0001456.edf,0,0.0052936505526304245,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0001466.edf,1,0.9825155735015869,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0001486.edf,1,0.6496897339820862,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0001496.edf,0,0.0005558948614634573,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0001513.edf,1,0.9733428955078125,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0001534.edf,0,0.00013988791033625603,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0001536.edf,0,0.27678826451301575,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0001566.edf,0,9.116626461036503e-05,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0001573.edf,1,0.9878140687942505,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0001574.edf,0,0.00010360796295572072,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0001583.edf,1,0.0003776328230742365,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0001586.edf,1,0.008116843178868294,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0001593.edf,1,0.2141580581665039,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0001594.edf,0,0.017497116699814796,,1.0,0.0
+DE_ft_NMT_full,NMT eval,0001616.edf,1,0.9769766926765442,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0001653.edf,1,0.9892466068267822,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0001683.edf,1,0.019085174426436424,,1.0,0.0
+DE_ft_NMT_full,NMT eval,0001684.edf,0,0.9090225100517273,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0001703.edf,1,8.483837882522494e-05,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0001706.edf,0,0.11104825884103775,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0001713.edf,1,0.9073107838630676,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0001724.edf,0,0.07392582297325134,,1.0,0.0
+DE_ft_NMT_full,NMT eval,0001776.edf,0,0.006718870252370834,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0001794.edf,0,0.00012322170368861407,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0001826.edf,0,9.938918810803443e-05,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0001833.edf,1,0.7089183926582336,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0001843.edf,1,0.9832667112350464,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0001854.edf,0,0.00015599098696839064,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0001856.edf,0,0.29982221126556396,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0001887.edf,1,0.7306743860244751,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0001893.edf,1,0.9752062559127808,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0001894.edf,0,9.143899660557508e-05,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0001896.edf,0,8.95778794074431e-05,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0001953.edf,1,0.4568943679332733,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0001966.edf,0,0.010902373120188713,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0001967.edf,0,0.00011832361633423716,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0002016.edf,0,0.0017299316823482513,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0002047.edf,0,0.00015975660062395036,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0002053.edf,1,0.4366813898086548,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0002063.edf,1,0.0001893405569717288,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0002064.edf,0,0.00651351036503911,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0002091.edf,1,0.8084314465522766,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0002106.edf,0,0.0070814769715070724,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0002114.edf,0,0.00011718369205482304,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0002143.edf,1,0.9595116972923279,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0002153.edf,1,0.06886410713195801,,1.0,0.0
+DE_ft_NMT_full,NMT eval,0002164.edf,0,0.00011626078776316717,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0002166.edf,0,0.0009874862153083086,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0002181.edf,1,0.14223873615264893,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0002196.edf,0,0.00028968212427571416,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0002203.edf,1,0.7519078850746155,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0002244.edf,0,9.405992750544101e-05,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0002249.edf,1,0.3122752010822296,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0002266.edf,1,0.9903802871704102,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0002276.edf,0,0.9508520364761353,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0002303.edf,1,0.7318317890167236,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0002304.edf,0,9.370773477712646e-05,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0002316.edf,0,0.9802050590515137,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0002339.edf,1,0.5375269651412964,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0002344.edf,0,0.0027416234370321035,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0002366.edf,0,0.00047192315105348825,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0002373.edf,1,0.9931743741035461,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0002375.edf,0,0.00012484894250519574,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0002380.edf,1,0.9393936395645142,,1.0,1.0
+DE_ft_NMT_full,NMT eval,0002384.edf,0,0.00012472856906242669,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0002406.edf,0,0.005899882409721613,,0.0,0.0
+DE_ft_NMT_full,NMT eval,0002407.edf,0,0.004848532844334841,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000024.edf,0,0.58983314037323,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000036.edf,1,0.9821161031723022,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000044.edf,0,0.5263427495956421,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000046.edf,1,0.15729060769081116,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000074.edf,0,0.0342777781188488,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000076.edf,1,0.6701993942260742,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000077.edf,0,0.005059198476374149,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000080.edf,1,0.43638184666633606,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000093.edf,1,0.026072844862937927,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000116.edf,1,0.9223600029945374,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000117.edf,0,0.0013302016304805875,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000123.edf,1,0.1063816025853157,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000124.edf,0,0.20967188477516174,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000156.edf,0,0.3217124342918396,,0.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000194.edf,0,0.2589814066886902,,0.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000203.edf,1,0.9855744242668152,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000204.edf,0,0.5655386447906494,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000206.edf,1,0.5131723880767822,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000207.edf,0,0.00972727220505476,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000214.edf,0,0.03417550399899483,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000246.edf,1,0.15810906887054443,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000254.edf,0,0.28726768493652344,,0.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000256.edf,1,0.528533399105072,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000274.edf,0,0.16324524581432343,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000276.edf,0,0.002234362531453371,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000283.edf,1,0.2023249715566635,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000286.edf,1,0.8563323616981506,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000316.edf,1,0.09071003645658493,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000336.edf,0,0.610552966594696,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000346.edf,1,0.39469897747039795,,0.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000363.edf,1,0.6923300623893738,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000396.edf,0,0.8275696039199829,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000406.edf,1,0.9722965359687805,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000426.edf,1,0.898689866065979,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000436.edf,0,0.16239841282367706,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000454.edf,0,0.15424858033657074,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000476.edf,1,0.3401382267475128,,0.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000496.edf,1,0.6318215131759644,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000504.edf,0,0.09341921657323837,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000506.edf,1,0.14732500910758972,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000513.edf,1,0.04988904669880867,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000526.edf,0,0.17183399200439453,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000544.edf,0,0.6489114165306091,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000546.edf,1,0.431264728307724,,0.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000566.edf,0,0.00222228467464447,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000573.edf,1,0.15905405580997467,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000583.edf,1,0.9033368229866028,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000584.edf,0,0.09948661178350449,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000596.edf,0,0.16715067625045776,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000614.edf,0,0.7623355984687805,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000616.edf,0,0.0007572548929601908,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000617.edf,0,7.339867443079129e-05,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000624.edf,0,0.001069112098775804,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000643.edf,1,0.7731009721755981,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000666.edf,0,0.5613665580749512,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000676.edf,0,0.22368381917476654,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000714.edf,0,0.005819959565997124,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000744.edf,0,0.09522004425525665,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000746.edf,1,0.4670886695384979,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000783.edf,1,0.1465376615524292,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000784.edf,0,0.4938967823982239,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000786.edf,1,0.6161580681800842,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000816.edf,1,0.8423725366592407,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000823.edf,1,0.41024166345596313,,0.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000824.edf,0,0.1783410608768463,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000826.edf,1,0.9502397775650024,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000838.edf,1,0.04633365944027901,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000844.edf,0,0.08617916703224182,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000866.edf,1,0.9895614385604858,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000868.edf,1,0.7052778005599976,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000886.edf,1,0.7973201870918274,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000894.edf,0,0.21902137994766235,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000896.edf,1,0.018699342384934425,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000906.edf,1,0.14086724817752838,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000914.edf,0,0.038693010807037354,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000916.edf,1,0.00015148012607824057,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000926.edf,1,0.6804540753364563,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000934.edf,0,0.0034429803490638733,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000947.edf,0,0.16719704866409302,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000986.edf,0,0.18750108778476715,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0000993.edf,1,0.17304593324661255,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001016.edf,1,0.3975297808647156,,0.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001033.edf,1,0.7626433372497559,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001056.edf,0,0.04884038120508194,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001057.edf,0,0.08407729864120483,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001096.edf,0,0.09154440462589264,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001114.edf,0,0.004248087294399738,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001146.edf,0,0.38674595952033997,,0.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001153.edf,1,0.5012206435203552,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001156.edf,1,0.4771001935005188,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001161.edf,1,0.9907044172286987,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001164.edf,0,0.29370227456092834,,0.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001173.edf,1,0.7630025148391724,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001183.edf,1,0.3003239631652832,,0.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001196.edf,0,0.008763816207647324,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001204.edf,0,0.0004061067011207342,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001216.edf,1,0.7739852666854858,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001234.edf,0,0.0008138599805533886,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001264.edf,0,0.6609849333763123,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001266.edf,1,0.23139704763889313,,0.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001267.edf,0,0.0011392675805836916,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001293.edf,1,0.9302544593811035,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001302.edf,1,0.9636475443840027,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001306.edf,1,0.7985357046127319,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001331.edf,1,0.5988336205482483,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001333.edf,1,0.762156069278717,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001347.edf,0,0.496969074010849,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001353.edf,1,0.31496191024780273,,0.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001356.edf,0,0.049497056752443314,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001376.edf,0,0.00012632041762117296,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001383.edf,1,0.3845653831958771,,0.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001406.edf,1,0.9097768068313599,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001416.edf,0,0.002128110034391284,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001433.edf,1,0.5041502714157104,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001436.edf,1,0.5085440874099731,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001447.edf,0,0.00018235458992421627,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001454.edf,0,0.06797852367162704,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001456.edf,0,0.19593802094459534,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001466.edf,1,0.8482193946838379,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001486.edf,1,0.45592525601387024,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001496.edf,0,0.005932794883847237,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001513.edf,1,0.8750343322753906,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001534.edf,0,0.0521879568696022,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001536.edf,0,0.3185911774635315,,0.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001566.edf,0,0.0012644219677895308,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001573.edf,1,0.9043398499488831,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001574.edf,0,0.0003961463226005435,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001583.edf,1,0.05958528071641922,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001586.edf,1,0.4474602937698364,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001593.edf,1,0.5010986328125,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001594.edf,0,0.15366841852664948,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001616.edf,1,0.8490568399429321,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001653.edf,1,0.8977475762367249,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001683.edf,1,0.07064157724380493,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001684.edf,0,0.644336998462677,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001703.edf,1,0.003594573587179184,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001706.edf,0,0.013083389960229397,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001713.edf,1,0.6188502311706543,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001724.edf,0,0.05814766883850098,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001776.edf,0,0.11384101957082748,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001794.edf,0,0.15395642817020416,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001826.edf,0,0.02900667116045952,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001833.edf,1,0.840520977973938,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001843.edf,1,0.891277015209198,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001854.edf,0,0.0028704735450446606,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001856.edf,0,0.6579780578613281,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001887.edf,1,0.532181978225708,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001893.edf,1,0.8661231994628906,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001894.edf,0,0.0011491489131003618,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001896.edf,0,0.001426959759555757,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001953.edf,1,0.5484316945075989,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001966.edf,0,0.3922204375267029,,0.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0001967.edf,0,0.00046294694766402245,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0002016.edf,0,0.1378069669008255,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0002047.edf,0,0.4644491970539093,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0002053.edf,1,0.3280363082885742,,0.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0002063.edf,1,0.3250558376312256,,0.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0002064.edf,0,0.08312506973743439,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0002091.edf,1,0.6698691844940186,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0002106.edf,0,0.2945670783519745,,0.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0002114.edf,0,0.00019153955508954823,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0002143.edf,1,0.746884286403656,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0002153.edf,1,0.04768495261669159,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0002164.edf,0,0.006852859165519476,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0002166.edf,0,0.2663257122039795,,0.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0002181.edf,1,0.652393102645874,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0002196.edf,0,0.08949150890111923,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0002203.edf,1,0.8523169159889221,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0002244.edf,0,0.002996789989992976,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0002249.edf,1,0.83771812915802,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0002266.edf,1,0.8584814667701721,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0002276.edf,0,0.8825797438621521,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0002303.edf,1,0.5987814664840698,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0002304.edf,0,0.001962802605703473,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0002316.edf,0,0.9138315916061401,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0002339.edf,1,0.6617043018341064,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0002344.edf,0,0.5413223505020142,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0002366.edf,0,0.010382652282714844,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0002373.edf,1,0.9757218956947327,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0002375.edf,0,0.001232760725542903,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0002380.edf,1,0.716950535774231,,1.0,1.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0002384.edf,0,0.0024501564912497997,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0002406.edf,0,0.09624896198511124,,0.0,0.0
+DE_ft_NMTsub_to_NMTeval,NMT eval,0002407.edf,0,0.8755743503570557,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (1).mat,1,0.993085503578186,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (10).mat,1,0.9946929812431335,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (11).mat,1,0.8553358316421509,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (12).mat,1,0.9986342787742615,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (13).mat,1,0.014994002878665924,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (14).mat,1,0.9321798086166382,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (15).mat,1,0.9993307590484619,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (16).mat,1,0.6952857971191406,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (17).mat,1,0.9966201782226562,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (18).mat,1,0.9916947484016418,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (19).mat,1,0.9802903532981873,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (2).mat,1,0.9705700874328613,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (20).mat,1,0.9994498491287231,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (21).mat,1,0.684580385684967,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (22).mat,1,0.13595673441886902,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (23).mat,1,0.989034116268158,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (24).mat,1,0.08953961730003357,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (25).mat,1,0.07793769240379333,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (26).mat,1,0.17880770564079285,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (27).mat,1,0.9820137619972229,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (28).mat,1,0.8201095461845398,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (29).mat,1,0.809699296951294,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (3).mat,1,0.9455127716064453,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (30).mat,1,0.999176025390625,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (31).mat,1,0.9960198998451233,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (32).mat,1,0.6732991337776184,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (33).mat,1,0.19440604746341705,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (34).mat,1,0.9993040561676025,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (35).mat,1,0.8780794739723206,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (36).mat,1,0.997920572757721,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (37).mat,1,0.9971689581871033,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (38).mat,1,0.000409694854170084,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (39).mat,1,0.9886460900306702,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (4).mat,1,0.9994218349456787,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (40).mat,1,0.02182282693684101,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (41).mat,1,0.17240604758262634,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (42).mat,1,0.24041776359081268,,0.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (43).mat,1,0.6723860502243042,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (44).mat,1,0.1695232391357422,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (45).mat,1,0.07707333564758301,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (46).mat,1,0.3143754005432129,,0.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (47).mat,1,0.7604132890701294,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (48).mat,1,0.9991204142570496,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (49).mat,1,0.517327070236206,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (5).mat,1,0.008473742753267288,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (50).mat,1,0.9994218349456787,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (6).mat,1,0.8274101614952087,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (7).mat,1,0.9323664307594299,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (8).mat,1,0.9990227818489075,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,1_epilepsy (9).mat,1,0.9978278279304504,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (1).mat,0,0.37033262848854065,,0.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (10).mat,0,0.9933022260665894,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (11).mat,0,0.0015957707073539495,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (12).mat,0,0.9987441301345825,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (13).mat,0,0.23999211192131042,,0.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (14).mat,0,0.7564467787742615,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (15).mat,0,0.9991014003753662,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (16).mat,0,0.9249676465988159,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (17).mat,0,0.10800538957118988,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (18).mat,0,0.7594038248062134,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (19).mat,0,0.04910798370838165,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (2).mat,0,0.5544704794883728,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (20).mat,0,0.33620908856391907,,0.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (21).mat,0,0.01108285877853632,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (22).mat,0,0.01108285877853632,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (23).mat,0,0.9389618039131165,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (24).mat,0,0.9983747005462646,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (25).mat,0,0.9700134992599487,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (26).mat,0,0.9940658807754517,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (27).mat,0,0.042231474071741104,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (28).mat,0,0.622459352016449,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (29).mat,0,0.38711094856262207,,0.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (3).mat,0,0.6253169775009155,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (30).mat,0,0.9981249570846558,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (31).mat,0,0.6929497718811035,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (32).mat,0,0.7901437878608704,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (33).mat,0,0.008898884057998657,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (34).mat,0,0.0009704178664833307,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (35).mat,0,0.891999363899231,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (36).mat,0,0.499755859375,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (37).mat,0,0.009064030833542347,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (38).mat,0,0.025359302759170532,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (39).mat,0,0.7920624017715454,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (4).mat,0,0.030256152153015137,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (40).mat,0,0.9909971952438354,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (41).mat,0,0.022672437131404877,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (42).mat,0,0.981841504573822,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (43).mat,0,0.04880605638027191,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (44).mat,0,0.09596429765224457,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (45).mat,0,0.21432119607925415,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (46).mat,0,0.07884277403354645,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (47).mat,0,0.26822715997695923,,0.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (48).mat,0,0.30903080105781555,,0.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (49).mat,0,0.24908174574375153,,0.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (5).mat,0,0.744749128818512,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (50).mat,0,0.17602583765983582,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (51).mat,0,0.140371635556221,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (52).mat,0,0.6712343096733093,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (53).mat,0,0.6712343096733093,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (54).mat,0,0.5493988394737244,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (55).mat,0,0.5966681838035583,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (56).mat,0,0.9216386079788208,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (57).mat,0,0.9495992660522461,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (58).mat,0,0.4887714385986328,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (59).mat,0,0.8917167782783508,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (6).mat,0,0.002645303262397647,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (60).mat,0,0.0010869887191802263,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (61).mat,0,0.41984617710113525,,0.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (62).mat,0,0.9588139653205872,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (63).mat,0,0.8812576532363892,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (64).mat,0,0.07255452126264572,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (65).mat,0,0.9930388331413269,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (66).mat,0,0.6655617356300354,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (67).mat,0,0.9313260316848755,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (68).mat,0,0.23475733399391174,,0.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (69).mat,0,0.05821185186505318,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (7).mat,0,0.06101713329553604,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (70).mat,0,0.8961745500564575,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (71).mat,0,0.9535136818885803,,1.0,1.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (8).mat,0,0.0011718741152435541,,0.0,0.0
+DE_ft_NMTsub_to_TR,Турция,2_Normal (9).mat,0,0.581989049911499,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (1).mat,1,0.8503722413780211,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (10).mat,1,0.92287966926744,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (11).mat,1,0.9582323981164397,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (12).mat,1,0.450044410105498,,0.9,0.6
+REVE_CV_TR,Турция,1_epilepsy (13).mat,1,0.4327721607527498,,0.4,0.6
+REVE_CV_TR,Турция,1_epilepsy (14).mat,1,0.9271018502014756,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (15).mat,1,0.9679491227549459,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (16).mat,1,0.9852899834678365,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (17).mat,1,0.5046130358381904,,0.9,0.9
+REVE_CV_TR,Турция,1_epilepsy (18).mat,1,0.92574962746903,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (19).mat,1,0.8129412097552431,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (2).mat,1,0.1882572411912624,,0.0,0.0
+REVE_CV_TR,Турция,1_epilepsy (20).mat,1,0.8109302560090932,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (21).mat,1,0.9902051435243507,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (22).mat,1,0.16010426777630468,,0.0,0.0
+REVE_CV_TR,Турция,1_epilepsy (23).mat,1,0.21665893873886902,,0.0,0.0
+REVE_CV_TR,Турция,1_epilepsy (24).mat,1,0.454599209142226,,0.8,0.8
+REVE_CV_TR,Турция,1_epilepsy (25).mat,1,0.6860005591880106,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (26).mat,1,0.9755585942221133,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (27).mat,1,0.9952448502177329,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (28).mat,1,0.8921940317721043,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (29).mat,1,0.9203378435887345,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (3).mat,1,0.9175168148174224,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (30).mat,1,0.8916225066803278,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (31).mat,1,0.9970437959715557,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (32).mat,1,0.34867569047360425,,0.3,0.2
+REVE_CV_TR,Турция,1_epilepsy (33).mat,1,0.2033827466359007,,0.1,0.0
+REVE_CV_TR,Турция,1_epilepsy (34).mat,1,0.7006423728219714,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (35).mat,1,0.917877397782692,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (36).mat,1,0.9591677545722174,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (37).mat,1,0.9724723927459007,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (38).mat,1,0.3826913195344069,,0.5,0.4
+REVE_CV_TR,Турция,1_epilepsy (39).mat,1,0.9305352524338624,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (4).mat,1,0.9427196762966122,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (40).mat,1,0.8589060089350402,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (41).mat,1,0.7520480157732305,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (42).mat,1,0.893803665635831,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (43).mat,1,0.5883361918619994,,0.9,0.9
+REVE_CV_TR,Турция,1_epilepsy (44).mat,1,0.3205832837985767,,0.5,0.2
+REVE_CV_TR,Турция,1_epilepsy (45).mat,1,0.48702782576868175,,0.8,0.9
+REVE_CV_TR,Турция,1_epilepsy (46).mat,1,0.6511690590821669,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (47).mat,1,0.8982212649087595,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (48).mat,1,0.9781968216072204,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (49).mat,1,0.9921788871099286,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (5).mat,1,0.5044958059821483,,0.9,0.9
+REVE_CV_TR,Турция,1_epilepsy (50).mat,1,0.9985883908815971,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (6).mat,1,0.9382809216389048,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (7).mat,1,0.1088656292971804,,0.0,0.0
+REVE_CV_TR,Турция,1_epilepsy (8).mat,1,0.9172075823783008,,1.0,1.0
+REVE_CV_TR,Турция,1_epilepsy (9).mat,1,0.4113364605125371,,0.5,0.5
+REVE_CV_TR,Турция,2_Normal (1).mat,0,0.3663024512618229,,0.3,0.3
+REVE_CV_TR,Турция,2_Normal (10).mat,0,0.19379052416559622,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (11).mat,0,0.2607892802176101,,0.2,0.0
+REVE_CV_TR,Турция,2_Normal (12).mat,0,0.181723782293916,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (13).mat,0,0.10980104659038573,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (14).mat,0,0.0392910679936876,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (15).mat,0,0.12340742793643858,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (16).mat,0,0.05504556364209523,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (17).mat,0,0.16419258155661726,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (18).mat,0,0.39313186683952056,,0.9,0.4
+REVE_CV_TR,Турция,2_Normal (19).mat,0,0.4121253790774914,,0.4,0.5
+REVE_CV_TR,Турция,2_Normal (2).mat,0,0.21044450111322358,,0.1,0.0
+REVE_CV_TR,Турция,2_Normal (20).mat,0,0.10643002705543492,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (21).mat,0,0.04620688070124177,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (22).mat,0,0.047908801079223226,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (23).mat,0,0.07483589979001086,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (24).mat,0,0.11603291915558131,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (25).mat,0,0.2572431864775874,,0.1,0.1
+REVE_CV_TR,Турция,2_Normal (26).mat,0,0.5838611614239475,,0.9,0.9
+REVE_CV_TR,Турция,2_Normal (27).mat,0,0.15052074690199485,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (28).mat,0,0.07522511821587104,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (29).mat,0,0.6884809878011182,,1.0,1.0
+REVE_CV_TR,Турция,2_Normal (3).mat,0,0.08228533198516527,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (30).mat,0,0.619615901863502,,1.0,1.0
+REVE_CV_TR,Турция,2_Normal (31).mat,0,0.2503756948336859,,0.2,0.2
+REVE_CV_TR,Турция,2_Normal (32).mat,0,0.025474458295434804,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (33).mat,0,0.09906049863741821,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (34).mat,0,0.04496455940798814,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (35).mat,0,0.238601064402798,,0.1,0.0
+REVE_CV_TR,Турция,2_Normal (36).mat,0,0.09256911063793069,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (37).mat,0,0.2883745586393197,,0.4,0.0
+REVE_CV_TR,Турция,2_Normal (38).mat,0,0.01200507034912598,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (39).mat,0,0.22546552992755933,,0.1,0.1
+REVE_CV_TR,Турция,2_Normal (4).mat,0,0.18628642956308877,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (40).mat,0,0.1844984633313913,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (41).mat,0,0.12127570522156934,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (42).mat,0,0.24733198281803567,,0.1,0.1
+REVE_CV_TR,Турция,2_Normal (43).mat,0,0.09834651712223819,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (44).mat,0,0.05732874205592999,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (45).mat,0,0.02593544828529895,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (46).mat,0,0.01997931351080964,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (47).mat,0,0.7479218684583291,,1.0,1.0
+REVE_CV_TR,Турция,2_Normal (48).mat,0,0.025795650433292516,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (49).mat,0,0.070099445676295,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (5).mat,0,0.1603709129664451,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (50).mat,0,0.5518436581016019,,0.7,0.8
+REVE_CV_TR,Турция,2_Normal (51).mat,0,0.13244957326390494,,0.1,0.0
+REVE_CV_TR,Турция,2_Normal (52).mat,0,0.11193296819274343,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (53).mat,0,0.10081900315589198,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (54).mat,0,0.08834166397088611,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (55).mat,0,0.10494119483033437,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (56).mat,0,0.4109536575948195,,0.5,0.6
+REVE_CV_TR,Турция,2_Normal (57).mat,0,0.08003968593086273,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (58).mat,0,0.25624859560597235,,0.1,0.1
+REVE_CV_TR,Турция,2_Normal (59).mat,0,0.015801626421532745,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (6).mat,0,0.20547551372589434,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (60).mat,0,0.07776523409126228,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (61).mat,0,0.1268907999532958,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (62).mat,0,0.15979060622496694,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (63).mat,0,0.0775229026920624,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (64).mat,0,0.1961185963999589,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (65).mat,0,0.5390438884711416,,1.0,0.9
+REVE_CV_TR,Турция,2_Normal (66).mat,0,0.0766076840085848,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (67).mat,0,0.09416361587724818,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (68).mat,0,0.3871041866017838,,0.8,0.5
+REVE_CV_TR,Турция,2_Normal (69).mat,0,0.12212939441890718,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (7).mat,0,0.11402024049826887,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (70).mat,0,0.12491640537473066,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (71).mat,0,0.12568532455954515,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (8).mat,0,0.1897758261372742,,0.0,0.0
+REVE_CV_TR,Турция,2_Normal (9).mat,0,0.03348235872327254,,0.0,0.0
+REVE_CV_NG,Нигерия,NG10,0,0.2018262110169955,,0.0,0.0
+REVE_CV_NG,Нигерия,NG100,0,0.2584980149819469,,0.0,0.0
+REVE_CV_NG,Нигерия,NG101,0,0.2126423784001686,,0.0,0.0
+REVE_CV_NG,Нигерия,NG102,0,0.2107949840968318,,0.0,0.0
+REVE_CV_NG,Нигерия,NG103,0,0.4812199172594312,,0.1,0.0
+REVE_CV_NG,Нигерия,NG104,0,0.26919844427534706,,0.0,0.0
+REVE_CV_NG,Нигерия,NG105,0,0.031138135412321577,,0.0,0.0
+REVE_CV_NG,Нигерия,NG106,0,0.008595003258501604,,0.0,0.0
+REVE_CV_NG,Нигерия,NG107,0,0.207651141353361,,0.0,0.0
+REVE_CV_NG,Нигерия,NG108,0,0.01934175127384567,,0.0,0.0
+REVE_CV_NG,Нигерия,NG109,0,0.1437140644216411,,0.0,0.0
+REVE_CV_NG,Нигерия,NG11,0,0.019333046691373194,,0.0,0.0
+REVE_CV_NG,Нигерия,NG110,0,0.8843267066053656,,1.0,1.0
+REVE_CV_NG,Нигерия,NG112,0,0.16665422327367274,,0.0,0.0
+REVE_CV_NG,Нигерия,NG113,0,0.007046723822255373,,0.0,0.0
+REVE_CV_NG,Нигерия,NG114,0,0.5701176245001737,,0.3,0.1
+REVE_CV_NG,Нигерия,NG116,0,0.04317788571876964,,0.0,0.0
+REVE_CV_NG,Нигерия,NG12,0,0.07330210664122123,,0.0,0.0
+REVE_CV_NG,Нигерия,NG120,0,0.19159781806925402,,0.0,0.0
+REVE_CV_NG,Нигерия,NG122,0,0.0002961494688411892,,0.0,0.0
+REVE_CV_NG,Нигерия,NG123,0,0.30524020523223594,,0.1,0.0
+REVE_CV_NG,Нигерия,NG124,0,0.053217434801429694,,0.0,0.0
+REVE_CV_NG,Нигерия,NG125,0,0.016230246134325783,,0.0,0.0
+REVE_CV_NG,Нигерия,NG126,0,0.0035320013935184816,,0.0,0.0
+REVE_CV_NG,Нигерия,NG127,0,0.0027631618573304797,,0.0,0.0
+REVE_CV_NG,Нигерия,NG128,0,0.9618518726866483,,1.0,1.0
+REVE_CV_NG,Нигерия,NG129,0,0.12813414591677535,,0.0,0.0
+REVE_CV_NG,Нигерия,NG130,0,0.03625525912402242,,0.0,0.0
+REVE_CV_NG,Нигерия,NG131,0,0.14945126357500155,,0.0,0.0
+REVE_CV_NG,Нигерия,NG132,0,0.20888454578114524,,0.0,0.0
+REVE_CV_NG,Нигерия,NG133,0,0.11387424145317875,,0.0,0.0
+REVE_CV_NG,Нигерия,NG134,0,0.04532235024653416,,0.0,0.0
+REVE_CV_NG,Нигерия,NG135,0,0.434960476337998,,0.3,0.1
+REVE_CV_NG,Нигерия,NG136,0,0.2487203557096438,,0.0,0.0
+REVE_CV_NG,Нигерия,NG137,0,0.07064007997127983,,0.0,0.0
+REVE_CV_NG,Нигерия,NG138,0,0.0034076873655804808,,0.0,0.0
+REVE_CV_NG,Нигерия,NG139,0,0.20238344389359203,,0.0,0.0
+REVE_CV_NG,Нигерия,NG140,0,0.7311259344167794,,0.8,0.6
+REVE_CV_NG,Нигерия,NG141,0,9.208382822982861e-05,,0.0,0.0
+REVE_CV_NG,Нигерия,NG142,0,0.7318240682980498,,0.8,0.3
+REVE_CV_NG,Нигерия,NG143,0,0.04330548779121406,,0.0,0.0
+REVE_CV_NG,Нигерия,NG144,0,0.0579362039825184,,0.0,0.0
+REVE_CV_NG,Нигерия,NG145,0,0.8904781691053738,,1.0,1.0
+REVE_CV_NG,Нигерия,NG146,0,0.004083143119981173,,0.0,0.0
+REVE_CV_NG,Нигерия,NG147,0,0.011585251489654178,,0.0,0.0
+REVE_CV_NG,Нигерия,NG40,0,0.8149826540084675,,0.9,0.8
+REVE_CV_NG,Нигерия,NG49,0,0.004000584037437181,,0.0,0.0
+REVE_CV_NG,Нигерия,NG500,1,0.928049118203664,,1.0,1.0
+REVE_CV_NG,Нигерия,NG501,1,0.7132132244541379,,0.8,0.4
+REVE_CV_NG,Нигерия,NG502,1,0.8364305613201608,,1.0,0.6
+REVE_CV_NG,Нигерия,NG503,1,0.7863117319029967,,1.0,0.3
+REVE_CV_NG,Нигерия,NG504,1,0.8833701439434165,,1.0,0.9
+REVE_CV_NG,Нигерия,NG505,1,0.18864681114374765,,0.0,0.0
+REVE_CV_NG,Нигерия,NG506,1,0.9025767503167119,,1.0,1.0
+REVE_CV_NG,Нигерия,NG507,1,0.9216052154893546,,1.0,1.0
+REVE_CV_NG,Нигерия,NG508,1,0.9939296172835463,,1.0,1.0
+REVE_CV_NG,Нигерия,NG509,1,0.9182763319241214,,1.0,1.0
+REVE_CV_NG,Нигерия,NG510,1,0.9902110719964574,,1.0,1.0
+REVE_CV_NG,Нигерия,NG511,1,0.9997015777942089,,1.0,1.0
+REVE_CV_NG,Нигерия,NG512,1,0.9753317797217667,,1.0,1.0
+REVE_CV_NG,Нигерия,NG513,1,0.9937473734550981,,1.0,1.0
+REVE_CV_NG,Нигерия,NG514,1,0.9984788795695433,,1.0,1.0
+REVE_CV_NG,Нигерия,NG515,1,0.9902612073435325,,1.0,1.0
+REVE_CV_NG,Нигерия,NG516,1,0.9974272818916428,,1.0,1.0
+REVE_CV_NG,Нигерия,NG517,1,0.9560422419449083,,1.0,1.0
+REVE_CV_NG,Нигерия,NG518,1,0.9900331126878795,,1.0,1.0
+REVE_CV_NG,Нигерия,NG519,1,0.9990020310284182,,1.0,1.0
+REVE_CV_NG,Нигерия,NG520,1,0.9979033693425494,,1.0,1.0
+REVE_CV_NG,Нигерия,NG521,1,0.6397493396868936,,0.6,0.2
+REVE_CV_NG,Нигерия,NG522,1,0.0252639971069127,,0.0,0.0
+REVE_CV_NG,Нигерия,NG523,1,0.7417083914783291,,0.7,0.4
+REVE_CV_NG,Нигерия,NG524,1,0.9161845988271701,,1.0,1.0
+REVE_CV_NG,Нигерия,NG525,1,0.9968320357414049,,1.0,1.0
+REVE_CV_NG,Нигерия,NG526,1,0.9911521808935883,,1.0,1.0
+REVE_CV_NG,Нигерия,NG527,1,0.9985917681576026,,1.0,1.0
+REVE_CV_NG,Нигерия,NG528,1,0.9788515825994335,,1.0,1.0
+REVE_CV_NG,Нигерия,NG529,1,0.9498029169747666,,1.0,1.0
+REVE_CV_NG,Нигерия,NG530,1,0.9924757322184679,,1.0,1.0
+REVE_CV_NG,Нигерия,NG531,1,0.8525491737225093,,0.9,0.8
+REVE_CV_NG,Нигерия,NG532,1,0.996953274676699,,1.0,1.0
+REVE_CV_NG,Нигерия,NG533,1,0.9092233259024066,,1.0,1.0
+REVE_CV_NG,Нигерия,NG534,1,0.9984773889946779,,1.0,1.0
+REVE_CV_NG,Нигерия,NG535,1,0.9937711523680569,,1.0,1.0
+REVE_CV_NG,Нигерия,NG536,1,0.9548156750243846,,1.0,1.0
+REVE_CV_NG,Нигерия,NG537,1,0.6749164977906902,,0.5,0.3
+REVE_CV_NG,Нигерия,NG538,1,0.955928640501849,,1.0,1.0
+REVE_CV_NG,Нигерия,NG539,1,0.8097820839230954,,0.9,0.6
+REVE_CV_NG,Нигерия,NG540,1,0.9902153986048701,,1.0,1.0
+REVE_CV_NG,Нигерия,NG541,1,0.9995399332296309,,1.0,1.0
+REVE_CV_NG,Нигерия,NG542,1,0.8609847908320274,,1.0,0.9
+REVE_CV_NG,Нигерия,NG543,1,0.978517996520876,,1.0,1.0
+REVE_CV_NG,Нигерия,NG544,1,0.9973897585454022,,1.0,1.0
+REVE_CV_NG,Нигерия,NG545,1,0.9636620121025856,,1.0,1.0
+REVE_CV_NG,Нигерия,NG546,1,0.9990939739991884,,1.0,1.0
+REVE_CV_NG,Нигерия,NG547,1,0.9668669000368844,,1.0,1.0
+REVE_CV_NG,Нигерия,NG548,1,0.7411462636557637,,0.7,0.4
+REVE_CV_NG,Нигерия,NG549,1,0.9384269030408718,,1.0,1.0
+REVE_CV_NG,Нигерия,NG550,1,0.9744250730130821,,1.0,1.0
+REVE_CV_NG,Нигерия,NG551,1,0.9921852436751047,,1.0,1.0
+REVE_CV_NG,Нигерия,NG552,1,0.9931399210505539,,1.0,1.0
+REVE_CV_NG,Нигерия,NG553,1,0.8328090810534874,,1.0,0.9
+REVE_CV_NG,Нигерия,NG554,1,0.9936199344363341,,1.0,1.0
+REVE_CV_NG,Нигерия,NG555,1,0.9473941241651508,,1.0,1.0
+REVE_CV_NG,Нигерия,NG556,1,0.9316270580377359,,1.0,1.0
+REVE_CV_NG,Нигерия,NG557,1,0.9478832813127219,,1.0,1.0
+REVE_CV_NG,Нигерия,NG558,1,0.6617031037494956,,0.5,0.2
+REVE_CV_NG,Нигерия,NG559,1,0.9662213264159109,,1.0,1.0
+REVE_CV_NG,Нигерия,NG560,1,0.9996751141624778,,1.0,1.0
+REVE_CV_NG,Нигерия,NG561,1,0.9463552134526682,,1.0,1.0
+REVE_CV_NG,Нигерия,NG562,1,0.9539056412778268,,1.0,1.0
+REVE_CV_NG,Нигерия,NG563,1,0.9987967861783502,,1.0,1.0
+REVE_CV_NG,Нигерия,NG564,1,0.8329941356760336,,1.0,0.9
+REVE_CV_NG,Нигерия,NG565,1,0.7699806002500036,,0.8,0.6
+REVE_CV_NG,Нигерия,NG566,1,0.873382088392851,,1.0,1.0
+REVE_CV_NG,Нигерия,NG567,1,0.9984892179790537,,1.0,1.0
+REVE_CV_NG,Нигерия,NG568,1,0.6838087062034648,,0.7,0.2
+REVE_CV_NG,Нигерия,NG569,0,0.0008114045494799863,,0.0,0.0
+REVE_CV_NG,Нигерия,NG570,0,0.02563574677421196,,0.0,0.0
+REVE_CV_NG,Нигерия,NG571,0,0.11176988579426853,,0.0,0.0
+REVE_CV_NG,Нигерия,NG572,0,0.04141550492140601,,0.0,0.0
+REVE_CV_NG,Нигерия,NG573,0,0.21307153006459822,,0.0,0.0
+REVE_CV_NG,Нигерия,NG574,0,0.16247767686475661,,0.0,0.0
+REVE_CV_NG,Нигерия,NG575,0,0.020381529829542406,,0.0,0.0
+REVE_CV_NG,Нигерия,NG576,0,0.013365476026442804,,0.0,0.0
+REVE_CV_NG,Нигерия,NG577,0,0.9331023464207588,,1.0,1.0
+REVE_CV_NG,Нигерия,NG580,1,0.891176034728699,,1.0,1.0
+REVE_CV_NG,Нигерия,NG581,1,0.9915204376444142,,1.0,1.0
+REVE_CV_NG,Нигерия,NG582,1,0.9886273420652799,,1.0,1.0
+REVE_CV_NG,Нигерия,NG583,1,0.9956932744628952,,1.0,1.0
+REVE_CV_NG,Нигерия,NG584,1,0.8740748958932893,,1.0,0.9
+REVE_CV_NG,Нигерия,NG585,1,0.9465395807360775,,1.0,1.0
+REVE_CV_NG,Нигерия,NG586,1,0.9998138418999589,,1.0,1.0
+REVE_CV_NG,Нигерия,NG587,1,0.9364516916031492,,1.0,1.0
+REVE_CV_NG,Нигерия,NG588,1,0.9906095903975556,,1.0,1.0
+REVE_CV_NG,Нигерия,NG589,1,0.9274201170644675,,1.0,1.0
+REVE_CV_NG,Нигерия,NG590,1,0.9250608111039961,,1.0,1.0
+REVE_CV_NG,Нигерия,NG591,1,0.955691092901138,,1.0,1.0
+REVE_CV_NG,Нигерия,NG592,1,0.998895099468295,,1.0,1.0
+REVE_CV_NG,Нигерия,NG593,1,0.9938248017076976,,1.0,1.0
+REVE_CV_NG,Нигерия,NG594,1,0.8384275448890846,,1.0,0.9
+REVE_CV_NG,Нигерия,NG595,1,0.9939354679618972,,1.0,1.0
+REVE_CV_NG,Нигерия,NG596,1,0.9423843385808096,,1.0,1.0
+REVE_CV_NG,Нигерия,NG597,1,0.9236035299336616,,1.0,1.0
+REVE_CV_NG,Нигерия,NG598,1,0.9270084012761466,,1.0,1.0
+REVE_CV_NG,Нигерия,NG599,1,0.610297965851275,,0.6,0.4
+REVE_CV_NG,Нигерия,NG6,0,0.0659861248954288,,0.0,0.0
+REVE_CV_NG,Нигерия,NG600,1,0.9732929156370934,,1.0,1.0
+REVE_CV_NG,Нигерия,NG601,1,0.9358636407172287,,1.0,1.0
+REVE_CV_NG,Нигерия,NG602,1,0.7783825376110418,,1.0,0.3
+REVE_CV_NG,Нигерия,NG603,1,0.8448615369533916,,1.0,0.9
+REVE_CV_NG,Нигерия,NG604,1,0.9999690778851467,,1.0,1.0
+REVE_CV_NG,Нигерия,NG605,1,0.9949767967928838,,1.0,1.0
+REVE_CV_NG,Нигерия,NG606,1,0.8733149436115586,,1.0,0.9
+REVE_CV_NG,Нигерия,NG607,1,0.9884935547813413,,1.0,1.0
+REVE_CV_NG,Нигерия,NG608,1,0.9711309931286276,,1.0,1.0
+REVE_CV_NG,Нигерия,NG609,1,0.9319604698765799,,1.0,1.0
+REVE_CV_NG,Нигерия,NG610,1,0.9728370922249953,,1.0,1.0
+REVE_CV_NG,Нигерия,NG611,1,0.969105522676006,,1.0,1.0
+REVE_CV_NG,Нигерия,NG612,1,0.5149843954771386,,0.3,0.1
+REVE_CV_NG,Нигерия,NG613,1,0.7826042833991599,,0.9,0.7
+REVE_CV_NG,Нигерия,NG614,1,0.9951201554957215,,1.0,1.0
+REVE_CV_NG,Нигерия,NG615,1,0.9734887565610701,,1.0,1.0
+REVE_CV_NG,Нигерия,NG616,1,0.9992025885746374,,1.0,1.0
+REVE_CV_NG,Нигерия,NG617,1,0.9558698842194145,,1.0,1.0
+REVE_CV_NG,Нигерия,NG618,1,0.9812820875695776,,1.0,1.0
+REVE_CV_NG,Нигерия,NG619,1,0.993702211961782,,1.0,1.0
+REVE_CV_NG,Нигерия,NG620,1,0.28585131610995285,,0.1,0.0
+REVE_CV_NG,Нигерия,NG621,1,0.07860327961466254,,0.0,0.0
+REVE_CV_NG,Нигерия,NG622,1,0.8730590490257392,,1.0,1.0
+REVE_CV_NG,Нигерия,NG623,1,0.9881896211865276,,1.0,1.0
+REVE_CV_NG,Нигерия,NG624,1,0.9973952886019541,,1.0,1.0
+REVE_CV_NG,Нигерия,NG625,1,0.8252793784265148,,0.9,0.8
+REVE_CV_NG,Нигерия,NG626,1,0.03336257210608653,,0.0,0.0
+REVE_CV_NG,Нигерия,NG627,1,0.8937713751458919,,1.0,1.0
+REVE_CV_NG,Нигерия,NG628,1,0.9938300533280758,,1.0,1.0
+REVE_CV_NG,Нигерия,NG629,1,0.9864423680164703,,1.0,1.0
+REVE_CV_NG,Нигерия,NG63,0,0.2610338416340183,,0.0,0.0
+REVE_CV_NG,Нигерия,NG630,1,0.9654536215262652,,1.0,1.0
+REVE_CV_NG,Нигерия,NG631,1,0.4946400078302845,,0.2,0.0
+REVE_CV_NG,Нигерия,NG632,1,0.7162289819088379,,0.8,0.3
+REVE_CV_NG,Нигерия,NG633,1,0.8788556603542205,,1.0,1.0
+REVE_CV_NG,Нигерия,NG634,1,0.21664641575028365,,0.0,0.0
+REVE_CV_NG,Нигерия,NG635,1,0.9326207334108723,,1.0,0.9
+REVE_CV_NG,Нигерия,NG636,1,0.6867318696128148,,0.8,0.1
+REVE_CV_NG,Нигерия,NG637,1,0.9999698085525417,,1.0,1.0
+REVE_CV_NG,Нигерия,NG638,1,0.9861738104414179,,1.0,1.0
+REVE_CV_NG,Нигерия,NG64,0,0.007183064890890822,,0.0,0.0
+REVE_CV_NG,Нигерия,NG66,0,0.050531214875858856,,0.0,0.0
+REVE_CV_NG,Нигерия,NG67,0,0.45193152953945254,,0.1,0.0
+REVE_CV_NG,Нигерия,NG68,0,0.37488980950621464,,0.0,0.0
+REVE_CV_NG,Нигерия,NG70,0,0.06731689130723646,,0.0,0.0
+REVE_CV_NG,Нигерия,NG71,0,0.05683397105327994,,0.0,0.0
+REVE_CV_NG,Нигерия,NG72,0,0.01569154917340195,,0.0,0.0
+REVE_CV_NG,Нигерия,NG73,0,0.15201082336600097,,0.0,0.0
+REVE_CV_NG,Нигерия,NG74,0,0.02325256586734019,,0.0,0.0
+REVE_CV_NG,Нигерия,NG75,0,0.1576041355197317,,0.0,0.0
+REVE_CV_NG,Нигерия,NG76,0,0.2835414018615246,,0.0,0.0
+REVE_CV_NG,Нигерия,NG77,0,0.010472029271770116,,0.0,0.0
+REVE_CV_NG,Нигерия,NG78,0,0.15558743335624672,,0.0,0.0
+REVE_CV_NG,Нигерия,NG79,0,0.1590412551655595,,0.0,0.0
+REVE_CV_NG,Нигерия,NG80,0,0.3138999049487586,,0.0,0.0
+REVE_CV_NG,Нигерия,NG81,0,0.06101449282923409,,0.0,0.0
+REVE_CV_NG,Нигерия,NG82,0,0.13322073169811569,,0.0,0.0
+REVE_CV_NG,Нигерия,NG83,0,0.07197016598908666,,0.0,0.0
+REVE_CV_NG,Нигерия,NG84,0,0.3935815268343591,,0.1,0.1
+REVE_CV_NG,Нигерия,NG85,0,0.06084233894905501,,0.0,0.0
+REVE_CV_NG,Нигерия,NG86,0,0.10068055638668558,,0.0,0.0
+REVE_CV_NG,Нигерия,NG87,0,0.0010311426783160588,,0.0,0.0
+REVE_CV_NG,Нигерия,NG88,0,0.008034935828020643,,0.0,0.0
+REVE_CV_NG,Нигерия,NG89,0,0.014117631179499901,,0.0,0.0
+REVE_CV_NG,Нигерия,NG9,0,0.02338158241941169,,0.0,0.0
+REVE_CV_NG,Нигерия,NG90,0,0.48412853116708837,,0.4,0.2
+REVE_CV_NG,Нигерия,NG91,0,0.7127698582820967,,0.7,0.5
+REVE_CV_NG,Нигерия,NG92,0,0.04997327594798483,,0.0,0.0
+REVE_CV_NG,Нигерия,NG93,0,0.023446378858764487,,0.0,0.0
+REVE_CV_NG,Нигерия,NG95,0,0.006094684025420348,,0.0,0.0
+REVE_CV_NG,Нигерия,NG96,0,0.04252052439621083,,0.0,0.0
+REVE_CV_NG,Нигерия,NG97,0,0.0006739900692063732,,0.0,0.0
+REVE_CV_NG,Нигерия,NG98,0,0.018437474640640533,,0.0,0.0
+REVE_CV_NG,Нигерия,NG99,0,0.006610692906662047,,0.0,0.0
+REVE_CV_GB,Гвинея-Бисау,GB1,1,0.9983725759221844,,1.0,1.0
+REVE_CV_GB,Гвинея-Бисау,GB10,1,0.9677305355146937,,1.0,1.0
+REVE_CV_GB,Гвинея-Бисау,GB11,0,0.01722820215542618,,0.0,0.0
+REVE_CV_GB,Гвинея-Бисау,GB12,0,0.041648627804229725,,0.0,0.0
+REVE_CV_GB,Гвинея-Бисау,GB13,1,0.999448488791562,,1.0,1.0
+REVE_CV_GB,Гвинея-Бисау,GB14,1,0.9951714217464577,,1.0,1.0
+REVE_CV_GB,Гвинея-Бисау,GB15,1,0.9954994187416668,,1.0,1.0
+REVE_CV_GB,Гвинея-Бисау,GB16,0,0.0012796302058376468,,0.0,0.0
+REVE_CV_GB,Гвинея-Бисау,GB17,1,0.7522593185466038,,1.0,0.9
+REVE_CV_GB,Гвинея-Бисау,GB18,0,0.010556403057827022,,0.0,0.0
+REVE_CV_GB,Гвинея-Бисау,GB19,1,0.9811454324160257,,1.0,1.0
+REVE_CV_GB,Гвинея-Бисау,GB2,0,0.5536189462983192,,0.6,0.5
+REVE_CV_GB,Гвинея-Бисау,GB20,1,0.9944632524955166,,1.0,1.0
+REVE_CV_GB,Гвинея-Бисау,GB21,0,0.451570009770273,,0.6,0.2
+REVE_CV_GB,Гвинея-Бисау,GB22,1,0.38474581586637474,,0.4,0.2
+REVE_CV_GB,Гвинея-Бисау,GB23,1,0.4143055907157628,,0.6,0.2
+REVE_CV_GB,Гвинея-Бисау,GB24,1,0.4447324696163218,,0.7,0.4
+REVE_CV_GB,Гвинея-Бисау,GB25,0,0.9717539147870055,,1.0,1.0
+REVE_CV_GB,Гвинея-Бисау,GB26,1,0.9966475112598541,,1.0,1.0
+REVE_CV_GB,Гвинея-Бисау,GB27,0,0.08025387364839964,,0.1,0.0
+REVE_CV_GB,Гвинея-Бисау,GB28,0,0.01620440748405584,,0.0,0.0
+REVE_CV_GB,Гвинея-Бисау,GB29,1,0.7262356571592672,,1.0,0.9
+REVE_CV_GB,Гвинея-Бисау,GB3,1,0.9963813307225928,,1.0,1.0
+REVE_CV_GB,Гвинея-Бисау,GB30,1,0.8463690816495462,,0.9,1.0
+REVE_CV_GB,Гвинея-Бисау,GB31,1,0.3900008139191189,,0.4,0.2
+REVE_CV_GB,Гвинея-Бисау,GB32,1,0.9620156976488754,,1.0,1.0
+REVE_CV_GB,Гвинея-Бисау,GB33,1,0.9898520321392489,,1.0,1.0
+REVE_CV_GB,Гвинея-Бисау,GB34,1,0.8514982654942633,,1.0,1.0
+REVE_CV_GB,Гвинея-Бисау,GB35,0,0.046911010705169655,,0.0,0.0
+REVE_CV_GB,Гвинея-Бисау,GB36,1,0.15405620156756064,,0.0,0.0
+REVE_CV_GB,Гвинея-Бисау,GB37,1,0.39480552445999567,,0.5,0.4
+REVE_CV_GB,Гвинея-Бисау,GB38,1,0.5420586857691998,,0.7,0.6
+REVE_CV_GB,Гвинея-Бисау,GB39,1,0.9912483391569529,,1.0,1.0
+REVE_CV_GB,Гвинея-Бисау,GB4,1,0.9990351245780884,,1.0,1.0
+REVE_CV_GB,Гвинея-Бисау,GB40,1,0.4960726659296272,,0.6,0.4
+REVE_CV_GB,Гвинея-Бисау,GB41,1,0.9279656848865893,,0.9,1.0
+REVE_CV_GB,Гвинея-Бисау,GB42,1,0.21838106508885885,,0.1,0.0
+REVE_CV_GB,Гвинея-Бисау,GB43,0,0.10210175047499692,,0.1,0.0
+REVE_CV_GB,Гвинея-Бисау,GB44,1,0.9929033803330904,,1.0,1.0
+REVE_CV_GB,Гвинея-Бисау,GB45,1,0.9670536337356677,,1.0,1.0
+REVE_CV_GB,Гвинея-Бисау,GB46,1,0.9972249087816911,,1.0,1.0
+REVE_CV_GB,Гвинея-Бисау,GB47,1,0.9821494020470313,,1.0,1.0
+REVE_CV_GB,Гвинея-Бисау,GB48,1,0.9907970968575442,,1.0,1.0
+REVE_CV_GB,Гвинея-Бисау,GB49,0,0.002638397827380458,,0.0,0.0
+REVE_CV_GB,Гвинея-Бисау,GB5,0,0.0020129128019297413,,0.0,0.0
+REVE_CV_GB,Гвинея-Бисау,GB50,1,0.9737139357213808,,1.0,1.0
+REVE_CV_GB,Гвинея-Бисау,GB51,1,0.6277725274227571,,0.7,0.6
+REVE_CV_GB,Гвинея-Бисау,GB52,1,0.6888776940795656,,1.0,0.9
+REVE_CV_GB,Гвинея-Бисау,GB53,1,0.993901346686377,,1.0,1.0
+REVE_CV_GB,Гвинея-Бисау,GB54,1,0.57578048553769,,0.9,0.7
+REVE_CV_GB,Гвинея-Бисау,GB55,1,0.9953258721813857,,1.0,1.0
+REVE_CV_GB,Гвинея-Бисау,GB56,1,0.9802820310913022,,1.0,1.0
+REVE_CV_GB,Гвинея-Бисау,GB57,0,0.001786501367903703,,0.0,0.0
+REVE_CV_GB,Гвинея-Бисау,GB58,0,0.004385037537363866,,0.0,0.0
+REVE_CV_GB,Гвинея-Бисау,GB59,0,0.009310461516589659,,0.0,0.0
+REVE_CV_GB,Гвинея-Бисау,GB6,0,0.14304996701560313,,0.1,0.0
+REVE_CV_GB,Гвинея-Бисау,GB60,1,0.8422877982233496,,1.0,1.0
+REVE_CV_GB,Гвинея-Бисау,GB61,1,0.9971187835604821,,1.0,1.0
+REVE_CV_GB,Гвинея-Бисау,GB62,0,0.9703103318920695,,1.0,1.0
+REVE_CV_GB,Гвинея-Бисау,GB63,0,0.6219709208291284,,0.8,0.7
+REVE_CV_GB,Гвинея-Бисау,GB64,1,0.26977377580210415,,0.1,0.1
+REVE_CV_GB,Гвинея-Бисау,GB65,1,0.9394810744594743,,1.0,1.0
+REVE_CV_GB,Гвинея-Бисау,GB66,1,0.9978377336829926,,1.0,1.0
+REVE_CV_GB,Гвинея-Бисау,GB67,1,0.9973723468687549,,1.0,1.0
+REVE_CV_GB,Гвинея-Бисау,GB68,0,0.05005537765144147,,0.0,0.0
+REVE_CV_GB,Гвинея-Бисау,GB69,0,0.763187948959627,,1.0,0.9
+REVE_CV_GB,Гвинея-Бисау,GB7,1,0.4315316012512209,,0.5,0.3
+REVE_CV_GB,Гвинея-Бисау,GB70,1,0.4416007837959083,,0.5,0.5
+REVE_CV_GB,Гвинея-Бисау,GB71,0,0.012327484518329821,,0.0,0.0
+REVE_CV_GB,Гвинея-Бисау,GB72,0,0.013406189064719437,,0.0,0.0
+REVE_CV_GB,Гвинея-Бисау,GB73,1,0.9660380870004429,,1.0,1.0
+REVE_CV_GB,Гвинея-Бисау,GB74,0,0.0028243958271175233,,0.0,0.0
+REVE_CV_GB,Гвинея-Бисау,GB75,1,0.994115729116127,,1.0,1.0
+REVE_CV_GB,Гвинея-Бисау,GB76,0,0.5420525016307798,,1.0,0.7
+REVE_CV_GB,Гвинея-Бисау,GB77,0,0.17804559166886544,,0.0,0.0
+REVE_CV_GB,Гвинея-Бисау,GB78,0,0.2982938251679701,,0.6,0.3
+REVE_CV_GB,Гвинея-Бисау,GB79,0,0.21761686324886317,,0.1,0.0
+REVE_CV_GB,Гвинея-Бисау,GB8,1,0.7294242535708901,,0.9,0.9
+REVE_CV_GB,Гвинея-Бисау,GB80,0,0.12228037032881309,,0.0,0.0
+REVE_CV_GB,Гвинея-Бисау,GB81,0,0.009828920113392096,,0.0,0.0
+REVE_CV_GB,Гвинея-Бисау,GB82,0,0.0035608327573371443,,0.0,0.0
+REVE_CV_GB,Гвинея-Бисау,GB83,0,0.15595922117926228,,0.0,0.0
+REVE_CV_GB,Гвинея-Бисау,GB84,0,0.03498628371842129,,0.0,0.0
+REVE_CV_GB,Гвинея-Бисау,GB85,0,0.8644905166175922,,1.0,1.0
+REVE_CV_GB,Гвинея-Бисау,GB86,0,0.0052293779280691574,,0.0,0.0
+REVE_CV_GB,Гвинея-Бисау,GB87,0,0.39042527576964664,,0.7,0.2
+REVE_CV_GB,Гвинея-Бисау,GB88,0,0.007199893825558988,,0.0,0.0
+REVE_CV_GB,Гвинея-Бисау,GB89,0,0.07952799915383042,,0.0,0.0
+REVE_CV_GB,Гвинея-Бисау,GB9,1,0.47378488508967925,,0.5,0.6
+REVE_CV_GB,Гвинея-Бисау,GB90,0,0.012112653360202695,,0.0,0.0
+REVE_CV_GB,Гвинея-Бисау,GB91,0,0.26165794638993656,,0.1,0.1
+REVE_CV_GB,Гвинея-Бисау,GB92,0,0.038982701090814725,,0.0,0.0
+REVE_CV_GB,Гвинея-Бисау,GB93,0,0.11968659865688336,,0.1,0.0
+REVE_CV_GB,Гвинея-Бисау,GB94,0,0.9028775219584624,,1.0,1.0
+REVE_CV_GB,Гвинея-Бисау,GB95,0,0.017552951614571866,,0.0,0.0
+REVE_CV_GB,Гвинея-Бисау,GB96,0,0.008318602956015279,,0.0,0.0
+REVE_CV_GB,Гвинея-Бисау,GB97,0,0.014764628327345607,,0.0,0.0
+REVE_CV_ALL,обе страны,GB1,1,0.9992214759933731,,1.0,1.0
+REVE_CV_ALL,обе страны,GB10,1,0.9083369942426158,,1.0,1.0
+REVE_CV_ALL,обе страны,GB11,0,0.024669765814790513,,0.0,0.0
+REVE_CV_ALL,обе страны,GB12,0,0.028706967118411985,,0.0,0.0
+REVE_CV_ALL,обе страны,GB13,1,0.726080810695602,,0.7,0.6
+REVE_CV_ALL,обе страны,GB14,1,0.9919962269454775,,1.0,1.0
+REVE_CV_ALL,обе страны,GB15,1,0.9837133260169393,,1.0,1.0
+REVE_CV_ALL,обе страны,GB16,0,0.024358083319362078,,0.0,0.0
+REVE_CV_ALL,обе страны,GB17,1,0.5139691730277554,,0.5,0.2
+REVE_CV_ALL,обе страны,GB18,0,0.03244077670958563,,0.0,0.0
+REVE_CV_ALL,обе страны,GB19,1,0.9675743057714031,,1.0,1.0
+REVE_CV_ALL,обе страны,GB2,0,0.6656929480760347,,0.6,0.5
+REVE_CV_ALL,обе страны,GB20,1,0.9996022808649331,,1.0,1.0
+REVE_CV_ALL,обе страны,GB21,0,0.333069478489722,,0.1,0.0
+REVE_CV_ALL,обе страны,GB22,1,0.021409564889619575,,0.0,0.0
+REVE_CV_ALL,обе страны,GB23,1,0.31314060312339104,,0.1,0.0
+REVE_CV_ALL,обе страны,GB24,1,0.30800124227883363,,0.1,0.0
+REVE_CV_ALL,обе страны,GB25,0,0.9553038556735893,,1.0,1.0
+REVE_CV_ALL,обе страны,GB26,1,0.5338727709429182,,0.4,0.2
+REVE_CV_ALL,обе страны,GB27,0,0.17981148553676563,,0.0,0.0
+REVE_CV_ALL,обе страны,GB28,0,0.02820907761933437,,0.0,0.0
+REVE_CV_ALL,обе страны,GB29,1,0.9745911068330712,,1.0,1.0
+REVE_CV_ALL,обе страны,GB3,1,0.9881619011211432,,1.0,1.0
+REVE_CV_ALL,обе страны,GB30,1,0.9451791401611643,,1.0,1.0
+REVE_CV_ALL,обе страны,GB31,1,0.4285312527117327,,0.3,0.0
+REVE_CV_ALL,обе страны,GB32,1,0.9768213158206214,,1.0,1.0
+REVE_CV_ALL,обе страны,GB33,1,0.9949204192572456,,1.0,1.0
+REVE_CV_ALL,обе страны,GB34,1,0.9709388642842622,,1.0,1.0
+REVE_CV_ALL,обе страны,GB35,0,0.020779535672843692,,0.0,0.0
+REVE_CV_ALL,обе страны,GB36,1,0.3103365847548337,,0.0,0.0
+REVE_CV_ALL,обе страны,GB37,1,0.06894064121807195,,0.0,0.0
+REVE_CV_ALL,обе страны,GB38,1,0.7155780290989104,,0.7,0.6
+REVE_CV_ALL,обе страны,GB39,1,0.9967080873397076,,1.0,1.0
+REVE_CV_ALL,обе страны,GB4,1,0.9409741011624497,,1.0,1.0
+REVE_CV_ALL,обе страны,GB40,1,0.8718607083987695,,1.0,1.0
+REVE_CV_ALL,обе страны,GB41,1,0.9295439784995143,,1.0,0.9
+REVE_CV_ALL,обе страны,GB42,1,0.4701471405154571,,0.2,0.2
+REVE_CV_ALL,обе страны,GB43,0,0.11739114181489083,,0.0,0.0
+REVE_CV_ALL,обе страны,GB44,1,0.9734823074165562,,1.0,1.0
+REVE_CV_ALL,обе страны,GB45,1,0.9973723826319292,,1.0,1.0
+REVE_CV_ALL,обе страны,GB46,1,0.9200830732151403,,1.0,1.0
+REVE_CV_ALL,обе страны,GB47,1,0.996740187095859,,1.0,1.0
+REVE_CV_ALL,обе страны,GB48,1,0.9788257386039035,,1.0,1.0
+REVE_CV_ALL,обе страны,GB49,0,0.0025565099346140895,,0.0,0.0
+REVE_CV_ALL,обе страны,GB5,0,0.0008361038393848105,,0.0,0.0
+REVE_CV_ALL,обе страны,GB50,1,0.7937037413522582,,1.0,0.7
+REVE_CV_ALL,обе страны,GB51,1,0.7424639899678722,,0.8,0.6
+REVE_CV_ALL,обе страны,GB52,1,0.7082786098815079,,0.9,0.5
+REVE_CV_ALL,обе страны,GB53,1,0.762633814609121,,0.9,0.7
+REVE_CV_ALL,обе страны,GB54,1,0.16492922128365597,,0.0,0.0
+REVE_CV_ALL,обе страны,GB55,1,0.9935747767459857,,1.0,1.0
+REVE_CV_ALL,обе страны,GB56,1,0.8754784847148809,,1.0,1.0
+REVE_CV_ALL,обе страны,GB57,0,0.05037050643039888,,0.0,0.0
+REVE_CV_ALL,обе страны,GB58,0,0.03642641474154189,,0.0,0.0
+REVE_CV_ALL,обе страны,GB59,0,0.10484801274351822,,0.0,0.0
+REVE_CV_ALL,обе страны,GB6,0,0.13443794894966768,,0.0,0.0
+REVE_CV_ALL,обе страны,GB60,1,0.9236009450840392,,1.0,1.0
+REVE_CV_ALL,обе страны,GB61,1,0.9161042573571401,,1.0,1.0
+REVE_CV_ALL,обе страны,GB62,0,0.9490714470241024,,1.0,1.0
+REVE_CV_ALL,обе страны,GB63,0,0.7449114063119054,,0.9,0.8
+REVE_CV_ALL,обе страны,GB64,1,0.40955248901288027,,0.2,0.0
+REVE_CV_ALL,обе страны,GB65,1,0.9722358894133734,,1.0,1.0
+REVE_CV_ALL,обе страны,GB66,1,0.9923382544357467,,1.0,1.0
+REVE_CV_ALL,обе страны,GB67,1,0.752448658588133,,0.9,0.7
+REVE_CV_ALL,обе страны,GB68,0,0.2299619187773417,,0.1,0.0
+REVE_CV_ALL,обе страны,GB69,0,0.918356934554863,,1.0,1.0
+REVE_CV_ALL,обе страны,GB7,1,0.930972554108126,,1.0,1.0
+REVE_CV_ALL,обе страны,GB70,1,0.38104077543814097,,0.2,0.1
+REVE_CV_ALL,обе страны,GB71,0,0.2941386066418628,,0.0,0.0
+REVE_CV_ALL,обе страны,GB72,0,0.02307075452259969,,0.0,0.0
+REVE_CV_ALL,обе страны,GB73,1,0.9690715579793258,,1.0,1.0
+REVE_CV_ALL,обе страны,GB74,0,0.012824071151215713,,0.0,0.0
+REVE_CV_ALL,обе страны,GB75,1,0.9876337117295224,,1.0,1.0
+REVE_CV_ALL,обе страны,GB76,0,0.8537304678668015,,1.0,1.0
+REVE_CV_ALL,обе страны,GB77,0,0.02459117763229674,,0.0,0.0
+REVE_CV_ALL,обе страны,GB78,0,0.40124077279730397,,0.1,0.1
+REVE_CV_ALL,обе страны,GB79,0,0.5464854130566106,,0.5,0.3
+REVE_CV_ALL,обе страны,GB8,1,0.9817327086051278,,1.0,1.0
+REVE_CV_ALL,обе страны,GB80,0,0.14905336007749487,,0.0,0.0
+REVE_CV_ALL,обе страны,GB81,0,0.03329123953063187,,0.0,0.0
+REVE_CV_ALL,обе страны,GB82,0,0.10570783812379816,,0.0,0.0
+REVE_CV_ALL,обе страны,GB83,0,0.17593009072625768,,0.1,0.0
+REVE_CV_ALL,обе страны,GB84,0,0.039669037262106424,,0.0,0.0
+REVE_CV_ALL,обе страны,GB85,0,0.4191650030148845,,0.3,0.0
+REVE_CV_ALL,обе страны,GB86,0,0.012386759724701801,,0.0,0.0
+REVE_CV_ALL,обе страны,GB87,0,0.1012610912192922,,0.0,0.0
+REVE_CV_ALL,обе страны,GB88,0,0.0032462060419226266,,0.0,0.0
+REVE_CV_ALL,обе страны,GB89,0,0.4595292371657632,,0.3,0.2
+REVE_CV_ALL,обе страны,GB9,1,0.9749861123803203,,1.0,1.0
+REVE_CV_ALL,обе страны,GB90,0,0.002563520694933254,,0.0,0.0
+REVE_CV_ALL,обе страны,GB91,0,0.35386336106880617,,0.2,0.1
+REVE_CV_ALL,обе страны,GB92,0,0.2076117608804049,,0.1,0.0
+REVE_CV_ALL,обе страны,GB93,0,0.01678899088382912,,0.0,0.0
+REVE_CV_ALL,обе страны,GB94,0,0.9160882834083004,,1.0,1.0
+REVE_CV_ALL,обе страны,GB95,0,0.060982961036672126,,0.0,0.0
+REVE_CV_ALL,обе страны,GB96,0,0.01457875018013432,,0.0,0.0
+REVE_CV_ALL,обе страны,GB97,0,0.0884924899612636,,0.0,0.0
+REVE_CV_ALL,обе страны,NG10,0,0.1439083311199884,,0.0,0.0
+REVE_CV_ALL,обе страны,NG100,0,0.3246030884790877,,0.0,0.0
+REVE_CV_ALL,обе страны,NG101,0,0.3041097559802094,,0.0,0.0
+REVE_CV_ALL,обе страны,NG102,0,0.30463862629306737,,0.0,0.0
+REVE_CV_ALL,обе страны,NG103,0,0.3995307792776361,,0.2,0.0
+REVE_CV_ALL,обе страны,NG104,0,0.08459389623470023,,0.0,0.0
+REVE_CV_ALL,обе страны,NG105,0,0.019705813608371467,,0.0,0.0
+REVE_CV_ALL,обе страны,NG106,0,0.027980702524856505,,0.0,0.0
+REVE_CV_ALL,обе страны,NG107,0,0.17892038996909337,,0.0,0.0
+REVE_CV_ALL,обе страны,NG108,0,0.018456042724384975,,0.0,0.0
+REVE_CV_ALL,обе страны,NG109,0,0.10735579375185345,,0.0,0.0
+REVE_CV_ALL,обе страны,NG11,0,0.023887180269162082,,0.0,0.0
+REVE_CV_ALL,обе страны,NG110,0,0.9673853875245466,,1.0,1.0
+REVE_CV_ALL,обе страны,NG112,0,0.16419327314639004,,0.0,0.0
+REVE_CV_ALL,обе страны,NG113,0,0.003970875366488209,,0.0,0.0
+REVE_CV_ALL,обе страны,NG114,0,0.4126161356672763,,0.1,0.0
+REVE_CV_ALL,обе страны,NG116,0,0.06827902630155981,,0.0,0.0
+REVE_CV_ALL,обе страны,NG12,0,0.05957275728727578,,0.0,0.0
+REVE_CV_ALL,обе страны,NG120,0,0.15418799889690643,,0.0,0.0
+REVE_CV_ALL,обе страны,NG122,0,0.0003939407567588638,,0.0,0.0
+REVE_CV_ALL,обе страны,NG123,0,0.1628488276253524,,0.0,0.0
+REVE_CV_ALL,обе страны,NG124,0,0.006309036997592663,,0.0,0.0
+REVE_CV_ALL,обе страны,NG125,0,0.0341705946377565,,0.0,0.0
+REVE_CV_ALL,обе страны,NG126,0,0.002821539081515168,,0.0,0.0
+REVE_CV_ALL,обе страны,NG127,0,0.0061023128750315155,,0.0,0.0
+REVE_CV_ALL,обе страны,NG128,0,0.9474909371148683,,1.0,1.0
+REVE_CV_ALL,обе страны,NG129,0,0.11376613671762223,,0.0,0.0
+REVE_CV_ALL,обе страны,NG130,0,0.012599158620752024,,0.0,0.0
+REVE_CV_ALL,обе страны,NG131,0,0.18376568543704588,,0.0,0.0
+REVE_CV_ALL,обе страны,NG132,0,0.38311457629419077,,0.3,0.0
+REVE_CV_ALL,обе страны,NG133,0,0.14833132150684092,,0.0,0.0
+REVE_CV_ALL,обе страны,NG134,0,0.015379856054295319,,0.0,0.0
+REVE_CV_ALL,обе страны,NG135,0,0.47187434770532544,,0.5,0.1
+REVE_CV_ALL,обе страны,NG136,0,0.41679540824972056,,0.2,0.0
+REVE_CV_ALL,обе страны,NG137,0,0.2839417121052955,,0.2,0.1
+REVE_CV_ALL,обе страны,NG138,0,0.0058442370943962915,,0.0,0.0
+REVE_CV_ALL,обе страны,NG139,0,0.32030774101293136,,0.2,0.1
+REVE_CV_ALL,обе страны,NG140,0,0.8109137198350771,,0.9,0.8
+REVE_CV_ALL,обе страны,NG141,0,0.00017734646759094865,,0.0,0.0
+REVE_CV_ALL,обе страны,NG142,0,0.6777651328052484,,0.9,0.4
+REVE_CV_ALL,обе страны,NG143,0,0.6600510292610448,,0.8,0.4
+REVE_CV_ALL,обе страны,NG144,0,0.00820579949378213,,0.0,0.0
+REVE_CV_ALL,обе страны,NG145,0,0.9649648633013642,,1.0,1.0
+REVE_CV_ALL,обе страны,NG146,0,0.01897421138423825,,0.0,0.0
+REVE_CV_ALL,обе страны,NG147,0,0.035985098876710725,,0.0,0.0
+REVE_CV_ALL,обе страны,NG40,0,0.5802054612429401,,0.5,0.1
+REVE_CV_ALL,обе страны,NG49,0,0.030059045271246105,,0.0,0.0
+REVE_CV_ALL,обе страны,NG500,1,0.9573191305480598,,1.0,1.0
+REVE_CV_ALL,обе страны,NG501,1,0.5896415129167139,,0.7,0.4
+REVE_CV_ALL,обе страны,NG502,1,0.9727523709160609,,1.0,1.0
+REVE_CV_ALL,обе страны,NG503,1,0.802899915425404,,0.9,1.0
+REVE_CV_ALL,обе страны,NG504,1,0.6039315497501672,,0.7,0.4
+REVE_CV_ALL,обе страны,NG505,1,0.6273258444710493,,0.7,0.4
+REVE_CV_ALL,обе страны,NG506,1,0.5118281748027272,,0.4,0.3
+REVE_CV_ALL,обе страны,NG507,1,0.9250206917702741,,1.0,0.9
+REVE_CV_ALL,обе страны,NG508,1,0.9967372110855196,,1.0,1.0
+REVE_CV_ALL,обе страны,NG509,1,0.9522787115240254,,1.0,1.0
+REVE_CV_ALL,обе страны,NG510,1,0.9665552202843063,,1.0,1.0
+REVE_CV_ALL,обе страны,NG511,1,0.9993669449338892,,1.0,1.0
+REVE_CV_ALL,обе страны,NG512,1,0.9899125344522901,,1.0,1.0
+REVE_CV_ALL,обе страны,NG513,1,0.9973336410543692,,1.0,1.0
+REVE_CV_ALL,обе страны,NG514,1,0.998921798101969,,1.0,1.0
+REVE_CV_ALL,обе страны,NG515,1,0.9957056371280881,,1.0,1.0
+REVE_CV_ALL,обе страны,NG516,1,0.9878229568514817,,1.0,1.0
+REVE_CV_ALL,обе страны,NG517,1,0.9829403342637935,,1.0,1.0
+REVE_CV_ALL,обе страны,NG518,1,0.9743478256427627,,1.0,1.0
+REVE_CV_ALL,обе страны,NG519,1,0.9991447117775628,,1.0,1.0
+REVE_CV_ALL,обе страны,NG520,1,0.9979470863239399,,1.0,1.0
+REVE_CV_ALL,обе страны,NG521,1,0.49773120664670756,,0.3,0.2
+REVE_CV_ALL,обе страны,NG522,1,0.012690261948425336,,0.0,0.0
+REVE_CV_ALL,обе страны,NG523,1,0.87423709614738,,1.0,1.0
+REVE_CV_ALL,обе страны,NG524,1,0.9519628040603163,,1.0,1.0
+REVE_CV_ALL,обе страны,NG525,1,0.9989182120667129,,1.0,1.0
+REVE_CV_ALL,обе страны,NG526,1,0.9778236067320943,,1.0,1.0
+REVE_CV_ALL,обе страны,NG527,1,0.9999365050896598,,1.0,1.0
+REVE_CV_ALL,обе страны,NG528,1,0.980368197238211,,1.0,1.0
+REVE_CV_ALL,обе страны,NG529,1,0.982611580932146,,1.0,1.0
+REVE_CV_ALL,обе страны,NG530,1,0.9794009217217269,,1.0,1.0
+REVE_CV_ALL,обе страны,NG531,1,0.3202810012586922,,0.0,0.0
+REVE_CV_ALL,обе страны,NG532,1,0.9993270497177578,,1.0,1.0
+REVE_CV_ALL,обе страны,NG533,1,0.8362057988666862,,1.0,1.0
+REVE_CV_ALL,обе страны,NG534,1,0.9945220171234567,,1.0,1.0
+REVE_CV_ALL,обе страны,NG535,1,0.9986806058420881,,1.0,1.0
+REVE_CV_ALL,обе страны,NG536,1,0.8993453937366891,,1.0,1.0
+REVE_CV_ALL,обе страны,NG537,1,0.8074326869759091,,1.0,0.9
+REVE_CV_ALL,обе страны,NG538,1,0.9031312002421424,,1.0,1.0
+REVE_CV_ALL,обе страны,NG539,1,0.8851490369744226,,1.0,1.0
+REVE_CV_ALL,обе страны,NG540,1,0.9944448512619493,,1.0,1.0
+REVE_CV_ALL,обе страны,NG541,1,0.9987167660814735,,1.0,1.0
+REVE_CV_ALL,обе страны,NG542,1,0.9420991102743859,,1.0,1.0
+REVE_CV_ALL,обе страны,NG543,1,0.9608960816140195,,1.0,1.0
+REVE_CV_ALL,обе страны,NG544,1,0.9971559082572593,,1.0,1.0
+REVE_CV_ALL,обе страны,NG545,1,0.9354802457003558,,1.0,1.0
+REVE_CV_ALL,обе страны,NG546,1,0.9998588833981146,,1.0,1.0
+REVE_CV_ALL,обе страны,NG547,1,0.893597476845214,,1.0,0.9
+REVE_CV_ALL,обе страны,NG548,1,0.6996416251044313,,0.7,0.6
+REVE_CV_ALL,обе страны,NG549,1,0.9218094977455553,,1.0,1.0
+REVE_CV_ALL,обе страны,NG550,1,0.9849004640866774,,1.0,1.0
+REVE_CV_ALL,обе страны,NG551,1,0.9952848186360967,,1.0,1.0
+REVE_CV_ALL,обе страны,NG552,1,0.9882926051559929,,1.0,1.0
+REVE_CV_ALL,обе страны,NG553,1,0.6336883399008514,,0.5,0.4
+REVE_CV_ALL,обе страны,NG554,1,0.996923892631742,,1.0,1.0
+REVE_CV_ALL,обе страны,NG555,1,0.25225649430950414,,0.0,0.0
+REVE_CV_ALL,обе страны,NG556,1,0.9623938642691181,,1.0,1.0
+REVE_CV_ALL,обе страны,NG557,1,0.850089181060049,,1.0,1.0
+REVE_CV_ALL,обе страны,NG558,1,0.6314366957992411,,0.8,0.4
+REVE_CV_ALL,обе страны,NG559,1,0.9500524972742271,,1.0,1.0
+REVE_CV_ALL,обе страны,NG560,1,0.9999047746387058,,1.0,1.0
+REVE_CV_ALL,обе страны,NG561,1,0.7900666591264999,,1.0,0.8
+REVE_CV_ALL,обе страны,NG562,1,0.9923552956302414,,1.0,1.0
+REVE_CV_ALL,обе страны,NG563,1,0.9881169863090941,,1.0,1.0
+REVE_CV_ALL,обе страны,NG564,1,0.8105764089614949,,0.9,0.7
+REVE_CV_ALL,обе страны,NG565,1,0.9888847226919857,,1.0,1.0
+REVE_CV_ALL,обе страны,NG566,1,0.8138238858845771,,1.0,0.9
+REVE_CV_ALL,обе страны,NG567,1,0.9984121824012107,,1.0,1.0
+REVE_CV_ALL,обе страны,NG568,1,0.787361072525694,,1.0,0.8
+REVE_CV_ALL,обе страны,NG569,0,0.00034267825227795516,,0.0,0.0
+REVE_CV_ALL,обе страны,NG570,0,0.013403792579864775,,0.0,0.0
+REVE_CV_ALL,обе страны,NG571,0,0.10620321134606873,,0.0,0.0
+REVE_CV_ALL,обе страны,NG572,0,0.036567576119154115,,0.0,0.0
+REVE_CV_ALL,обе страны,NG573,0,0.10649952379513991,,0.0,0.0
+REVE_CV_ALL,обе страны,NG574,0,0.055911355922704076,,0.0,0.0
+REVE_CV_ALL,обе страны,NG575,0,0.041564825126631025,,0.0,0.0
+REVE_CV_ALL,обе страны,NG576,0,0.009193619851774418,,0.0,0.0
+REVE_CV_ALL,обе страны,NG577,0,0.8190651229858595,,0.9,1.0
+REVE_CV_ALL,обе страны,NG580,1,0.8883344531725264,,1.0,1.0
+REVE_CV_ALL,обе страны,NG581,1,0.9717832357774554,,1.0,1.0
+REVE_CV_ALL,обе страны,NG582,1,0.858335096829071,,1.0,1.0
+REVE_CV_ALL,обе страны,NG583,1,0.9976427163576946,,1.0,1.0
+REVE_CV_ALL,обе страны,NG584,1,0.7423728925082831,,0.9,0.7
+REVE_CV_ALL,обе страны,NG585,1,0.9350988037586421,,1.0,1.0
+REVE_CV_ALL,обе страны,NG586,1,0.9997120765947278,,1.0,1.0
+REVE_CV_ALL,обе страны,NG587,1,0.9266140246231085,,1.0,0.9
+REVE_CV_ALL,обе страны,NG588,1,0.9917310171480423,,1.0,1.0
+REVE_CV_ALL,обе страны,NG589,1,0.7245323072984237,,0.7,0.7
+REVE_CV_ALL,обе страны,NG590,1,0.5283857274186311,,0.5,0.2
+REVE_CV_ALL,обе страны,NG591,1,0.9331324343287049,,1.0,0.9
+REVE_CV_ALL,обе страны,NG592,1,0.999810102499605,,1.0,1.0
+REVE_CV_ALL,обе страны,NG593,1,0.9983392461460541,,1.0,1.0
+REVE_CV_ALL,обе страны,NG594,1,0.8497585311564031,,1.0,0.9
+REVE_CV_ALL,обе страны,NG595,1,0.9963745719996251,,1.0,1.0
+REVE_CV_ALL,обе страны,NG596,1,0.7329187929466252,,0.9,0.9
+REVE_CV_ALL,обе страны,NG597,1,0.9897395178064639,,1.0,1.0
+REVE_CV_ALL,обе страны,NG598,1,0.9475667312995613,,1.0,1.0
+REVE_CV_ALL,обе страны,NG599,1,0.5470285838055231,,0.4,0.2
+REVE_CV_ALL,обе страны,NG6,0,0.11706962554975124,,0.0,0.0
+REVE_CV_ALL,обе страны,NG600,1,0.9670308990882843,,1.0,1.0
+REVE_CV_ALL,обе страны,NG601,1,0.986812670409749,,1.0,1.0
+REVE_CV_ALL,обе страны,NG602,1,0.8832806184102836,,1.0,1.0
+REVE_CV_ALL,обе страны,NG603,1,0.8083735177500581,,1.0,0.9
+REVE_CV_ALL,обе страны,NG604,1,0.9999744510963545,,1.0,1.0
+REVE_CV_ALL,обе страны,NG605,1,0.9954776763397467,,1.0,1.0
+REVE_CV_ALL,обе страны,NG606,1,0.6877728327677904,,0.7,0.6
+REVE_CV_ALL,обе страны,NG607,1,0.974311891037124,,1.0,1.0
+REVE_CV_ALL,обе страны,NG608,1,0.9717142042360949,,1.0,1.0
+REVE_CV_ALL,обе страны,NG609,1,0.958797125069867,,1.0,1.0
+REVE_CV_ALL,обе страны,NG610,1,0.9899320748863806,,1.0,1.0
+REVE_CV_ALL,обе страны,NG611,1,0.9767719822716389,,1.0,1.0
+REVE_CV_ALL,обе страны,NG612,1,0.751910915975362,,1.0,0.7
+REVE_CV_ALL,обе страны,NG613,1,0.7933412426746838,,1.0,0.9
+REVE_CV_ALL,обе страны,NG614,1,0.998620049816506,,1.0,1.0
+REVE_CV_ALL,обе страны,NG615,1,0.9005649596431542,,1.0,1.0
+REVE_CV_ALL,обе страны,NG616,1,0.999519864889516,,1.0,1.0
+REVE_CV_ALL,обе страны,NG617,1,0.754243248689008,,0.8,0.6
+REVE_CV_ALL,обе страны,NG618,1,0.9933245567406889,,1.0,1.0
+REVE_CV_ALL,обе страны,NG619,1,0.9976342041660745,,1.0,1.0
+REVE_CV_ALL,обе страны,NG620,1,0.4568351682825038,,0.3,0.0
+REVE_CV_ALL,обе страны,NG621,1,0.06393529788382289,,0.0,0.0
+REVE_CV_ALL,обе страны,NG622,1,0.9136406672340247,,1.0,1.0
+REVE_CV_ALL,обе страны,NG623,1,0.9958775499395319,,1.0,1.0
+REVE_CV_ALL,обе страны,NG624,1,0.9930620959851701,,1.0,1.0
+REVE_CV_ALL,обе страны,NG625,1,0.9380470224516457,,1.0,1.0
+REVE_CV_ALL,обе страны,NG626,1,0.05895400785405384,,0.0,0.0
+REVE_CV_ALL,обе страны,NG627,1,0.9261023715496058,,1.0,1.0
+REVE_CV_ALL,обе страны,NG628,1,0.9750944604894126,,1.0,1.0
+REVE_CV_ALL,обе страны,NG629,1,0.9781009008533564,,1.0,1.0
+REVE_CV_ALL,обе страны,NG63,0,0.18774774843624153,,0.0,0.0
+REVE_CV_ALL,обе страны,NG630,1,0.8459930471047296,,1.0,1.0
+REVE_CV_ALL,обе страны,NG631,1,0.24053716255112625,,0.0,0.0
+REVE_CV_ALL,обе страны,NG632,1,0.7268311716546453,,0.9,0.6
+REVE_CV_ALL,обе страны,NG633,1,0.9178338237747559,,1.0,1.0
+REVE_CV_ALL,обе страны,NG634,1,0.25446076051703825,,0.0,0.0
+REVE_CV_ALL,обе страны,NG635,1,0.9576736974312663,,1.0,1.0
+REVE_CV_ALL,обе страны,NG636,1,0.7116702657448425,,1.0,0.6
+REVE_CV_ALL,обе страны,NG637,1,0.9999933716740532,,1.0,1.0
+REVE_CV_ALL,обе страны,NG638,1,0.993200402584106,,1.0,1.0
+REVE_CV_ALL,обе страны,NG64,0,0.032895633490691675,,0.0,0.0
+REVE_CV_ALL,обе страны,NG66,0,0.14532541609529148,,0.0,0.0
+REVE_CV_ALL,обе страны,NG67,0,0.38494022842153913,,0.1,0.0
+REVE_CV_ALL,обе страны,NG68,0,0.3488158851664148,,0.2,0.0
+REVE_CV_ALL,обе страны,NG70,0,0.041617194131146944,,0.0,0.0
+REVE_CV_ALL,обе страны,NG71,0,0.024750035099259708,,0.0,0.0
+REVE_CV_ALL,обе страны,NG72,0,0.00401989588166167,,0.0,0.0
+REVE_CV_ALL,обе страны,NG73,0,0.3604022448925673,,0.2,0.0
+REVE_CV_ALL,обе страны,NG74,0,0.046832201988112485,,0.0,0.0
+REVE_CV_ALL,обе страны,NG75,0,0.080884625495449,,0.0,0.0
+REVE_CV_ALL,обе страны,NG76,0,0.3408828911158463,,0.0,0.0
+REVE_CV_ALL,обе страны,NG77,0,0.010207954279632165,,0.0,0.0
+REVE_CV_ALL,обе страны,NG78,0,0.3782447329922776,,0.1,0.1
+REVE_CV_ALL,обе страны,NG79,0,0.3248098635087914,,0.1,0.0
+REVE_CV_ALL,обе страны,NG80,0,0.4116428004565222,,0.1,0.0
+REVE_CV_ALL,обе страны,NG81,0,0.13453231175084387,,0.0,0.0
+REVE_CV_ALL,обе страны,NG82,0,0.45470979077846996,,0.2,0.0
+REVE_CV_ALL,обе страны,NG83,0,0.10719868096138958,,0.0,0.0
+REVE_CV_ALL,обе страны,NG84,0,0.9064825468161051,,1.0,1.0
+REVE_CV_ALL,обе страны,NG85,0,0.029554012582765837,,0.0,0.0
+REVE_CV_ALL,обе страны,NG86,0,0.0654957430871193,,0.0,0.0
+REVE_CV_ALL,обе страны,NG87,0,0.0010593046244338294,,0.0,0.0
+REVE_CV_ALL,обе страны,NG88,0,0.027756417911300457,,0.0,0.0
+REVE_CV_ALL,обе страны,NG89,0,0.00385700909052102,,0.0,0.0
+REVE_CV_ALL,обе страны,NG9,0,0.011493692523279347,,0.0,0.0
+REVE_CV_ALL,обе страны,NG90,0,0.12017241726419356,,0.0,0.0
+REVE_CV_ALL,обе страны,NG91,0,0.8417614675387857,,1.0,1.0
+REVE_CV_ALL,обе страны,NG92,0,0.2426517186188138,,0.0,0.0
+REVE_CV_ALL,обе страны,NG93,0,0.07437470711562393,,0.0,0.0
+REVE_CV_ALL,обе страны,NG95,0,0.03457816715877624,,0.0,0.0
+REVE_CV_ALL,обе страны,NG96,0,0.030886764252358735,,0.0,0.0
+REVE_CV_ALL,обе страны,NG97,0,0.0008194455911480377,,0.0,0.0
+REVE_CV_ALL,обе страны,NG98,0,0.0029962486956860634,,0.0,0.0
+REVE_CV_ALL,обе страны,NG99,0,0.0029658514573847957,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB1,1,0.9680292416277352,,1.0,1.0
+REVE_NG_to_GB,GB (обуч. NG),GB10,1,0.16354602647635866,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB11,0,0.39198126354488605,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB12,0,0.061256064452088935,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB13,1,0.0004060395866008721,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB14,1,0.73727096514335,,1.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB15,1,0.26844860379996605,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB16,0,0.8778825864409413,,1.0,1.0
+REVE_NG_to_GB,GB (обуч. NG),GB17,1,0.030680219362949714,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB18,0,0.5306679504657053,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB19,1,0.23209245788836008,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB2,0,0.06475057064820187,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB20,1,0.9812769046655885,,1.0,1.0
+REVE_NG_to_GB,GB (обуч. NG),GB21,0,0.10428519885648976,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB22,1,0.0015292618990900716,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB23,1,0.19869712011961937,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB24,1,0.39095706728167073,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB25,0,0.019126219449365493,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB26,1,0.0013701119406252236,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB27,0,0.6176954654378248,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB28,0,0.28065769920913886,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB29,1,0.7960490681467435,,1.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB3,1,0.14132797423757565,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB30,1,0.36617168613973433,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB31,1,0.2754989010471478,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB32,1,0.2694599921777953,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB33,1,0.7216551904167569,,1.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB34,1,0.9738111161660277,,1.0,1.0
+REVE_NG_to_GB,GB (обуч. NG),GB35,0,0.114961769847668,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB36,1,0.7931864820294211,,1.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB37,1,0.00042809010933387393,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB38,1,0.5936220332506349,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB39,1,0.8419783323835559,,1.0,1.0
+REVE_NG_to_GB,GB (обуч. NG),GB4,1,0.10306975265848231,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB40,1,0.9568966097723354,,1.0,1.0
+REVE_NG_to_GB,GB (обуч. NG),GB41,1,0.456350301877947,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB42,1,0.6026408298269016,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB43,0,0.10074206407876943,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB44,1,0.37967705889777825,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB45,1,0.9717048727759277,,1.0,1.0
+REVE_NG_to_GB,GB (обуч. NG),GB46,1,0.03640904784236826,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB47,1,0.7826956690946985,,1.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB48,1,0.3623966173740178,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB49,0,0.16412064778372232,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB5,0,0.023904168369028363,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB50,1,0.3274349772392499,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB51,1,0.8103314688319697,,1.0,1.0
+REVE_NG_to_GB,GB (обуч. NG),GB52,1,0.6319095734068664,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB53,1,0.001412859475490035,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB54,1,0.050147519222792356,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB55,1,0.6842645082718886,,1.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB56,1,0.10048372204683559,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB57,0,0.2784492258154308,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB58,0,0.7796055539338071,,1.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB59,0,0.6624082603803092,,1.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB6,0,0.09006006914202477,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB60,1,0.7175338162606831,,1.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB61,1,0.20824739292178507,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB62,0,0.21435821570812125,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB63,0,0.6644612835807701,,1.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB64,1,0.5622864643058336,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB65,1,0.8232830750935017,,1.0,1.0
+REVE_NG_to_GB,GB (обуч. NG),GB66,1,0.4272473825122098,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB67,1,0.03587563110908832,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB68,0,0.8470817498247283,,1.0,1.0
+REVE_NG_to_GB,GB (обуч. NG),GB69,0,0.712278657222225,,1.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB7,1,0.8922325617341869,,1.0,1.0
+REVE_NG_to_GB,GB (обуч. NG),GB70,1,0.05233692711916923,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB71,0,0.9567121094840637,,1.0,1.0
+REVE_NG_to_GB,GB (обуч. NG),GB72,0,0.12550127206293332,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB73,1,0.2408964053564143,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB74,0,0.5687914878583857,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB75,1,0.8834892786643506,,1.0,1.0
+REVE_NG_to_GB,GB (обуч. NG),GB76,0,0.919957539112773,,1.0,1.0
+REVE_NG_to_GB,GB (обуч. NG),GB77,0,0.049999369687470936,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB78,0,0.4685445241064442,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB79,0,0.8307936816347543,,1.0,1.0
+REVE_NG_to_GB,GB (обуч. NG),GB8,1,0.9787885982141827,,1.0,1.0
+REVE_NG_to_GB,GB (обуч. NG),GB80,0,0.29723517117842174,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB81,0,0.6722311046315127,,1.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB82,0,0.7720214518779502,,1.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB83,0,0.8304216945351724,,1.0,1.0
+REVE_NG_to_GB,GB (обуч. NG),GB84,0,0.46330881568754806,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB85,0,0.4265524233641892,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB86,0,0.1556709304250385,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB87,0,0.048888868518307996,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB88,0,0.10383662596109573,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB89,0,0.9474713290197033,,1.0,1.0
+REVE_NG_to_GB,GB (обуч. NG),GB9,1,0.9719436234733707,,1.0,1.0
+REVE_NG_to_GB,GB (обуч. NG),GB90,0,0.03870957781153036,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB91,0,0.6891145449116296,,1.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB92,0,0.963461485136,,1.0,1.0
+REVE_NG_to_GB,GB (обуч. NG),GB93,0,0.009924517978352096,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB94,0,0.5517991553375508,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB95,0,0.7589042252686952,,1.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB96,0,0.3062652558638342,,0.0,0.0
+REVE_NG_to_GB,GB (обуч. NG),GB97,0,0.8908565396148105,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG10,0,0.03386177158034769,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG100,0,0.9605673146288904,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG101,0,0.47838814470831725,,1.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG102,0,0.35947091565100064,,1.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG103,0,0.07581091214776775,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG104,0,0.02253842310819292,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG105,0,0.0888328924115828,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG106,0,0.7634639828001338,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG107,0,0.221066291804031,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG108,0,0.12661176583072759,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG109,0,0.35274070883937764,,1.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG11,0,0.014707293841881488,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG110,0,0.42429407114087275,,1.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG112,0,0.012944771913760663,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG113,0,0.10700174520142627,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG114,0,0.14574402808609369,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG116,0,0.05702695300324618,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG12,0,0.08562478984345696,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG120,0,0.04341350704386853,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG122,0,0.0034885827732676566,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG123,0,0.02854424282778456,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG124,0,0.00515041378016106,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG125,0,0.1183546576843792,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG126,0,0.008682479775186184,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG127,0,0.062010063269679574,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG128,0,0.8208271651745767,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG129,0,0.15724089169790834,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG130,0,0.03492411617281725,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG131,0,0.5718283418634319,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG132,0,0.9634638497287686,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG133,0,0.5371897160983419,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG134,0,0.17275374210401723,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG135,0,0.14369044310890672,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG136,0,0.19427786681274004,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG137,0,0.9966083619666228,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG138,0,0.15830353583120949,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG139,0,0.9923469155447329,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG140,0,0.9858981133117196,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG141,0,0.11622157463800473,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG142,0,0.9184954471702315,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG143,0,0.7176696850058812,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG144,0,0.5995850787330778,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG145,0,0.9983916007450467,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG146,0,0.4254810685215482,,1.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG147,0,0.677851512107144,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG40,0,0.10869755279411286,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG49,0,0.022705594313936442,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG500,1,0.9266156956774909,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG501,1,0.8954718754294216,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG502,1,0.9315641172436758,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG503,1,0.5210903061577907,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG504,1,0.09729717760152867,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG505,1,0.9902224987578055,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG506,1,0.15638123652328548,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG507,1,0.9241783506590808,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG508,1,0.9223518385611033,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG509,1,0.5995131643632444,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG510,1,0.7866215496329163,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG511,1,0.4632926806274309,,1.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG512,1,0.8976445169515144,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG513,1,0.9954699178627369,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG514,1,0.536922572725283,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG515,1,0.977894617388837,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG516,1,0.8635991546299084,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG517,1,0.9951478904498298,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG518,1,0.3261624976496818,,1.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG519,1,0.2774345172213087,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG520,1,0.8648622797914697,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG521,1,0.5151633483066232,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG522,1,0.6010849761762262,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG523,1,0.9661667994962793,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG524,1,0.5977497333036877,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG525,1,0.9973215392225059,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG526,1,0.23042953005413355,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG527,1,0.9839055185205087,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG528,1,0.32494112673816844,,1.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG529,1,0.20492407311352406,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG530,1,0.6147636150019292,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG531,1,0.1775915208216515,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG532,1,0.9482467510731196,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG533,1,0.28738711886677226,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG534,1,0.21013005314232264,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG535,1,0.9784571046334328,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG536,1,0.23181220172781272,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG537,1,0.7090849635698927,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG538,1,0.03014153722899783,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG539,1,0.31829292861274416,,1.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG540,1,0.5440325526486479,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG541,1,0.14988868807241776,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG542,1,0.4811315005908764,,1.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG543,1,0.2412642599570601,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG544,1,0.1887843537090822,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG545,1,0.7694160231260765,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG546,1,0.9446268278338908,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG547,1,0.07544388041669532,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG548,1,0.8857164091527248,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG549,1,0.47192590346530705,,1.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG550,1,0.9745018855486345,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG551,1,0.7076413454991267,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG552,1,0.2154578663587462,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG553,1,0.013700678626505095,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG554,1,0.8256403179477975,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG555,1,0.002943285917819116,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG556,1,0.25185091407226184,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG557,1,0.07045822834082269,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG558,1,0.17062916744760828,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG559,1,0.08101623216981241,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG560,1,0.866161477860024,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG561,1,0.8489282378872787,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG562,1,0.9043549841530307,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG563,1,0.36934448927419916,,1.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG564,1,0.0805865573560371,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG565,1,0.9954277815550373,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG566,1,0.7203108016104964,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG567,1,0.8541460042371419,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG568,1,0.46365423896047797,,1.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG569,0,0.1347759491034386,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG570,0,0.032181397612923504,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG571,0,0.4498069852565209,,1.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG572,0,0.043491220565288626,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG573,0,0.012514019233766325,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG574,0,0.01308922086874704,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG575,0,0.8265686050275405,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG576,0,0.6650481252544223,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG577,0,0.14359198853023203,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG580,1,0.3069046545771939,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG581,1,0.7887366157652769,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG582,1,0.01520299312131585,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG583,1,0.9069037175695512,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG584,1,0.9489155911265048,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG585,1,0.9393162851006541,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG586,1,0.9759617986623549,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG587,1,0.7745700558304874,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG588,1,0.5701847684840228,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG589,1,0.6642530000686326,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG590,1,0.02376809546651883,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG591,1,0.6217107742132822,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG592,1,0.9984207316919301,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG593,1,0.9389800408766429,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG594,1,0.9218054913783578,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG595,1,0.9919659615354764,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG596,1,0.06464987415947196,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG597,1,0.9912695719161082,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG598,1,0.9928030048121321,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG599,1,0.966765048253924,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG6,0,0.17250438115295383,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG600,1,0.9905051174230142,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG601,1,0.9862482182244612,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG602,1,0.36162536511345494,,1.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG603,1,0.3437745189245846,,1.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG604,1,0.4926322177604144,,1.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG605,1,0.998861583508121,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG606,1,0.19757817907345648,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG607,1,0.506672518823587,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG608,1,0.34151997516921695,,1.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG609,1,0.6625518170911501,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG610,1,0.20056166162032943,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG611,1,0.7767768820307529,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG612,1,0.7629098850603504,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG613,1,0.42162514795736517,,1.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG614,1,0.906795936054723,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG615,1,0.47868552176611895,,1.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG616,1,0.9765740654745659,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG617,1,0.22340156512297082,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG618,1,0.99108052490001,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG619,1,0.9452516585268781,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG620,1,0.9544976448316078,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG621,1,0.3002812486932448,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG622,1,0.5969050209587948,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG623,1,0.9880558220381134,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG624,1,0.16212295256746076,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG625,1,0.7381436986516837,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG626,1,0.9206377960306179,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG627,1,0.8880095262059496,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG628,1,0.23596374785294277,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG629,1,0.6854486738340669,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG63,0,0.17015357330635564,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG630,1,0.11192186430043764,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG631,1,0.21122129142778262,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG632,1,0.9899267685185992,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG633,1,0.6902346895928658,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG634,1,0.03481767355379053,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG635,1,0.5725807468725228,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG636,1,0.4077013689535331,,1.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG637,1,0.9888645907105793,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG638,1,0.9715829974634295,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG64,0,0.953193749980813,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG66,0,0.9911009437261716,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG67,0,0.918484355591347,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG68,0,0.8323450715590196,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG70,0,0.9825382276676466,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG71,0,0.9130000131926904,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG72,0,0.26758224436265615,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG73,0,0.9344062721867932,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG74,0,0.9407618790555694,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG75,0,0.9622035706115123,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG76,0,0.9611689960919838,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG77,0,0.7220939008923096,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG78,0,0.9580959223865655,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG79,0,0.9261275049215617,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG80,0,0.4829815486030993,,1.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG81,0,0.9474729590108327,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG82,0,0.9969766722133157,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG83,0,0.9601663467295694,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG84,0,0.9754207955578172,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG85,0,0.5734696585261513,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG86,0,0.6703244097135501,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG87,0,0.5417887126579356,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG88,0,0.9021060273797941,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG89,0,0.49436700000679423,,1.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG9,0,0.008723643797275216,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG90,0,0.004327048445421031,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG91,0,0.9794271611022539,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG92,0,0.9674353464891396,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG93,0,0.638580364484692,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG95,0,0.9747057641968558,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG96,0,0.9878957360881755,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG97,0,0.9226706266512317,,1.0,1.0
+REVE_GB_to_NG,NG (обуч. GB),NG98,0,0.11687673145544063,,0.0,0.0
+REVE_GB_to_NG,NG (обуч. GB),NG99,0,0.2040130647089412,,0.0,0.0
