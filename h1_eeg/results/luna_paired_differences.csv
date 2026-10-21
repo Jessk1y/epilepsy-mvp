@@ -1,0 +1,13 @@
+разность,набор,ΔROC AUC,ДИ
+LUNA − REVE,NMT eval,-0.021,-0.073…+0.030
+LUNA − REVE,Турция,-0.079,-0.154…-0.007
+LUNA − CBraMod,NMT eval,0.012,-0.040…+0.066
+LUNA − CBraMod,Турция,-0.024,-0.106…+0.056
+LUNA − BIOT,NMT eval,0.06,+0.014…+0.108
+LUNA − BIOT,Турция,-0.025,-0.101…+0.046
+LUNA − DeepEpilepsy,NMT eval,-0.042,-0.087…-0.001
+LUNA − DeepEpilepsy,Турция,0.114,+0.016…+0.212
+LUNA + REVE − REVE,NMT eval,0.015,-0.009…+0.042
+LUNA + REVE − REVE,Турция,-0.022,-0.063…+0.015
+LUNA + REVE − LUNA,NMT eval,0.037,+0.009…+0.068
+LUNA + REVE − LUNA,Турция,0.057,+0.015…+0.100
