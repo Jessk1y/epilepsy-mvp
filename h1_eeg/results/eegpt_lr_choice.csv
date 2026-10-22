@@ -1,0 +1,2 @@
+lr,best_epoch,epochs,stop,val,hist,nan_steps,min_per_epoch
+5e-05,7,9,плато,0.881,"[(0.633, np.float64(0.782)), (0.557, np.float64(0.846)), (0.52, np.float64(0.845)), (0.489, np.float64(0.859)), (0.477, np.float64(0.861)), (0.462, np.float64(0.874)), (0.453, np.float64(0.881)), (0.446, np.float64(0.878)), (0.441, np.float64(0.88))]",0,3.91

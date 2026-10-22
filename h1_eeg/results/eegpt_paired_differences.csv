@@ -1,0 +1,17 @@
+разность,набор,ΔROC AUC,ДИ
+EEGPT − REVE,NMT eval,0.02,-0.003…+0.045
+EEGPT − REVE,Турция,-0.119,-0.192…-0.049
+EEGPT − CBraMod,NMT eval,0.054,+0.019…+0.092
+EEGPT − CBraMod,Турция,-0.065,-0.148…+0.019
+EEGPT − BIOT,NMT eval,0.102,+0.051…+0.158
+EEGPT − BIOT,Турция,-0.066,-0.156…+0.024
+EEGPT − LUNA,NMT eval,0.042,-0.003…+0.090
+EEGPT − LUNA,Турция,-0.04,-0.121…+0.042
+EEGPT − EEG-DINO,NMT eval,0.021,-0.011…+0.054
+EEGPT − EEG-DINO,Турция,-0.101,-0.178…-0.027
+EEGPT − DeepEpilepsy,NMT eval,-0.0,-0.031…+0.034
+EEGPT − DeepEpilepsy,Турция,0.074,-0.020…+0.159
+EEGPT + REVE − REVE,NMT eval,0.016,+0.003…+0.030
+EEGPT + REVE − REVE,Турция,-0.033,-0.068…+0.002
+EEGPT + REVE − EEGPT,NMT eval,-0.004,-0.017…+0.007
+EEGPT + REVE − EEGPT,Турция,0.086,+0.043…+0.133

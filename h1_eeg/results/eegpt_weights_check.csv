@@ -1,0 +1,9 @@
+check,ok
+ключи target_encoder braindecode = telecom-paris,True
+формы и типы совпадают,True
+значения совпадают побитово,True
+chans_id braindecode = 0..61,True
+strict-загрузка в EEGTransformer авторов (58 каналов),True
+strict-загрузка в EEGTransformer авторов (19 каналов),True
+braindecode.models.EEGPT,
+figshare доступен из скрипта (ответ 202),False

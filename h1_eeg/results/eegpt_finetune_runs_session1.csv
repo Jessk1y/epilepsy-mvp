@@ -1,0 +1,2 @@
+model,lr,seed,best_epoch,epochs,stop,val,hist,nan_steps,nmt_eval,turkey,turkey_med_p0,turkey_med_p1,n_unique_tr
+eegpt,5e-05,0,7,9,плато,0.881,"[(0.633, np.float64(0.782)), (0.557, np.float64(0.846)), (0.52, np.float64(0.845)), (0.489, np.float64(0.859)), (0.477, np.float64(0.861)), (0.462, np.float64(0.874)), (0.453, np.float64(0.881)), (0.446, np.float64(0.878)), (0.441, np.float64(0.88))]",0,0.8934502923976608,0.744225352112676,0.3317151665687561,0.5596458911895752,119
