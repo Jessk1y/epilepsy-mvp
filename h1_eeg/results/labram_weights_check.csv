@@ -1,0 +1,13 @@
+check,value
+коммит репозитория,c431221e6cfd23dbfa9950e0180682fb322b0548
+sha256 labram-base.pth,7c50583826afac76c4ab18f43d958df40496c8229accc09ed6a227c9bb57c37c
+тензоров в чекпоинте по префиксам,"{'student': 224, 'lm_head': 2, 'projection_head': 2, 'logit_scale': 1}"
+способ Дарьи: missing,"['fc_norm.weight', 'fc_norm.bias', 'head.weight', 'head.bias']"
+способ Дарьи: unexpected,"['mask_token', 'lm_head.weight', 'lm_head.bias', 'norm.weight', 'norm.bias']"
+исправлено: сопоставление,"{'norm.weight': 'fc_norm.weight', 'norm.bias': 'fc_norm.bias'}"
+исправлено: missing,"['head.weight', 'head.bias']"
+исправлено: unexpected,[]
+отброшены (только предобучение),"['lm_head.bias', 'lm_head.weight', 'mask_token']"
+без обучения только голова,True
+косинус строк pos_embed,"{'T3~T7': 0.743, 'T4~T8': 0.67, 'T5~P7': 0.757, 'T6~P8': 0.677, 'T3~T4': 0.135, 'T3~C3': 0.379, 'T3~O2': -0.241, 'FP1~O2': -0.355}"
+input_chans (T3–T6 как у авторов для TUAB),"[0, 1, 3, 18, 22, 40, 44, 62, 66, 81, 83, 16, 24, 89, 91, 90, 92, 20, 42, 64]"

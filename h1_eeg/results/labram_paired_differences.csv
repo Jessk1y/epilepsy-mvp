@@ -1,0 +1,19 @@
+разность,набор,ΔROC AUC,ДИ
+LaBraM − REVE,NMT eval,-0.023,-0.064…+0.017
+LaBraM − REVE,Турция,-0.005,-0.063…+0.052
+LaBraM − EEG-DINO,NMT eval,-0.022,-0.050…+0.006
+LaBraM − EEG-DINO,Турция,0.013,-0.031…+0.058
+LaBraM − CBraMod,NMT eval,0.011,-0.022…+0.044
+LaBraM − CBraMod,Турция,0.049,-0.010…+0.113
+LaBraM − BIOT,NMT eval,0.058,+0.015…+0.103
+LaBraM − BIOT,Турция,0.048,-0.026…+0.124
+LaBraM − LUNA,NMT eval,-0.002,-0.050…+0.044
+LaBraM − LUNA,Турция,0.073,+0.006…+0.148
+LaBraM − DeepEpilepsy,NMT eval,-0.044,-0.089…-0.000
+LaBraM − DeepEpilepsy,Турция,0.187,+0.087…+0.280
+LaBraM + REVE − REVE,NMT eval,0.001,-0.018…+0.021
+LaBraM + REVE − REVE,Турция,0.021,-0.006…+0.051
+LaBraM + EEG-DINO + REVE − REVE,NMT eval,0.006,-0.021…+0.031
+LaBraM + EEG-DINO + REVE − REVE,Турция,0.024,-0.011…+0.062
+LaBraM + EEG-DINO + REVE − EEG-DINO + REVE,NMT eval,-0.008,-0.019…+0.002
+LaBraM + EEG-DINO + REVE − EEG-DINO + REVE,Турция,0.002,-0.014…+0.020
