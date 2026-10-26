@@ -1,0 +1,15 @@
+разность,набор,ΔROC AUC,ДИ
+REVE v2 − REVE (старая),NMT eval,0.023,+0.010…+0.037
+REVE v2 − REVE (старая),Турция,0.015,-0.003…+0.037
+REVE v2 (максимум) − REVE (старая),NMT eval,0.052,+0.021…+0.088
+REVE v2 (максимум) − REVE (старая),Турция,-0.027,-0.102…+0.052
+REVE v2 − EEG-DINO,NMT eval,0.024,-0.010…+0.063
+REVE v2 − EEG-DINO,Турция,0.033,-0.025…+0.096
+REVE v2 − CBraMod,NMT eval,0.057,+0.018…+0.098
+REVE v2 − CBraMod,Турция,0.07,+0.003…+0.142
+REVE v2 + EEG-DINO − REVE v2,NMT eval,0.002,-0.014…+0.019
+REVE v2 + EEG-DINO − REVE v2,Турция,0.018,-0.010…+0.049
+REVE v2 + EEG-DINO − EEG-DINO,NMT eval,0.026,+0.006…+0.051
+REVE v2 + EEG-DINO − EEG-DINO,Турция,0.051,+0.014…+0.093
+REVE v2 + EEG-DINO − REVE (старая) + EEG-DINO,NMT eval,0.012,+0.005…+0.020
+REVE v2 + EEG-DINO − REVE (старая) + EEG-DINO,Турция,0.011,-0.002…+0.027

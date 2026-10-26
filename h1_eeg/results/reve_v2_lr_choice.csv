@@ -1,0 +1,2 @@
+config,lr_backbone,frozen_half,best_epoch,val,stop,hist,nan_steps,minutes
+1e-5,1e-05,False,1,0.879,время,"[(0.531, 0.879)]",0,3.3
