@@ -75,10 +75,29 @@ def run(devs, sec):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--sec", type=int, default=20, help="секунд счёта на один замер")
-    sec = ap.parse_args().sec
+    ap.add_argument("--together", type=int, default=0,
+                    help="сколько карт нагружать одновременно (по умолчанию все); 2 — безопаснее для блока питания")
+    ap.add_argument("--force", action="store_true", help="запускать, даже если карты заняты")
+    args = ap.parse_args()
+    sec, force = args.sec, args.force
 
     n = torch.cuda.device_count()
     print(f"PyTorch {torch.__version__}, CUDA {torch.version.cuda}, видеокарт: {n}\n")
+    # не трогать карты, на которых уже кто-то считает
+    busy = []
+    for line in sh("nvidia-smi --query-gpu=index,memory.used,utilization.gpu "
+                   "--format=csv,noheader,nounits").splitlines():
+        try:
+            i, mem, util = (int(x) for x in line.split(","))
+        except ValueError:
+            continue
+        if mem > 500 or util > 10:
+            busy.append(f"карта {i}: занято {mem} МБ, загрузка {util} %")
+    if busy and not force:
+        print("Карты заняты чужими расчётами — проверка остановлена, чтобы им не мешать:")
+        print("\n".join("  " + b for b in busy))
+        print("Запустите, когда все карты свободны (nvidia-smi без процессов).")
+        return
     print(sh("nvidia-smi --query-gpu=index,name,memory.total,pcie.link.gen.max,pcie.link.width.max,"
              "power.limit --format=csv"))
     print("\nТопология (как карты связаны между собой и с процессором):")
@@ -89,16 +108,17 @@ def main():
         r, link = run([d], sec)
         alone[d] = r[d]
         print(f"\nКарта {d} одна: {r[d][0]:.1f} TFLOPS, шина {r[d][1]:.1f} ГБ/с")
-    print(f"\nВсе {n} карты одновременно:")
-    together, link = run(list(range(n)), sec)
+    k = args.together or n
+    print(f"\n{k} карты одновременно:")
+    together, link = run(list(range(k)), sec)
     print(link)
 
     print("\n=== Итог ===")
     print("карта | счёт одна → вместе | шина одна → вместе (ГБ/с)")
-    for d in range(n):
+    for d in range(k):
         (t1, g1), (t2, g2) = alone[d], together.get(d, (0, 0))
         print(f"  {d}   | {t1:5.1f} → {t2:5.1f} TFLOPS ({t2 / t1:4.0%}) | {g1:5.1f} → {g2:5.1f} ({g2 / g1:4.0%})")
-    worst = min(together.get(d, (0, 0))[0] / alone[d][0] for d in range(n))
+    worst = min(together.get(d, (0, 0))[0] / alone[d][0] for d in range(k))
     print("\nКак читать:")
     print("- счёт вместе >= 85 % от одиночного — три обучения (например, три разбиения nnU-Net) можно гнать параллельно;")
     print("- шина ~12–25 ГБ/с = x16, ~6–12 = x8, ~3 = x4, ~1 = x1. Для nnU-Net и MELD даже x4 обычно хватает,")
