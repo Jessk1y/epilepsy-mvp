@@ -1,0 +1,122 @@
+source,t,норма_записей,эпилепсия_записей
+LOG (MNE),a1+a2 off,32,31
+LOG (MNE),eyes open,32,31
+LOG (MNE),photo 12hz,31,31
+LOG (MNE),photo 15hz,32,31
+LOG (MNE),photo 18hz,32,31
+LOG (MNE),photo 21hz,32,31
+LOG (MNE),photo 24hz,32,31
+LOG (MNE),photo 27hz,32,31
+LOG (MNE),photo 30hz,32,31
+LOG (MNE),photo 33hz,32,31
+LOG (MNE),photo 3hz,32,31
+LOG (MNE),photo 6hz,32,31
+LOG (MNE),photo 9hz,32,31
+LOG (MNE),eyes closed,31,30
+LOG (MNE),rec start average eeg,30,26
+LOG (MNE),hv 00:30,29,23
+LOG (MNE),hv 01:00,28,23
+LOG (MNE),hv 01:30,28,23
+LOG (MNE),hv 02:00,28,23
+LOG (MNE),hv 02:30,28,23
+LOG (MNE),hv start,29,23
+LOG (MNE),hv 03:00,26,22
+LOG (MNE),hv end,29,22
+LOG (MNE),spike-and-wave,2,16
+LOG (MNE),post hv 00:30,12,13
+LOG (MNE),sharp-and-wave,0,9
+LOG (MNE),post hv 01:00,6,6
+LOG (MNE),pat average eeg,4,5
+LOG (MNE),rec start average cal,4,5
+LOG (MNE),p_comment,0,4
+LOG (MNE),post hv 01:30,4,4
+LOG (MNE),sharp wave,0,3
+LOG (MNE),sleep,5,3
+LOG (MNE),stage 2,7,3
+LOG (MNE),bad boundary,6,2
+LOG (MNE),edge boundary,6,2
+LOG (MNE),spike,0,2
+LOG (MNE),body movement,2,1
+LOG (MNE),s,1,1
+LOG (MNE),?,2,0
+строки CMT,eeg-1100c v01.00,32,31
+строки CMT,eeg-1100c v01.00),32,31
+строки CMT,je-921a,32,31
+строки CMT,eeg-1100c 251129,1,3
+строки CMT,eeg-1100c 251215,1,3
+строки CMT,eeg-1100c 251217,0,2
+строки CMT,eeg-1100c 251220,0,2
+строки CMT,eeg-1100c 251222,2,2
+строки CMT,sharp,0,2
+строки CMT,spike,0,2
+строки CMT,eeg-1100c 251211,1,1
+строки CMT,eeg-1100c 251214,1,1
+строки CMT,eeg-1100c 251221,1,1
+строки CMT,eeg-1100c 251223,1,1
+строки CMT,eeg-1100c 251227,1,1
+строки CMT,eeg-1100c 251229,1,1
+строки CMT,eeg-1100c 251230,2,1
+строки CMT,eeg-1100c 260103,1,1
+строки CMT,eeg-1100c 260106,2,1
+строки CMT,eeg-1100c 260108,1,1
+строки CMT,eeg-1100c 251022,4,0
+строки CMT,eeg-1100c 251026,2,0
+строки CMT,eeg-1100c 251203,2,0
+строки CMT,eeg-1100c 251213,2,0
+строки EVT,code,32,30
+строки EVT,trino,32,30
+строки LOG,a1+a2 off,32,31
+строки LOG,eeg-1100c v01.00,32,31
+строки LOG,eyes open,32,31
+строки LOG,je-921a,32,31
+строки LOG,photo 12hz,31,31
+строки LOG,photo 15hz,32,31
+строки LOG,photo 18hz,32,31
+строки LOG,photo 21hz,32,31
+строки LOG,photo 24hz,32,31
+строки LOG,photo 27hz,32,31
+строки LOG,photo 30hz,32,31
+строки LOG,photo 33hz,32,31
+строки LOG,photo 3hz,32,31
+строки LOG,photo 6hz,32,31
+строки LOG,photo 9hz,32,31
+строки LOG,eyes closed,31,30
+строки LOG,hv 00:30,29,23
+строки LOG,hv 01:00,28,23
+строки LOG,hv 01:30,28,23
+строки LOG,hv 02:00,28,23
+строки LOG,hv 02:30,28,23
+строки LOG,hv start,29,23
+строки LOG,hv 03:00,26,22
+строки LOG,hv end,29,22
+строки LOG,spike-and-wave,2,16
+строки LOG,post hv 00:30,12,13
+строки LOG,sharp-and-wave,0,9
+строки LOG,post hv 01:00,6,6
+строки LOG,pat average eeg,4,5
+строки LOG,p_comment,0,4
+строки LOG,post hv 01:30,4,4
+строки LOG,eeg-1100c 251129,1,3
+строки LOG,eeg-1100c 251215,1,3
+строки LOG,sharp wave,0,3
+строки LOG,sleep,5,3
+строки LOG,stage 2,7,3
+строки LOG,eeg-1100c 251217,0,2
+строки LOG,eeg-1100c 251220,0,2
+строки LOG,eeg-1100c 251222,2,2
+строки LOG,spike,0,2
+строки LOG,body movement,2,1
+строки LOG,eeg-1100c 251211,1,1
+строки LOG,eeg-1100c 251214,1,1
+строки LOG,eeg-1100c 251221,1,1
+строки LOG,eeg-1100c 251223,1,1
+строки LOG,eeg-1100c 251227,1,1
+строки LOG,eeg-1100c 251229,1,1
+строки LOG,eeg-1100c 251230,2,1
+строки LOG,eeg-1100c 260103,1,1
+строки LOG,eeg-1100c 260106,2,1
+строки LOG,eeg-1100c 260108,1,1
+строки LOG,eeg-1100c 251022,4,0
+строки LOG,eeg-1100c 251026,2,0
+строки LOG,eeg-1100c 251203,2,0
+строки LOG,eeg-1100c 251213,2,0
