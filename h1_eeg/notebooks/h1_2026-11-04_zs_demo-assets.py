@@ -118,6 +118,11 @@ for f in ["reve_v4_errors_factors.csv", "age_check_errors.csv", "age_check_by_ag
 for f in ["reve_v4_errors/01_factors_turkey.png", "reve_v4_errors/03_spearman.png", "age_check.png", "epieeg60_reve_v4.png", "eegdino_v2_curves.png"]:
     shutil.copy(f"{R}/figures/{f}", f"{OUT}/{os.path.basename(f)}")
 
+# 7. Дополнения к консультации 05.11: пара с EEG-DINO v2, потери REVE на отложенной части, кривая адаптации
+for f in ["eegdino_v2_per_person.csv", "reve_v4_loss_curves.csv"]:
+    shutil.copy(f"{R}/{f}", OUT)
+shutil.copy(f"{R}/figures/reve_fewshot_curve.png", OUT)
+
 json.dump({"title": "h1-demo-assets", "id": "zakharsann/h1-demo-assets", "licenses": [{"name": "other"}]},
           open(f"{OUT}/dataset-metadata.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print("файлы:", sorted(os.listdir(OUT)), f"{sum(os.path.getsize(f'{OUT}/{f}') for f in os.listdir(OUT)) / 1e6:.1f} МБ")
