@@ -54,6 +54,7 @@ def parse_path(path):
     m = RE_FILE.match(os.path.basename(p))
     group = None
     for x in parts[:-1]:
+        x = re.sub(r"^\d+_", "", x)                    # «00_epilepsy» / «01_no_epilepsy» (так в v2/v3)
         if x in ("epilepsy", "epi", "tuep_epilepsy"):
             group = 1
         elif x in ("no_epilepsy", "non_epilepsy", "no_epi", "nonepilepsy", "control", "tuep_no_epilepsy"):
