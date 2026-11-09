@@ -2,6 +2,10 @@
 
 Только стандартная библиотека Python, ничего ставить не нужно.
 
+Проще всего: один раз заполнить %USERPROFILE%\\.yadisk_pull.json (token, url, dest, via_own_disk, only —
+заготовка создаётся при первом запуске; файл вне репозитория) и запускать без аргументов, напр. кнопкой Run в VS Code.
+Аргументы командной строки, если заданы, важнее файла.
+
 Обычный режим (без входа в Яндекс):
     py yadisk_pull.py "https://disk.yandex.ru/d/XXXX" "C:/.../TUEP" --list      # только список и объём
     py yadisk_pull.py "https://disk.yandex.ru/d/XXXX" "C:/.../TUEP"             # скачать всё, чего ещё нет
@@ -20,6 +24,7 @@
 import argparse, fnmatch, hashlib, json, os, sys, time, urllib.error, urllib.parse, urllib.request
 
 API = "https://cloud-api.yandex.net/v1/disk"
+DEFAULT_DEST = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", "TUEP"))
 UA = {"User-Agent": "yadisk-pull/1.0"}
 
 
@@ -135,9 +140,13 @@ def direct_href(public_key, path, token, own_tmp):
 
 
 def main():
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")       # кириллица в терминале VS Code без PYTHONIOENCODING
+    except Exception:
+        pass
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("url", help="публичная ссылка на папку Яндекс Диска")
-    ap.add_argument("dest", help="куда класть (папка TUEP)")
+    ap.add_argument("url", nargs="?", help="публичная ссылка на папку Яндекс Диска (по умолчанию — из файла настроек)")
+    ap.add_argument("dest", nargs="?", help="куда класть (папка TUEP)")
     ap.add_argument("--list", action="store_true", help="только показать список и объём")
     ap.add_argument("--only", action="append", help="шаблон имени/пути (можно несколько), напр. *.edf")
     ap.add_argument("--max-gb", type=float, help="не скачивать больше стольких ГБ за запуск")
@@ -146,11 +155,26 @@ def main():
     ap.add_argument("--no-md5", action="store_true", help="не сверять md5 (быстрее)")
     ap.add_argument("--via-own-disk", action="store_true", help="через свой Яндекс Диск (нужен YADISK_TOKEN)")
     a = ap.parse_args()
-    a.url = a.url.strip().replace("disk.360.yandex.ru", "disk.yandex.ru")   # ссылки Яндекс 360 → обычные
 
-    token = os.environ.get("YADISK_TOKEN") if a.via_own_disk else None
+    # Настройки и токен — в файле вне репозитория: %USERPROFILE%\.yadisk_pull.json (создаётся заготовка при первом запуске)
+    cfg_path = os.path.join(os.path.expanduser("~"), ".yadisk_pull.json")
+    if not os.path.exists(cfg_path):
+        with open(cfg_path, "w", encoding="utf-8") as f:
+            json.dump({"token": "", "url": "", "dest": DEFAULT_DEST, "via_own_disk": True, "only": []}, f, ensure_ascii=False, indent=2)
+        sys.exit(f"создан файл настроек {cfg_path}\nвпишите в него token (OAuth-токен Яндекс Диска) и url (публичную ссылку) и запустите снова")
+    cfg = json.load(open(cfg_path, encoding="utf-8"))
+    a.url = a.url or cfg.get("url")
+    a.dest = a.dest or cfg.get("dest") or DEFAULT_DEST
+    a.only = a.only or cfg.get("only") or None
+    a.via_own_disk = a.via_own_disk or bool(cfg.get("via_own_disk"))
+    if not a.url:
+        sys.exit(f"не задана ссылка: впишите url в {cfg_path}")
+    a.url = a.url.strip().replace("disk.360.yandex.ru", "disk.yandex.ru")   # ссылки Яндекс 360 → обычные
+    print(f"папка: {os.path.abspath(a.dest)}, через свой диск: {a.via_own_disk}, фильтр: {a.only or 'все файлы'}")
+
+    token = (os.environ.get("YADISK_TOKEN") or cfg.get("token") or None) if a.via_own_disk else None
     if a.via_own_disk and not token:
-        sys.exit("для --via-own-disk задайте переменную окружения YADISK_TOKEN")
+        sys.exit(f"для скачивания через свой диск впишите token в {cfg_path}")
     own_tmp = "disk:/_yadisk_pull_tmp" if a.via_own_disk else None
     if own_tmp:
         call(f"{API}/resources?" + q(path=own_tmp), method="PUT", token=token)   # папка; если есть — ок
