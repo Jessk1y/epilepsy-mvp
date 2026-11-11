@@ -96,6 +96,7 @@ def main():
                 sh, off, n = W.add(X)
                 row = dict(dataset="tuep", part="tuep", split="tuep", id=os.path.splitext(r.file)[0], y=int(r.group),
                            label="epilepsy" if r.group == 1 else "no_epilepsy", patient=r.patient, session=r.session, montage=r.montage,
+                           year=C.session_year(r.session), n_seiz=C.read_seizures(r.path)[0],
                            scale_k=1.0, short_lt60s=bool(info["dur_s"] < 60), **info, shard200=sh, off200=off, n200=n)
                 if "in_tusz" in D.columns:
                     row["in_tusz"] = r.in_tusz

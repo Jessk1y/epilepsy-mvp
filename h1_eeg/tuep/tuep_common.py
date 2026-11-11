@@ -67,6 +67,29 @@ def parse_path(path):
     return dict(patient=m["patient"].lower(), session=sess_dir, file=os.path.basename(p), montage=montage, group=group)
 
 
+def session_year(session):
+    """«s009_2011» -> 2011; без года -> None."""
+    m = re.match(r"^s\d{3}_(\d{4})$", str(session))
+    return int(m.group(1)) if m else None
+
+
+def read_seizures(edf_path):
+    """Приступы из разметки рядом с EDF (тот же стем, .csv_bi; формат TUH csv_v1.0.0: channel,start_time,stop_time,label,confidence).
+    Возвращает (число событий seiz, их суммарная длительность в с) или (None, None), если разметки нет.
+    Проверено на скачанной части TUEP 11.11: метки только «bckg» и «seiz»."""
+    stem = os.path.splitext(edf_path)[0]
+    for ext in (".csv_bi", ".csv"):
+        p = stem + ext
+        if os.path.exists(p):
+            n, s = 0, 0.0
+            for line in open(p, encoding="utf-8", errors="replace"):
+                parts = line.strip().split(",")
+                if len(parts) >= 4 and parts[3].strip().lower() == "seiz":
+                    n += 1; s += float(parts[2]) - float(parts[1])
+            return n, s
+    return None, None
+
+
 def edf_header(f):
     """Заголовок EDF (стандарт EDF, без mne — чтобы не тянуть зависимости): словарь с метками, частотами, масштабами."""
     h = f.read(256)

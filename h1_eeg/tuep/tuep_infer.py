@@ -89,7 +89,8 @@ def main():
         X = highpass(read_record(a.prep, r._asdict()), HP).astype(np.float32)
         W = windows(X, L)
         W = W[spread(len(W), CAP_WIN)]
-        row = dict(id=r.id, patient=r.patient, session=r.session, y=r.y, dur_s=r.dur_s, montage=getattr(r, "montage", ""), n_windows=len(W))
+        row = dict(id=r.id, patient=r.patient, session=r.session, y=r.y, dur_s=r.dur_s, montage=getattr(r, "montage", ""),
+                   year=getattr(r, "year", None), n_seiz=getattr(r, "n_seiz", None), n_windows=len(W))
         for name, (m, prep) in models.items():
             p = predict(m, prep, W, torch, a.device, a.bs)
             wins[f"{name}__{r.id}"] = p.astype(np.float32)

@@ -58,6 +58,8 @@ def main():
 
     def one(p):
         r = C.parse_path(p); r["path"] = os.path.relpath(p, a.root)
+        r["year"] = C.session_year(r["session"])
+        r["n_seiz"], r["seiz_s"] = C.read_seizures(p)
         try:
             fs, n, labels = C.read_header(p)
             idx = C.channel_index(labels)
@@ -101,7 +103,8 @@ def main():
           .agg(group=("group", "first"), montage=("montage", lambda x: "|".join(sorted(set(map(str, x))))), n_files=("file", "size"),
                dur_min=("dur_s", lambda x: x.sum() / 60), sfreq=("sfreq", lambda x: "|".join(str(int(v)) for v in sorted(set(x.dropna())))),
                ref=("ref", lambda x: "|".join(sorted(set(x)))), all_have19=("has19", "all"), in_tusz=("in_tusz", "first"),
-               n_txt=("n_txt_in_session", "max"), n_seizure_ann=("n_seizure_ann_in_session", "max")).reset_index())
+               n_txt=("n_txt_in_session", "max"), n_seizure_ann=("n_seizure_ann_in_session", "max"),
+               year=("year", "first"), n_seiz=("n_seiz", "sum"), seiz_files=("n_seiz", lambda x: int((x > 0).sum()))).reset_index())
     S.to_csv(os.path.join(a.out, "inventory_sessions.csv"), index=False)
 
     P = F.groupby("patient").agg(group=("group", "first"), n_groups=("group", "nunique"))
@@ -124,6 +127,14 @@ def main():
     lines += ["", "## Пациенты и сеансы по группам", "",
               pd.DataFrame({"пациентов": g.patient.nunique(), "сеансов": g.skey.nunique(), "файлов": g.size(), "часов": g.dur_s.sum() / 3600,
                             "сеансов_с_отчётом_txt": sess_txt}).round(1).to_markdown(), ""]
+    # протокол (PROTOCOL.md): приступы, сеансы на пациента, монтаж и год по группам — проверка, не совпадают ли они с классом
+    Sx = S.assign(has_seiz=S.n_seiz > 0)
+    sz = pd.DataFrame({"сеансов": Sx.groupby("group").size(), "сеансов_с_приступами": Sx.groupby("group").has_seiz.sum(),
+                       "пациентов_с_приступами": Sx[Sx.has_seiz].groupby("group").patient.nunique()}).fillna(0)
+    lines += ["## Приступы (разметка .csv_bi)", "", sz.to_markdown(), "",
+              "## Сеансов на пациента", "", S.groupby(["group", "patient"]).size().groupby("group").describe().round(1).to_markdown(), "",
+              "## Монтаж по группам (сеансы)", "", pd.crosstab(S.montage, S.group, margins=True).to_markdown(), "",
+              "## Год записи по группам (сеансы)", "", S.groupby("group").year.describe().round(1).to_markdown(), ""]
     if tusz:
         s = S[S.in_tusz == True]
         lines += [f"## Пересечение с TUSZ (по списку `{[os.path.basename(l) for l in lists]}`)", "",

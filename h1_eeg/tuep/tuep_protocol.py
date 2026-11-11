@@ -3,9 +3,10 @@
     py tuep_protocol.py folds    --meta prep/h1_shared_meta.csv --out protocol/tuep_folds.csv      # 5 фолдов по пациентам
     py tuep_protocol.py leakage  --out protocol/model_leakage.csv                                 # таблица «предобучена на TUH?»
     py tuep_protocol.py subgroup --root v3.1.0 --meta prep/h1_shared_meta.csv --out protocol/subgroup_ied.csv [--ied-csv …]
-    py tuep_protocol.py eval     --scores out/tuep_record_scores.csv --folds protocol/tuep_folds.csv --results ../results --out out/
+    py tuep_protocol.py eval     --scores out/tuep_record_scores.csv --meta prep/h1_shared_meta.csv --folds protocol/tuep_folds.csv --results ../results --out out/
 
-Правила (CLAUDE.md): все сеансы пациента — в одном фолде; ROC AUC и пороговые метрики с 95 % ДИ — бутстреп по людям;
+Правила — PROTOCOL.md (записаны до прогона, 11.11.2026). Коротко: один сеанс на пациента (случайный, seed 0), сеансы с приступами исключены;
+проверка утечки через год записи и монтаж; все сеансы пациента — в одном фолде; ROC AUC и пороговые метрики с 95 % ДИ — бутстреп по людям;
 порог не по тесту: с отложенных 15 % NMT train (Юден и чувствительность 80 %), перенесён без изменений;
 дополнительно — калибровка порога на k случайных людях TUEP, метрики на остальных (500 повторов).
 """
@@ -61,21 +62,71 @@ def cmd_folds(a):
     print("OK: все файлы и сеансы пациента в одном фолде")
 
 
-# ---------------------------------------------------------------- один пациент — одна оценка
-def aggregate_patients(rec, score_cols, how="mean"):
-    """Оценки записей (файлов) -> сеанс (среднее, веса — длительность) -> пациент (среднее или максимум по сеансам)."""
+# ---------------------------------------------------------------- один пациент — одна оценка (PROTOCOL.md, п. 2–3)
+SESSION_RULES = ("random", "first", "last", "all")
+
+
+def session_table(rec, score_cols):
+    """Файлы -> сеансы: оценка сеанса = среднее по файлам с весом длительности; приступ хотя бы в одном файле — сеанс с приступами."""
     rec = rec.copy()
     rec["w"] = rec.dur_s if "dur_s" in rec else 1.0
+    for c in ("n_seiz", "year", "montage"):
+        if c not in rec:
+            rec[c] = np.nan
     out = []
     for (p, s), g in rec.groupby(["patient", "session"]):
-        row = dict(patient=p, session=s, y=g.y.iloc[0], dur_s=g.w.sum())
+        row = dict(patient=p, session=s, y=int(g.y.iloc[0]), dur_s=g.w.sum(), n_files=len(g),
+                   has_seiz=bool((g.n_seiz.fillna(0) > 0).any()), seiz_unknown=bool(g.n_seiz.isna().all()),
+                   year=g.year.iloc[0], montage="|".join(sorted(set(map(str, g.montage)))))
         for c in score_cols:
             row[c] = np.average(g[c], weights=g.w)
         out.append(row)
-    S = pd.DataFrame(out)
-    f = {"mean": "mean", "max": "max"}[how]
-    P = S.groupby("patient").agg({"y": "first", "dur_s": "sum", "session": "size", **{c: f for c in score_cols}}).rename(columns={"session": "n_sessions"}).reset_index()
-    return P
+    return pd.DataFrame(out)
+
+
+def select_sessions(S, score_cols, rule="random", seed=0):
+    """Один сеанс на пациента. Сеансы с приступами исключаются заранее; пациент без подходящих сеансов выпадает (список — второй выход).
+    random — основной расчёт (seed 0): у больных в среднем 5,3 сеанса, у контроля 1,7, а ранние сеансы чаще старого монтажа
+    02_tcp_le — выбор «первого» связал бы монтаж и год записи с классом. first / last / all — проверка устойчивости."""
+    E = S[~S.has_seiz].sort_values(["patient", "session"])
+    dropped = sorted(set(S.patient) - set(E.patient))
+    if rule == "all":
+        P = E.groupby("patient").agg(y=("y", "first"), dur_s=("dur_s", "sum"), n_sessions=("session", "size"), year=("year", "median"),
+                                     montage=("montage", lambda x: "|".join(sorted(set("|".join(x).split("|"))))),
+                                     **{c: (c, "mean") for c in score_cols}).reset_index()
+        return P, dropped
+    rng = np.random.default_rng(seed); pick = []
+    for p, g in E.groupby("patient"):
+        i = {"random": int(rng.integers(len(g))) if len(g) > 1 else 0, "first": 0, "last": len(g) - 1}[rule]
+        pick.append(g.iloc[i])
+    P = pd.DataFrame(pick).reset_index(drop=True)
+    P["n_sessions"] = 1
+    return P, dropped
+
+
+def stratified_auc(y, s, strata):
+    """ROC AUC только по парам «больной — контроль» внутри одного слоя (монтажа): убирает вклад монтажа в оценку."""
+    num = den = 0.0
+    for k in np.unique(strata):
+        m = strata == k; yy, ss_ = y[m], s[m]
+        npos, nneg = int(yy.sum()), int((1 - yy).sum())
+        if npos and nneg:
+            w = npos * nneg; num += roc_auc_score(yy, ss_) * w; den += w
+    return num / den if den else np.nan
+
+
+def confound_check(P):
+    """Насколько класс угадывается без ЭЭГ — по году записи и монтажу (PROTOCOL.md, п. 5). Монтаж — доля эпилепсии в слое по той же
+    выборке (оптимистично для монтажа, т. е. строго к нам)."""
+    rows = []
+    m = P.year.notna()
+    if m.sum() and P.y[m].nunique() == 2:
+        a = roc_auc_score(P.y[m], P.year[m].astype(float))
+        rows.append(dict(признак="год записи", n=int(m.sum()), auc=round(a, 3), auc_any_direction=round(max(a, 1 - a), 3)))
+    share = P.groupby("montage").y.transform("mean")
+    a = roc_auc_score(P.y, share)
+    rows.append(dict(признак="монтаж", n=len(P), auc=round(a, 3), auc_any_direction=round(max(a, 1 - a), 3)))
+    return pd.DataFrame(rows), pd.crosstab(P.montage, P.y, margins=True)
 
 
 # ---------------------------------------------------------------- метрики (как в блокнотах: ROC AUC + пороговые, бутстреп по людям)
@@ -138,16 +189,43 @@ def calib_eval(y, S, k, n_rep=500, seed=0):
 
 def cmd_eval(a):
     rec = pd.read_csv(a.scores)
+    if a.meta:                                         # год, приступы, монтаж — из описи подготовки, если их нет в оценках
+        m = pd.read_csv(a.meta)
+        add = [c for c in ("year", "n_seiz", "montage") if c in m and (c not in rec or rec[c].isna().all())]
+        rec = rec.drop(columns=[c for c in add if c in rec]).merge(m[["id"] + add], on="id", how="left")
     score_cols = [c for c in ["reve4", "dino2", "ens"] if c in rec.columns]
-    P = aggregate_patients(rec, score_cols, a.agg)
+    names = {"reve4": "REVE v4", "dino2": "EEG-DINO v2", "ens": "REVE v4 + EEG-DINO v2"}
+    os.makedirs(a.out, exist_ok=True)
+    S = session_table(rec, score_cols)
+    S.to_csv(os.path.join(a.out, "tuep_session_scores.csv"), index=False)
+    if S.seiz_unknown.any():
+        print("ВНИМАНИЕ: у", int(S.seiz_unknown.sum()), "сеансов нет разметки приступов — они считаются без приступов")
+    # устойчивость к выбору сеанса
+    sens = []
+    for rule in SESSION_RULES:
+        Pr, _ = select_sessions(S, score_cols, rule, a.seed)
+        for c in score_cols:
+            sens.append(dict(сеанс=rule, модель=names[c], n=len(Pr), n_эпилепсия=int(Pr.y.sum()), auc=round(roc_auc_score(Pr.y, Pr[c]), 3)))
+    pd.DataFrame(sens).to_csv(os.path.join(a.out, "tuep_session_rule_sensitivity.csv"), index=False)
+    print(pd.DataFrame(sens).pivot(index="модель", columns="сеанс", values="auc").to_string())
+    P, dropped = select_sessions(S, score_cols, a.sessions, a.seed)
+    print(f"сеанс на пациента: {a.sessions}; пациентов {len(P)} ({int(P.y.sum())} с эпилепсией); выпали (все сеансы с приступами): {len(dropped)} {dropped}")
     if a.folds:
         P = P.merge(pd.read_csv(a.folds)[["patient", "fold"]], on="patient", how="left")
-    os.makedirs(a.out, exist_ok=True)
     P.to_csv(os.path.join(a.out, "tuep_patient_scores.csv"), index=False)       # предсказания по людям — пересчитывать метрики без повторного прогона
+    # утечка через год и монтаж
+    Cf, ct = confound_check(P)
+    Cf.to_csv(os.path.join(a.out, "tuep_confounds.csv"), index=False); ct.to_csv(os.path.join(a.out, "tuep_montage_by_class.csv"))
+    print(Cf.to_string(index=False)); print(ct.to_string())
     thr = nmt_thresholds(a.results)
-    names = {"reve4": "REVE v4", "dino2": "EEG-DINO v2", "ens": "REVE v4 + EEG-DINO v2"}
     y = P.y.to_numpy(); rows = []
+    for c in score_cols:
+        rows.append(dict(подгруппа="все пациенты, пары внутри монтажа", модель=names[c], порог="—", n=len(P), n_эпилепсия=int(y.sum()),
+                         **{"ROC AUC": f"{stratified_auc(y, P[c].to_numpy(), P.montage.to_numpy()):.3f}"}))
     sub = {"все пациенты": np.ones(len(P), bool)}
+    for mt, g in P.groupby("montage"):
+        if g.y.sum() >= 5 and (1 - g.y).sum() >= 5:
+            sub[f"монтаж {mt}"] = (P.montage == mt).to_numpy()
     if a.subgroup:
         sg = pd.read_csv(a.subgroup).set_index("patient").ied_group
         P["ied_group"] = P.patient.map(sg)
@@ -170,6 +248,15 @@ def cmd_eval(a):
     for k in a.calib_k:
         C = calib_eval(y, {names[c]: P[c].to_numpy() for c in score_cols}, k)
         C.insert(0, "калибровка людей", k); C.to_csv(os.path.join(a.out, f"tuep_calibration_k{k}.csv"), index=False); print(C.to_string(index=False))
+    # порог без разметки: медиана оценок половины пациентов (метки не нужны), метрики на другой половине, 500 повторов
+    rng, un = np.random.default_rng(a.seed), []
+    for _ in range(500):
+        idx = rng.permutation(len(y)); h, t = idx[: len(y) // 2], idx[len(y) // 2:]
+        for c in score_cols:
+            s = P[c].to_numpy(); un.append(dict(модель=names[c], **metr(y[t], (s[t] >= np.median(s[h])).astype(int))))
+    U = pd.DataFrame(un).groupby("модель")
+    U = (U.mean().round(2).astype(str) + " (" + U.quantile(.025).round(2).astype(str) + "-" + U.quantile(.975).round(2).astype(str) + ")").reset_index()
+    U.insert(1, "порог", "без разметки: медиана половины"); U.to_csv(os.path.join(a.out, "tuep_unlabeled_threshold.csv"), index=False); print(U.to_string(index=False))
     # по фолдам — разброс (модели не обучались на TUEP, фолды нужны для будущего дообучения и для разброса оценки)
     if "fold" in P:
         fr = [dict(fold=f, n=len(g), auc=roc_auc_score(g.y, g[c])) for f, g in P.groupby("fold") for c in score_cols[:1]]
@@ -227,7 +314,9 @@ def main():
     l = sp.add_parser("leakage"); l.add_argument("--out", required=True)
     s = sp.add_parser("subgroup"); s.add_argument("--meta", required=True); s.add_argument("--root", default=""); s.add_argument("--out", required=True); s.add_argument("--ied-csv", default="")
     e = sp.add_parser("eval"); e.add_argument("--scores", required=True); e.add_argument("--folds", default=""); e.add_argument("--results", required=True)
-    e.add_argument("--out", required=True); e.add_argument("--agg", default="mean", choices=["mean", "max"]); e.add_argument("--subgroup", default="")
+    e.add_argument("--out", required=True); e.add_argument("--subgroup", default="")
+    e.add_argument("--sessions", default="random", choices=SESSION_RULES, help="один сеанс на пациента (основной расчёт — random)")
+    e.add_argument("--seed", type=int, default=0); e.add_argument("--meta", default="", help="h1_shared_meta.csv: год, приступы, монтаж")
     e.add_argument("--calib-k", type=int, nargs="*", default=[10, 20])
     a = ap.parse_args()
     {"folds": cmd_folds, "leakage": cmd_leakage, "subgroup": cmd_subgroup, "eval": cmd_eval}[a.cmd](a)

@@ -48,6 +48,9 @@ def make(root):
         tok = f"t{(k % 2):03d}" if (pat, sess) != ("dddddddd", "s001_2012") else f"t{k - 4:03d}"
         d = os.path.join(root, "edf", grp, pat, sess, mont); os.makedirs(d, exist_ok=True)
         write_edf(os.path.join(d, f"{pat}_{sess[:4]}_{tok}.edf"), labels, fs, sec, data)
+        lab = "seiz" if (pat, sess) == ("aaaaaaaa", "s002_2016") else "bckg"           # приступ — во втором сеансе aaaaaaaa
+        with open(os.path.join(d, f"{pat}_{sess[:4]}_{tok}.csv_bi"), "w") as fh:
+            fh.write(f"# version = csv_v1.0.0\n#\nchannel,start_time,stop_time,label,confidence\nTERM,0.0000,{sec}.0000,{lab},1.0000\n")
 
 
 def run(*args):
@@ -68,6 +71,7 @@ def main():
         inv = pd.read_csv(os.path.join(work, "inv", "inventory_files.csv"))
         assert len(inv) == 6 and inv.has19.all() and inv.patient.nunique() == 4 and set(inv.group) == {0, 1}, inv
         assert set(inv.montage) == {"01_tcp_ar", "02_tcp_le"} and set(inv.sfreq) == {250.0, 256.0}
+        assert inv.n_seiz.sum() == 1 and set(inv.year) == {2012, 2013, 2014, 2015, 2016}, inv[["patient", "session", "n_seiz", "year"]]
         # 3. подготовка
         run(os.path.join(HERE, "tuep_prepare.py"), "--root", root, "--out", os.path.join(work, "prep"), "--threads", 2)
         meta = pd.read_csv(os.path.join(work, "prep", "h1_shared_meta.csv"))
@@ -99,10 +103,13 @@ def main():
         sp = os.path.join(work, "scores.csv"); sc.to_csv(sp, index=False)
         res = os.path.join(HERE, "..", "results")
         if os.path.exists(os.path.join(res, "eegdino_v2_per_person.csv")):
-            run(os.path.join(HERE, "tuep_protocol.py"), "eval", "--scores", sp, "--folds", os.path.join(work, "prot", "folds.csv"), "--results", res,
-                "--out", os.path.join(work, "ev"), "--calib-k", 2)
+            run(os.path.join(HERE, "tuep_protocol.py"), "eval", "--scores", sp, "--meta", os.path.join(work, "prep", "h1_shared_meta.csv"),
+                "--folds", os.path.join(work, "prot", "folds.csv"), "--results", res, "--out", os.path.join(work, "ev"), "--calib-k", 2)
             pt = pd.read_csv(os.path.join(work, "ev", "tuep_patient_scores.csv"))
-            assert len(pt) == 4 and (pt.n_sessions.max() == 2)             # aaaaaaaa: два сеанса -> одна оценка пациента
+            # один сеанс на пациента; у aaaaaaaa второй сеанс с приступом исключён -> остаётся первый
+            assert len(pt) == 4 and (pt.n_sessions == 1).all(), pt
+            assert pt.set_index("patient").session["aaaaaaaa"] == "s001_2015", pt
+            assert os.path.exists(os.path.join(work, "ev", "tuep_confounds.csv"))
         else:
             print("results/ нет — шаг eval пропущен")
         print("ТЕСТ ПРОЙДЕН")
