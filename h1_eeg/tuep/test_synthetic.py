@@ -109,7 +109,8 @@ def main():
             # один сеанс на пациента; у aaaaaaaa второй сеанс с приступом исключён -> остаётся первый
             assert len(pt) == 4 and (pt.n_sessions == 1).all(), pt
             assert pt.set_index("patient").session["aaaaaaaa"] == "s001_2015", pt
-            assert os.path.exists(os.path.join(work, "ev", "tuep_confounds.csv"))
+            cf = pd.read_csv(os.path.join(work, "ev", "tuep_confounds.csv")); print(cf.to_string())
+            assert set(cf["признак"]) == {"год записи", "длительность сеанса", "монтаж", "частота дискретизации"}, cf
         else:
             print("results/ нет — шаг eval пропущен")
         print("ТЕСТ ПРОЙДЕН")

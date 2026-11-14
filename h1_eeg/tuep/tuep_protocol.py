@@ -70,14 +70,15 @@ def session_table(rec, score_cols):
     """Файлы -> сеансы: оценка сеанса = среднее по файлам с весом длительности; приступ хотя бы в одном файле — сеанс с приступами."""
     rec = rec.copy()
     rec["w"] = rec.dur_s if "dur_s" in rec else 1.0
-    for c in ("n_seiz", "year", "montage"):
+    for c in ("n_seiz", "year", "montage", "sfreq_orig"):
         if c not in rec:
             rec[c] = np.nan
     out = []
     for (p, s), g in rec.groupby(["patient", "session"]):
         row = dict(patient=p, session=s, y=int(g.y.iloc[0]), dur_s=g.w.sum(), n_files=len(g),
                    has_seiz=bool((g.n_seiz.fillna(0) > 0).any()), seiz_unknown=bool(g.n_seiz.isna().all()),
-                   year=g.year.iloc[0], montage="|".join(sorted(set(map(str, g.montage)))))
+                   year=g.year.iloc[0], montage="|".join(sorted(set(map(str, g.montage)))),
+                   sfreq=str(int(g.sfreq_orig.mode().iloc[0])) if g.sfreq_orig.notna().any() else "?")
         for c in score_cols:
             row[c] = np.average(g[c], weights=g.w)
         out.append(row)
@@ -93,6 +94,7 @@ def select_sessions(S, score_cols, rule="random", seed=0):
     if rule == "all":
         P = E.groupby("patient").agg(y=("y", "first"), dur_s=("dur_s", "sum"), n_sessions=("session", "size"), year=("year", "median"),
                                      montage=("montage", lambda x: "|".join(sorted(set("|".join(x).split("|"))))),
+                                     sfreq=("sfreq", lambda x: x.mode().iloc[0]),
                                      **{c: (c, "mean") for c in score_cols}).reset_index()
         return P, dropped
     rng = np.random.default_rng(seed); pick = []
@@ -116,16 +118,18 @@ def stratified_auc(y, s, strata):
 
 
 def confound_check(P):
-    """Насколько класс угадывается без ЭЭГ — по году записи и монтажу (PROTOCOL.md, п. 5). Монтаж — доля эпилепсии в слое по той же
-    выборке (оптимистично для монтажа, т. е. строго к нам)."""
+    """Насколько класс угадывается без ЭЭГ (PROTOCOL.md, п. 5): числовые — год записи и длительность сеанса; категориальные — монтаж
+    и частота дискретизации (доля эпилепсии в слое по той же выборке — оптимистично для признака, т. е. строго к нам)."""
     rows = []
-    m = P.year.notna()
-    if m.sum() and P.y[m].nunique() == 2:
-        a = roc_auc_score(P.y[m], P.year[m].astype(float))
-        rows.append(dict(признак="год записи", n=int(m.sum()), auc=round(a, 3), auc_any_direction=round(max(a, 1 - a), 3)))
-    share = P.groupby("montage").y.transform("mean")
-    a = roc_auc_score(P.y, share)
-    rows.append(dict(признак="монтаж", n=len(P), auc=round(a, 3), auc_any_direction=round(max(a, 1 - a), 3)))
+    for name, col in (("год записи", "year"), ("длительность сеанса", "dur_s")):
+        m = P[col].notna()
+        if m.sum() and P.y[m].nunique() == 2:
+            a = roc_auc_score(P.y[m], P[col][m].astype(float))
+            rows.append(dict(признак=name, n=int(m.sum()), auc=round(a, 3), auc_any_direction=round(max(a, 1 - a), 3)))
+    for name, col in (("монтаж", "montage"), ("частота дискретизации", "sfreq")):
+        if col in P:
+            a = roc_auc_score(P.y, P.groupby(col).y.transform("mean"))
+            rows.append(dict(признак=name, n=len(P), auc=round(a, 3), auc_any_direction=round(max(a, 1 - a), 3)))
     return pd.DataFrame(rows), pd.crosstab(P.montage, P.y, margins=True)
 
 
@@ -191,7 +195,7 @@ def cmd_eval(a):
     rec = pd.read_csv(a.scores)
     if a.meta:                                         # год, приступы, монтаж — из описи подготовки, если их нет в оценках
         m = pd.read_csv(a.meta)
-        add = [c for c in ("year", "n_seiz", "montage") if c in m and (c not in rec or rec[c].isna().all())]
+        add = [c for c in ("year", "n_seiz", "montage", "sfreq_orig") if c in m and (c not in rec or rec[c].isna().all())]
         rec = rec.drop(columns=[c for c in add if c in rec]).merge(m[["id"] + add], on="id", how="left")
     score_cols = [c for c in ["reve4", "dino2", "ens"] if c in rec.columns]
     names = {"reve4": "REVE v4", "dino2": "EEG-DINO v2", "ens": "REVE v4 + EEG-DINO v2"}
