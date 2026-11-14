@@ -11,7 +11,7 @@
 ```bash
 python3 -m venv ~/venvs/tuep && source ~/venvs/tuep/bin/activate        # venv, без conda
 pip install numpy scipy pandas scikit-learn tabulate openpyxl           # опись, подготовка, оценка (mne не нужен: EDF читаем сами)
-pip install torch transformers huggingface_hub                          # только для шага 4 (под CUDA-сборку машины)
+pip install torch transformers huggingface_hub einops                   # только для шага 5 (под CUDA-сборку машины); einops нужен коду REVE с HF
 git clone <репозиторий epilepsy-mvp> && cd epilepsy-mvp/h1_eeg/tuep
 ```
 
