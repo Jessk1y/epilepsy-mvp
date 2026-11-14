@@ -69,10 +69,15 @@ def main():
     ap.add_argument("--device", default="cuda:0", help="одна карта; номер карты задавать через CUDA_VISIBLE_DEVICES")
     ap.add_argument("--bs", type=int, default=30)
     ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--notch50", action="store_true", help="проверка (ревью 14.11): добавить режекцию 50 Гц, как в данных обучения; --out дать другой")
+    ap.add_argument("--sessions-from", default="", help="tuep_patient_scores.csv: считать только выбранные там сеансы (patient, session)")
     a = ap.parse_args()
     import torch
     os.makedirs(a.out, exist_ok=True)
     meta, info = load_meta(a.prep)
+    if a.sessions_from:
+        ch = pd.read_csv(a.sessions_from); keys = set(zip(ch.patient, ch.session))
+        meta = meta[[k in keys for k in zip(meta.patient, meta.session)]]
     if a.limit:
         meta = meta.head(a.limit)
     print("записей:", len(meta), "| пациентов:", meta.patient.nunique(), "|", torch.cuda.get_device_name(0) if torch.cuda.is_available() else "процессор")
@@ -86,7 +91,10 @@ def main():
     for j, r in enumerate(meta.itertuples()):
         if r.id in seen:
             continue
-        X = highpass(read_record(a.prep, r._asdict()), HP).astype(np.float32)
+        X = read_record(a.prep, r._asdict())
+        if a.notch50:
+            X = C.ss.filtfilt(*C.ss.iirnotch(50.0, C.NOTCH_Q, fs=C.SFREQ), X.astype(np.float64), axis=-1)
+        X = highpass(X, HP).astype(np.float32)
         W = windows(X, L)
         W = W[spread(len(W), CAP_WIN)]
         row = dict(id=r.id, patient=r.patient, session=r.session, y=r.y, dur_s=r.dur_s, montage=getattr(r, "montage", ""),
