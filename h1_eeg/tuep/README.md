@@ -147,10 +147,12 @@ python tuep_finetune.py report --prep ~/data/tuep_work/prep --out ~/data/tuep_wo
 | `PROTOCOL.md` | правила прогона, записанные до получения результатов |
 | `yadisk_pull.py` | скачивание TUEP с Яндекс Диска (докачка, md5) |
 | `tuep_infer.py` | шаг 5 |
-| `tuep_finetune.py` | шаг 6: `train` (дообучение по фолдам, продолжение после обрыва, `--smoke`), `report` (сводка) |
+| `tuep_finetune.py` | шаги 6 и 8: `train` (дообучение по фолдам: `reve`, `dino`, `de`; продолжение после обрыва, `--smoke`), `report` (сводка, `--ensemble` можно повторять) |
 | `tuep_baseline.py` | шаг 6: эталон «мощности ритмов + логистическая регрессия» и контроль утечки без ЭЭГ — по тем же фолдам |
 | `tuep_audit.py` | проверка подготовленных данных и оценок на рабочей машине (ревью 14.11): `python tuep_audit.py --work ~/data/tuep_work --root ~/data/TUEP` |
 | `test_finetune_synthetic.py` | лёгкий тест шага 6 на синтетике: `python -I test_finetune_synthetic.py` |
+| `tuep_deepepilepsy.py` | DeepEpilepsy авторов без дообучения (раздел 7) и проверка референта и фильтра (раздел 8) |
+| `test_de_synthetic.py` | лёгкий тест ветки `--model de` и проверки референта на синтетике: `python -I test_de_synthetic.py` |
 | `test_synthetic.py` | лёгкий тест на синтетических EDF: `python -I test_synthetic.py` (опись → подготовка → чтение `shared_data` → фолды → оценка) |
 
 ## Вопросы к NEDC (контакт — на странице NEDC; письмо отправляет Захар сам)
@@ -175,3 +177,43 @@ python tuep_protocol.py eval --scores ~/data/tuep_work/out_de/tuep_record_scores
 ```
 
 Порога с NMT для неё нет: в выводе — ROC AUC, калибровка по 10 / 20 пациентам и порог без разметки.
+
+## 8. Дообучение DeepEpilepsy на TUEP по 5 фолдам (15.11)
+
+Та же схема, что в разделе 6 (те же фолды, тот же сеанс на пациента, те же веса сеансов и слои «монтаж|частота», те же правила порога, ФНЧ 45 Гц), в ту же папку `~/data/tuep_work/ft` — чтобы `report` показал всё в одной таблице. Отличия ветки `--model de`:
+
+| Что | Как |
+|---|---|
+| окно | 30 с (19 × 6000), при оценке — 20 окон на файл равномерно (те же 10 минут записи, что 60 окон по 10 с) |
+| вход | как у авторов: каналы в порядке `settings.ELECTRODES`, `standard_scale` — каждый канал окна к нулевому среднему и единичному СКО |
+| аугментации | RandAugment авторов (n = 1, m = 7, до нормировки): режекция случайной полосы, ФНЧ, зануление прямоугольника «каналы × время», зануление каналов, шум. Перенесён в наш код, чтобы работало продолжение после обрыва |
+| оценка файла | медиана вероятностей окон (как в статье), а не верхние 20 % |
+| старт | веса авторов `DeepEpilepsy_large_50_30s_augment.pt` (кэш HF или `--de-weights`), код модели — `--de-repo` (по умолчанию `~/data/weights/dl_epilepsy_reeg`) |
+| скорости обучения | основа 2·10⁻⁵ (как при дообучении на NMT 20.10), голова 5·10⁻⁴ (как у REVE), AdamW 0,05, обрезка градиента 1,0 |
+| имена запусков | `de` — учится всё; `defz` — только голова (`--freeze-backbone`) |
+| короткие файлы | файлы короче 30 с оценки не получают; сеансы без единого файла от 30 с в обучение не идут. Скрипт печатает, сколько таких |
+
+**Заданная заранее пара: `de` + `bpampw`** (DeepEpilepsy, дообученная полностью, + эталон с wPLI; среднее вероятностей по файлам — то же правило, что у пары REVE). Вариант `defz` смотрим отдельной строкой, в пару не идёт. Других сочетаний по тестовым фолдам не подбираем. Засчитываем, если пара выше 0,661 и внутри слоя выше 0,633 (пара REVE + эталон с wPLI).
+
+```bash
+cd epilepsy-mvp && git pull && cd h1_eeg/tuep && source ~/venvs/tuep/bin/activate
+python -I test_de_synthetic.py                 # ~1–2 мин, процессор, без кода и весов авторов; в конце «ТЕСТ ВЕТКИ DEEPEPILEPSY ПРОЙДЕН»
+# пробный режим: 1 фолд, 1 запуск, 320 окон; печатает число коротких файлов, скорость и оценку времени
+CUDA_VISIBLE_DEVICES=0 python tuep_finetune.py train --model de --prep ~/data/tuep_work/prep --out ~/data/tuep_work/ft --smoke
+# полный прогон: сначала de, затем defz (после обрыва — та же команда)
+CUDA_VISIBLE_DEVICES=0 nohup sh -c "python tuep_finetune.py train --model de --prep ~/data/tuep_work/prep --out ~/data/tuep_work/ft && python tuep_finetune.py train --model de --freeze-backbone --prep ~/data/tuep_work/prep --out ~/data/tuep_work/ft" > ~/data/tuep_work/ft/de.log 2>&1 &
+tail -f ~/data/tuep_work/ft/de.log
+# сводка: обе заданные пары в одной таблице
+python tuep_finetune.py report --prep ~/data/tuep_work/prep --out ~/data/tuep_work/ft --zero-shot ~/data/tuep_work/out/tuep_patient_scores.csv --ensemble reve bpampw --ensemble de bpampw
+```
+
+Место на диске: кэш окон `ft/evalcache_lp45_w60_L6000` — до ~12 ГБ (`--no-cache` — без него, оценка медленнее). Если HF с машины не открывается: `HF_HUB_OFFLINE=1` (веса уже в кэше после раздела 7) или `--de-weights <файл>`. Время не измерено — пробный режим печатает оценку.
+
+**Проверка референта без дообучения (по желанию, минуты).** У авторов запись сохранена относительно среднего A1 и A2 и идёт в сеть без программных фильтров; у нас — средний по 19 каналам и 0,1–75 Гц + режекция 60 Гц. `--ref ears` читает EDF тех же 199 сеансов заново: `01_tcp_ar` — вычитает (A1 + A2) / 2, `02_tcp_le` — как есть, `03_tcp_ar_a` — пропуск (ушных электродов нет). Опись берётся из `~/data/tuep_work/inventory/inventory_files.csv`, `--root` — та же папка, что при описи.
+
+```bash
+CUDA_VISIBLE_DEVICES=0 python tuep_deepepilepsy.py --prep ~/data/tuep_work/prep --out ~/data/tuep_work/out_de_ears --ref ears --root ~/data/TUEP --sessions-from ~/data/tuep_work/out/tuep_patient_scores.csv --compare ~/data/tuep_work/out_de/tuep_record_scores.csv
+CUDA_VISIBLE_DEVICES=0 python tuep_deepepilepsy.py --prep ~/data/tuep_work/prep --out ~/data/tuep_work/out_de_ears_raw --ref ears --filt none --root ~/data/TUEP --sessions-from ~/data/tuep_work/out/tuep_patient_scores.csv --compare ~/data/tuep_work/out_de/tuep_record_scores.csv
+```
+
+Последняя строка вывода — ROC AUC обоих вариантов на общих пациентах и разность с 95 % ДИ. Знак класса у готовой модели не установлен, поэтому смотреть на удаление от 0,5 в любую сторону. Если ДИ разности не содержит 0 — готовить записи относительно ушей (только `01_tcp_ar` и `02_tcp_le`) и повторять дообучение на них; иначе референт ни при чём.

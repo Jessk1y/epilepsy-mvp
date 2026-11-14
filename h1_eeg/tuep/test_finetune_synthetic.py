@@ -15,7 +15,8 @@ import tuep_finetune as FT
 from tuep_prepare import Shards
 
 
-def make(prep):
+def make(prep, short=False):
+    """short=True (тест окна 30 с, test_de_synthetic.py): добавляет файлы по 15 с — в существующие сеансы и отдельными сеансами."""
     rng = np.random.default_rng(0)
     W, rows = Shards(prep), []
     for i in range(40):
@@ -39,6 +40,15 @@ def make(prep):
                 rows.append(dict(dataset="tuep", part="tuep", split="tuep", id=f"{pat}_{sess[:4]}_t{t:03d}", y=y, label="epilepsy" if y else "no_epilepsy",
                                  sfreq_orig=fs, dur_full_s=n / 200, dur_s=n / 200, scale_k=1.0, std_uv=float(X.std()), std_raw_uv=float(X.std()), clipped=0,
                                  patient=pat, session=sess, montage=mont, year=2010 + s, n_seiz=seiz if t == 0 else 0, shard200=sh, off200=off, n200=nn))
+    if short:
+        r2, base = np.random.default_rng(7), pd.DataFrame(rows).drop_duplicates("patient").sort_values("patient").reset_index(drop=True)
+        for j, b in base.iloc[4:14].iterrows():                          # 6 пациентам — короткий файл в их сеанс, 4 — сеанс из одного короткого файла
+            sess, mont, fs, year = (b.session, b.montage, b.sfreq_orig, b.year) if j < 10 else ("s009_2019", "01_tcp_ar", 256.0, 2019)
+            X = r2.normal(0, 10, (19, 3000)); X = X - X.mean(0, keepdims=True)
+            sh, off, nn = W.add(X.astype(np.float16))
+            rows.append(dict(dataset="tuep", part="tuep", split="tuep", id=f"{b.patient}_{sess[:4]}_t009", y=int(b.y), label=b.label, sfreq_orig=fs,
+                             dur_full_s=15.0, dur_s=15.0, scale_k=1.0, std_uv=float(X.std()), std_raw_uv=float(X.std()), clipped=0,
+                             patient=b.patient, session=sess, montage=mont, year=year, n_seiz=0, shard200=sh, off200=off, n200=nn))
     W.flush()
     pd.DataFrame(rows).to_csv(os.path.join(prep, "h1_shared_meta.csv"), index=False)
     json.dump(dict(fs=[200]), open(os.path.join(prep, "h1_shared_info.json"), "w"))

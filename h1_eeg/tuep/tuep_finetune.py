@@ -20,9 +20,13 @@
   фильтр — по куску «окно ± 5 с», одинаково в обучении и в оценке;
 - метрики: ROC AUC и пороговые с 95 % ДИ (бутстреп по пациентам); порог — по отложенной части своего фолда; предсказания по людям — csv.
 
+DeepEpilepsy авторов (--model de, 15.11): та же схема, но окна 30 с (20 окон на файл — те же 10 минут записи), вход и аугментации
+авторов (каналы в их порядке, standard_scale по каналу, RandAugment m = 7), оценка файла — медиана вероятностей окон (как в статье).
+Файлы короче 30 с оценки не получают. Подробно — README.md, раздел 8.
+
 Данные TUH и выходы с кодами пациентов остаются на рабочей машине; в git — только tuep_ft_summary.md / tuep_ft_metrics.csv.
 """
-import argparse, glob, json, os, sys, time
+import argparse, glob, importlib.util, json, os, sys, time
 from concurrent.futures import ThreadPoolExecutor
 import numpy as np, pandas as pd, scipy.signal as ss
 from sklearn.metrics import roc_auc_score
@@ -34,10 +38,15 @@ import tuep_protocol as TP                                 # noqa: E402
 from shared_data import EL, _shard                         # noqa: E402
 
 FS, L, HP, CAP_WIN, TOP, MARGIN, N_FOLDS = 200, 2000, 0.3, 60, 0.2, 1000, 5
+L10 = 2000                                                 # окно 10 с: в нём задаётся --n-win (60 окон = 10 минут записи)
+WIN_S = {"de": 30}                                         # длина окна модели, с; у остальных 10
+DE_ORDER = ["Fp1", "Fp2", "F3", "F4", "C3", "C4", "P3", "P4", "F7", "F8", "T3", "T4", "T5", "T6", "O1", "O2", "Fz", "Cz", "Pz"]   # settings.ELECTRODES авторов
+DE_IDX = [EL.index(e) for e in DE_ORDER]
 MIRROR_PAIRS = {"Fp1": "Fp2", "F3": "F4", "C3": "C4", "P3": "P4", "O1": "O2", "F7": "F8", "T3": "T4", "T5": "T6"}
 MIRROR_PAIRS.update({v: k for k, v in list(MIRROR_PAIRS.items())})
 MIRROR = [EL.index(MIRROR_PAIRS.get(e, e)) for e in EL]
-NAMES = {"revefz": "REVE v4, на TUEP учится только голова", "bpampw": "эталон: мощности, амплитуда, wPLI + лог. регрессия", "bpampwd": "эталон: мощности, амплитуда, wPLI, возраст, пол + лог. регрессия", "demo": "только возраст и пол + лог. регрессия", "reve": "REVE v4, дообучена на TUEP", "dino": "EEG-DINO v2, дообучена на TUEP", "toy": "игрушечная сеть (тест)",
+NAMES = {"de": "DeepEpilepsy авторов, дообучена на TUEP", "defz": "DeepEpilepsy авторов, на TUEP учится только голова",
+         "revefz": "REVE v4, на TUEP учится только голова", "bpampw": "эталон: мощности, амплитуда, wPLI + лог. регрессия", "bpampwd": "эталон: мощности, амплитуда, wPLI, возраст, пол + лог. регрессия", "demo": "только возраст и пол + лог. регрессия", "reve": "REVE v4, дообучена на TUEP", "dino": "EEG-DINO v2, дообучена на TUEP", "toy": "игрушечная сеть (тест)",
          "bp": "эталон: мощности ритмов + лог. регрессия", "bpamp": "эталон: мощности ритмов и амплитуда + лог. регрессия",
          "tech": "контроль утечки: только монтаж, частота, длительность, год (без ЭЭГ)"}
 
@@ -121,8 +130,20 @@ def make_sos(lowpass):
     return sos
 
 
+def set_window(model):
+    """Длина окна зависит от модели: 10 с (REVE, EEG-DINO, эталон) или 30 с (DeepEpilepsy). Меняет L для всех функций ниже."""
+    global L
+    L = FS * WIN_S.get(model, 10)
+    return L
+
+
+def n_windows(n_win):
+    """--n-win задан в окнах по 10 с; для более длинного окна — столько же секунд записи (60 × 10 с = 20 × 30 с)."""
+    return max(1, n_win * L10 // L)
+
+
 def read_window(prep, shard, off, n, start, sos):
-    """Окно 10 с: читается кусок с полями ±5 с (сколько есть), фильтруется, вырезается середина. Одинаково в обучении и в оценке."""
+    """Окно L отсчётов: читается кусок с полями ±5 с (сколько есть), фильтруется, вырезается середина. Одинаково в обучении и в оценке."""
     a, b = max(0, start - MARGIN), min(n, start + L + MARGIN)
     X = np.asarray(_shard(prep, FS, shard)[off:off + 19 * n].reshape(19, n)[:, a:b], np.float64)
     return ss.sosfiltfilt(sos, X, axis=-1)[:, start - a:start - a + L].astype(np.float32)
@@ -136,13 +157,20 @@ def top20(p):
     return float(np.sort(p)[::-1][:int(np.ceil(TOP * len(p)))].mean())
 
 
+def median(p):
+    return float(np.median(p))
+
+
 def eval_windows(prep, r, sos, n_win, cache_dir=""):
-    """Окна файла для оценки: до n_win равномерно из окон 10 с подряд с начала записи (как в блокнотах и tuep_infer.py). (k, 19, 2000) float32.
-    Кэш на диске (float16, ~4,6 МБ на файл при 60 окнах): фильтрация делается один раз для всех эпох, запусков и моделей."""
+    """Окна файла для оценки: до n_win равномерно из окон длины L подряд с начала записи (как в блокнотах и tuep_infer.py). (k, 19, L) float32.
+    Файл короче окна — пустой массив (k = 0). Кэш на диске (float16, ~4,6 МБ на файл при 10 минутах записи): фильтрация делается один раз
+    для всех эпох, запусков и моделей с этой длиной окна."""
+    n = int(r.n200)
+    if n < L:
+        return np.zeros((0, 19, L), np.float32)
     p = os.path.join(cache_dir, f"{r.id}.npy") if cache_dir else ""
     if p and os.path.exists(p):
         return np.load(p).astype(np.float32)
-    n = int(r.n200)
     W = np.stack([read_window(prep, r.shard200, int(r.off200), n, int(s) * L, sos) for s in spread(n // L, n_win)])
     if p:
         tmp = p + f".{os.getpid()}.tmp.npy"
@@ -150,12 +178,14 @@ def eval_windows(prep, r, sos, n_win, cache_dir=""):
     return W
 
 
-def score_files(prob_fn, prep, rows, sos, n_win, cache_dir="", workers=4):
-    """Оценка каждого файла: среднее верхних 20 % вероятностей окон. prob_fn: (k, 19, 2000) -> (k,). Возвращает {id: оценка}, число окон."""
+def score_files(prob_fn, prep, rows, sos, n_win, cache_dir="", workers=4, agg=top20):
+    """Оценка каждого файла: agg (среднее верхних 20 % или медиана) вероятностей окон. prob_fn: (k, 19, L) -> (k,).
+    Возвращает {id: оценка} и число окон; файлов короче окна в словаре нет."""
     out, n = {}, 0
     with ThreadPoolExecutor(workers) as ex:
         for r, W in zip(rows, ex.map(lambda r: eval_windows(prep, r, sos, n_win, cache_dir), rows)):
-            out[r.id] = top20(prob_fn(W)); n += len(W)
+            if len(W):
+                out[r.id] = agg(prob_fn(W)); n += len(W)
     return out, n
 
 
@@ -199,10 +229,72 @@ def norm_input(W, torch):
     return torch.from_numpy(np.clip(x / (x.std(axis=(1, 2), keepdims=True) + 1e-6), -15, 15))
 
 
+def de_input(W, torch):
+    """Вход DeepEpilepsy: каналы в порядке авторов, standard_scale — каждый канал окна к нулевому среднему и единичному СКО (augmentation.py)."""
+    x = np.asarray(W, np.float32)[:, DE_IDX]
+    return torch.from_numpy((x - x.mean(-1, keepdims=True)) / (x.std(-1, keepdims=True) + 1e-20))
+
+
+def de_randaugment(x, g, m=7):
+    """RandAugment авторов DeepEpilepsy (ml/augmentation.py, MIT; n = 1, m = 7 — proj_config.yaml), перенесён на генератор g, чтобы обучение
+    продолжалось после обрыва с того же места. Одно окно (19, n) в мкВ, ДО standard_scale. Выбирается один приём из шести, срабатывает
+    с вероятностью 0,5: режекция случайной полосы 21 Гц, ФНЧ 30–50 Гц, зануление прямоугольника «каналы × время», зануление каналов
+    (каждый с p = 7/12), масштаб амплитуды части каналов, шум в части каналов."""
+    op, on = int(g.integers(0, 6)), g.random() < 0.5
+    if not on or op == 4:                                     # масштаб амплитуды канала стирается нормировкой по каналу — приём пустой
+        return x
+    nc, nt = x.shape
+    if op == 0:
+        bw = 0.05 * FS + (FS / 2 - 0.1 * FS) / m
+        lo = g.uniform(1, FS / 2 - bw)
+        return ss.sosfilt(ss.butter(4, [lo, min(lo + bw, FS / 2 - 0.01)], btype="bandstop", fs=FS, output="sos"), x, axis=-1)
+    if op == 1:
+        f = max(min(FS / 2 - (FS / 2 - 15) * m / 10 + g.uniform(-FS / 20, FS / 20), FS / 2 - 1), 15)
+        return ss.sosfilt(ss.butter(4, f, btype="lowpass", fs=FS, output="sos"), x, axis=-1)
+    x = np.array(x, np.float64)
+    if op == 2:
+        h = min(int(g.integers(int((m - 1) / 10 * nc / 2) + 1, int(m / 10 * nc) + 1)), nc)
+        w = min(int(g.integers(int((m - 1) / 10 * nt / 2) + 1, int(m / 10 * nt) + 1)), nt)
+        c0, t0 = int(g.integers(0, nc - h + 1)), int(g.integers(0, nt - w + 1))
+        x[c0:c0 + h, t0:t0 + w] = 0
+    elif op == 3:
+        x[g.random(nc) < m / 12] = 0
+    else:
+        mask = g.random(nc) < m / 12
+        x[mask] += g.normal(0, m / 10 * 0.1 * np.ptp(x, axis=-1).mean(), (int(mask.sum()), nt))
+    return x
+
+
+def de_vit(a, torch):
+    """ViT1d_Conv1d_large_50 авторов с их весами (код — клон gitlab chum-epilepsy/dl_epilepsy_reeg, веса — HF emilelemoine/DeepEpilepsy_v1)."""
+    nn = torch.nn
+    if a.de_toy:                                              # синтетический тест: тот же путь данных, без кода и весов авторов
+        class Tiny(nn.Module):
+            def __init__(self):
+                super().__init__(); self.stem = nn.Conv1d(19, 8, 50, stride=25); self.mlp_head = nn.Linear(8, 2)
+            def forward(self, x):
+                return self.mlp_head(self.stem(x).abs().mean(-1))
+        return Tiny()
+    src = os.path.join(a.de_repo, "src", "epileptology", "ml", "models", "transformers.py")
+    assert os.path.exists(src), f"нет кода авторов: {src} (git clone https://gitlab.com/chum-epilepsy/dl_epilepsy_reeg.git {a.de_repo})"
+    spec = importlib.util.spec_from_file_location("de_transformers", src)
+    de = importlib.util.module_from_spec(spec); spec.loader.exec_module(de)
+    vit = de.ViT1d(n_class=2, in_channels=19, n_timepoints=L, patch_size=50, tokenizer="conv1d",
+                   n_layers=6, n_heads=8, dim_hidden=512, dim_mlp=512, dropout=0.25, attention_dropout=0.25)
+    w = a.de_weights
+    if not w:
+        from huggingface_hub import hf_hub_download
+        w = hf_hub_download("emilelemoine/DeepEpilepsy_v1", "DeepEpilepsy_large_50_30s_augment.pt")
+    vit.load_state_dict(torch.load(w, map_location="cpu", weights_only=True), strict=True)
+    return vit
+
+
 def build_model(name, a, torch, dev, seed):
-    """Модель, функция входа, группы параметров оптимизатора (как в блокнотах обучения на NMT), шум аугментации, доля разогрева."""
+    """Модель, функция входа, группы параметров оптимизатора (как в блокнотах обучения на NMT), доля разогрева, имя основы,
+    функция «окна обучения + генератор -> вход с аугментациями на устройстве»."""
     nn = torch.nn
     torch.manual_seed(seed)
+    train_in = None
     if name == "toy":                                         # для синтетического теста: без весов и без интернета
         class Toy(nn.Module):
             def __init__(self):
@@ -239,13 +331,30 @@ def build_model(name, a, torch, dev, seed):
                 if p.requires_grad:
                     gr.setdefault((scale(n), p.ndim > 1), []).append(p)
             return [dict(params=ps, lr=5e-4 * a.lr_scale * k, weight_decay=0.05 if dec else 0.0) for (k, dec), ps in gr.items()]
+    elif name == "de":
+        class DENet(nn.Module):
+            """Основа авторов + их же линейная голова на 2 класса. Выход — логит класса 1 (z1 − z0): сигмоида от него равна softmax[:, 1],
+            потери BCE равны перекрёстной энтропии авторов."""
+            def __init__(self, vit):
+                super().__init__(); self.head = vit.mlp_head; vit.mlp_head = nn.Identity(); self.backbone = vit
+            def forward(self, x):
+                z = self.head(self.backbone(x))
+                return z[:, 1] - z[:, 0]
+        m = DENet(de_vit(a, torch)); inp, back, noise, warm = (lambda W: de_input(W, torch)), "backbone", 0.0, 0.05
+        train_in = lambda X, g: inp(np.stack([de_randaugment(x, g) for x in X])).to(dev)
+        def groups(mm):                                       # основа 2e-5 (как при дообучении на NMT, блокнот 20.10), голова 5e-4 (как у REVE), AdamW 0,05
+            bk = [p for n, p in mm.named_parameters() if n.startswith("backbone") and p.requires_grad]
+            hd = [p for n, p in mm.named_parameters() if not n.startswith("backbone") and p.requires_grad]
+            return [g for g in (dict(params=bk, lr=2e-5 * a.lr_scale, weight_decay=0.05), dict(params=hd, lr=5e-4 * a.lr_scale, weight_decay=0.05)) if g["params"]]
     else:
         raise ValueError(name)
+    if train_in is None:
+        train_in = lambda X, g: augment(inp(X).to(dev), g, torch, noise)
     if a.freeze_backbone:
         for n, p in m.named_parameters():
             if n.startswith(back):
                 p.requires_grad = False
-    return m.to(dev), inp, groups, noise, warm, back
+    return m.to(dev), inp, groups, warm, back, train_in
 
 
 def augment(x, g, torch, noise):
@@ -273,6 +382,11 @@ def run_one(a, torch, meta, S, F, chosen, fold, seed, dirs):
     dev, cuda = a.device, a.device.startswith("cuda")
     fit_p, val_p, test_p = split_patients(F, fold)
     S_fit = S[S.patient.isin(fit_p)].reset_index(drop=True)
+    long_ok = set(zip(meta.patient[meta.n200 >= L], meta.session[meta.n200 >= L]))
+    short = np.array([(p, s) not in long_ok for p, s in zip(S_fit.patient, S_fit.session)])
+    if short.any():                                           # сеансы без единого файла длиной в окно в обучение не идут (как сеансы с приступами)
+        print(f"[{tag}] сеансов обучающей части без файла длиной {L // FS} с: {int((short & ~S_fit.has_seiz).sum())} — в обучение не идут")
+        S_fit = S_fit.assign(has_seiz=S_fit.has_seiz | short)
     w, tab = session_weights(S_fit, a.balance, a.min_pat)
     ok = {(p, s) for p, s, wi in zip(S_fit.patient, S_fit.session, w) if wi > 0}
     meta_fit = meta[[k in ok for k in zip(meta.patient, meta.session)]]
@@ -281,12 +395,17 @@ def run_one(a, torch, meta, S, F, chosen, fold, seed, dirs):
     test_rows = list(meta[meta.patient.isin(test_p)].itertuples())
     if a.smoke:
         test_rows = test_rows[:40]
-    y_val = {r.id: r.y for r in val_rows}
+    agg, n_win = (median if a.model == "de" else top20), n_windows(a.n_win)
+    n_short = sum(int(r.n200) < L for r in val_rows + test_rows)
+    no_score = {r.patient for r in val_rows + test_rows if chosen.get(r.patient) == r.session} - \
+               {r.patient for r in val_rows + test_rows if chosen.get(r.patient) == r.session and int(r.n200) >= L}
+    if n_short:
+        print(f"[{tag}] файлов короче {L // FS} с (без оценки): {n_short}; пациентов, у которых выбранный сеанс остался без оценки: {len(no_score)}")
     print(f"[{tag}] пациентов: обучение {len(fit_p)}, отложенные {len(val_p)}, тест {len(test_p)} | сеансов в обучении {len(sampler.sess)} из {len(S_fit)} "
           f"| файлов: отложенные {len(val_rows)}, тест {len(test_rows)}")
     print(tab.to_string())
 
-    model, inp, groups, noise, warm, back = build_model(a.model, a, torch, dev, seed)
+    model, inp, groups, warm, back, train_in = build_model(a.model, a, torch, dev, seed)
     steps_ep = int(np.ceil(a.epoch_windows / a.bs)); total = a.max_epochs * steps_ep
     opt = torch.optim.AdamW(groups(model))
     warm_n = max(1, int(warm * total))
@@ -313,8 +432,8 @@ def run_one(a, torch, meta, S, F, chosen, fold, seed, dirs):
 
     def val_eval():
         model.eval()
-        sc, n = score_files(prob_fn, a.prep, val_rows, dirs["sos"], a.n_win, dirs["cache"], a.workers)
-        rec = pd.DataFrame([dict(id=r.id, patient=r.patient, session=r.session, y=r.y, dur_s=r.dur_s, score=sc[r.id]) for r in val_rows])
+        sc, n = score_files(prob_fn, a.prep, val_rows, dirs["sos"], n_win, dirs["cache"], a.workers, agg)
+        rec = pd.DataFrame([dict(id=r.id, patient=r.patient, session=r.session, y=r.y, dur_s=r.dur_s, score=sc[r.id]) for r in val_rows if r.id in sc])
         P = patient_scores(rec, chosen)
         return roc_auc_score(P.y, P.score), sc, n
 
@@ -329,7 +448,7 @@ def run_one(a, torch, meta, S, F, chosen, fold, seed, dirs):
         for _ in range(steps_ep):
             items = sampler.draw(a.bs, g)
             X = np.stack(list(pool.map(lambda it: read_window(a.prep, it[0], it[1], it[2], it[3], dirs["sos"]), items)))
-            x = augment(inp(X).to(dev), g, torch, noise)
+            x = train_in(X, g)
             t = torch.tensor([it[4] for it in items], device=dev, dtype=torch.float32)
             with torch.autocast(**amp):
                 out = model(x)
@@ -357,12 +476,12 @@ def run_one(a, torch, meta, S, F, chosen, fold, seed, dirs):
     pool.shutdown()
     model.load_state_dict(st["best_state"]); model.eval()
     t0 = time.time()
-    sc_test, nt = score_files(prob_fn, a.prep, test_rows, dirs["sos"], a.n_win, dirs["cache"], a.workers)
+    sc_test, nt = score_files(prob_fn, a.prep, test_rows, dirs["sos"], n_win, dirs["cache"], a.workers, agg)
     t_test = time.time() - t0
-    rows = [dict(split="val", fold=fold, seed=seed, id=r.id, patient=r.patient, session=r.session, y=r.y, dur_s=r.dur_s, score=st["best_val"][r.id]) for r in val_rows]
-    rows += [dict(split="test", fold=fold, seed=seed, id=r.id, patient=r.patient, session=r.session, y=r.y, dur_s=r.dur_s, score=sc_test[r.id]) for r in test_rows]
+    rows = [dict(split="val", fold=fold, seed=seed, id=r.id, patient=r.patient, session=r.session, y=r.y, dur_s=r.dur_s, score=st["best_val"][r.id]) for r in val_rows if r.id in st["best_val"]]
+    rows += [dict(split="test", fold=fold, seed=seed, id=r.id, patient=r.patient, session=r.session, y=r.y, dur_s=r.dur_s, score=sc_test[r.id]) for r in test_rows if r.id in sc_test]
     info = dict(tag=tag, model=tag.split("_f")[0], fold=fold, seed=seed, best_epoch=st["best_ep"], best_val_auc=st["best_auc"], hist=st["hist"], n_bad=st["n_bad"],
-                minutes=round((st["sec"] + t_test) / 60, 1), init=a.init, freeze_backbone=a.freeze_backbone, balance=a.balance, lowpass=a.lowpass,
+                minutes=round((st["sec"] + t_test) / 60, 1), init="authors" if a.model == "de" else a.init, win_s=L // FS, n_win=n_win, agg=agg.__name__, freeze_backbone=a.freeze_backbone, balance=a.balance, lowpass=a.lowpass,
                 epoch_windows=a.epoch_windows, bs=a.bs, lr_scale=a.lr_scale, n_fit_patients=len(fit_p), n_fit_sessions=len(sampler.sess))
     json.dump(info, open(os.path.join(dirs["runs"], tag + ".json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     if a.save_weights:
@@ -376,8 +495,9 @@ def run_one(a, torch, meta, S, F, chosen, fold, seed, dirs):
 
 def cmd_train(a):
     import torch
-    for k in ("prep", "out", "reve_dir", "dino_dir", "dino_src", "folds", "exclude_sessions"):
+    for k in ("prep", "out", "reve_dir", "dino_dir", "dino_src", "folds", "exclude_sessions", "de_repo", "de_weights"):
         setattr(a, k, expand(getattr(a, k)))
+    set_window(a.model)
     if a.smoke:
         a.out, a.fold_list, a.seeds, a.max_epochs, a.epoch_windows, a.n_win = os.path.join(a.out, "smoke"), a.fold_list[:1], a.seeds[:1], 1, 10 * a.bs, 12
     if not torch.cuda.is_available() and a.device.startswith("cuda"):
@@ -388,7 +508,7 @@ def cmd_train(a):
     chosen, dropped = chosen_sessions(S)
     lp = f"lp{int(a.lowpass)}" if a.lowpass else "lp0"
     dirs = dict(runs=os.path.join(a.out, "runs"), ckpt=os.path.join(a.out, "ckpt"), weights=os.path.join(a.out, "weights"),
-                cache="" if a.no_cache else os.path.join(a.out, f"evalcache_{lp}_w{a.n_win}"), sos=make_sos(a.lowpass))
+                cache="" if a.no_cache else os.path.join(a.out, f"evalcache_{lp}_w{a.n_win}" + (f"_L{L}" if L != L10 else "")), sos=make_sos(a.lowpass))
     for k in ("runs", "ckpt", "weights", "cache"):
         if dirs[k]:
             os.makedirs(dirs[k], exist_ok=True)
@@ -408,7 +528,7 @@ def cmd_train(a):
     if a.smoke and last:
         n_runs = N_FOLDS * 3
         tr = 8 * 4000 / last["train_wps"]
-        ev = (8 * len(meta) / N_FOLDS / 3.5 + len(meta) / N_FOLDS) * CAP_WIN / last["eval_wps"]
+        ev = (8 * len(meta) / N_FOLDS / 3.5 + len(meta) / N_FOLDS) * n_windows(CAP_WIN) / last["eval_wps"]
         print(f"\nскорость: обучение {last['train_wps']:.0f} окон/с, оценка {last['eval_wps']:.0f} окон/с (первый проход оценки включает фильтрацию и запись кэша).")
         print(f"оценка времени полного прогона одной модели (5 фолдов × 3 запуска, до 8 эпох по 4000 окон): не больше ~{n_runs * (tr + ev) / 3600:.1f} ч; "
               f"обычно меньше — ранняя остановка и кэш окон.")
@@ -454,11 +574,14 @@ def cmd_report(a):
     chosen, dropped = chosen_sessions(S)
     R = load_runs(os.path.join(a.out, "runs"))
     assert R, "нет готовых запусков в " + os.path.join(a.out, "runs")
-    ens = [m for m in a.ensemble if m in R]
-    if len(ens) >= 2:                                         # пара: среднее вероятностей по файлам (как ens в tuep_infer.py)
-        key = ["split", "fold", "id", "patient", "session", "y", "dur_s"]
+    for ens in (a.ensemble or [["reve", "dino"]]):            # --ensemble можно повторять: каждая пара — отдельная строка таблицы
+        if len(ens) < 2 or any(m not in R for m in ens):
+            if len(ens) >= 2:
+                print(f"пара {'+'.join(ens)} пропущена: нет запусков", [m for m in ens if m not in R])
+            continue
+        key = ["split", "fold", "id", "patient", "session", "y", "dur_s"]   # пара: среднее вероятностей по файлам (как ens в tuep_infer.py)
         d = pd.concat([R[m] for m in ens]).groupby(key, as_index=False).agg(score=("score", "mean"), k=("score", "size"), n_seeds=("n_seeds", "min"))
-        R["+".join(ens)] = d[d.k == len(ens)].drop(columns="k")
+        R["+".join(ens)] = d[d.k == len(ens)].drop(columns="k")              # только файлы с оценкой у обеих моделей
         NAMES["+".join(ens)] = "пара: " + " + ".join(NAMES.get(m, m) for m in ens)
     info = S.set_index(["patient", "session"])[["montage", "sfreq", "stratum", "has_seiz", "n_files"]]
     zs = pd.read_csv(a.zero_shot) if a.zero_shot else None
@@ -537,26 +660,29 @@ def cmd_report(a):
 def main():
     ap = argparse.ArgumentParser(); sp = ap.add_subparsers(dest="cmd", required=True)
     t = sp.add_parser("train")
-    t.add_argument("--model", required=True, choices=["reve", "dino", "toy"])
+    t.add_argument("--model", required=True, choices=["reve", "dino", "de", "toy"])
     t.add_argument("--prep", required=True); t.add_argument("--out", required=True)
     t.add_argument("--reve-dir", default=""); t.add_argument("--dino-dir", default=""); t.add_argument("--dino-src", default="")
+    t.add_argument("--de-repo", default="~/data/weights/dl_epilepsy_reeg", help="клон gitlab chum-epilepsy/dl_epilepsy_reeg (код модели)")
+    t.add_argument("--de-weights", default="", help="DeepEpilepsy_large_50_30s_augment.pt; пусто — из кэша HF emilelemoine/DeepEpilepsy_v1")
+    t.add_argument("--de-toy", action="store_true", help=argparse.SUPPRESS)
     t.add_argument("--folds", default="", help="tuep_folds.csv; пусто — те же фолды считаются заново (seed 0)")
     t.add_argument("--fold-list", type=int, nargs="*", default=list(range(N_FOLDS))); t.add_argument("--seeds", type=int, nargs="*", default=[0, 1, 2])
-    t.add_argument("--init", default="nmt", choices=["nmt", "base"], help="nmt — веса после NMT (reve_v4_seed*.pt / eegdino_v2_seed*.pt); base — исходная основа, голова случайная")
+    t.add_argument("--init", default="nmt", choices=["nmt", "base"], help="nmt — веса после NMT (reve_v4_seed*.pt / eegdino_v2_seed*.pt); base — исходная основа, голова случайная; для de не действует: всегда веса авторов")
     t.add_argument("--freeze-backbone", action="store_true", help="учить только голову")
     t.add_argument("--balance", default="strata", choices=["strata", "class"]); t.add_argument("--min-pat", type=int, default=3)
     t.add_argument("--lowpass", type=float, default=45.0, help="ФНЧ, Гц; 0 — без него")
     t.add_argument("--exclude-sessions", default="", help="csv patient,session: считать сеансами с приступами дополнительно")
     t.add_argument("--max-epochs", type=int, default=8); t.add_argument("--patience", type=int, default=3)
     t.add_argument("--epoch-windows", type=int, default=4000); t.add_argument("--bs", type=int, default=32); t.add_argument("--bs-eval", type=int, default=64)
-    t.add_argument("--n-win", type=int, default=CAP_WIN); t.add_argument("--lr-scale", type=float, default=1.0)
+    t.add_argument("--n-win", type=int, default=CAP_WIN, help="окон по 10 с на файл при оценке; для окна 30 с берётся столько же секунд (20 окон)"); t.add_argument("--lr-scale", type=float, default=1.0)
     t.add_argument("--workers", type=int, default=6); t.add_argument("--device", default="cuda:0")
     t.add_argument("--smoke", action="store_true"); t.add_argument("--save-weights", action="store_true"); t.add_argument("--no-cache", action="store_true")
     t.add_argument("--debug-stop-epoch", type=int, default=0, help=argparse.SUPPRESS)
     r = sp.add_parser("report")
     r.add_argument("--prep", required=True); r.add_argument("--out", required=True); r.add_argument("--folds", default="")
     r.add_argument("--exclude-sessions", default=""); r.add_argument("--zero-shot", default="", help="tuep_patient_scores.csv прогона без дообучения")
-    r.add_argument("--ensemble", nargs="*", default=["reve", "dino"])
+    r.add_argument("--ensemble", nargs="*", action="append", help="пара моделей (коды); можно повторять: --ensemble reve bpampw --ensemble de bpampw")
     a = ap.parse_args()
     {"train": cmd_train, "report": cmd_report}[a.cmd](a)
 
