@@ -33,7 +33,8 @@ def parse_tusz_keys(list_path):
 
 
 def load_metadata(root, out_dir):
-    hits = sorted(glob.glob(os.path.join(root, "**", "metadata*.xlsx"), recursive=True))
+    # в DOCS две версии: metadata_v00.xlsx (585 сеансов) и metadata_v00r.xlsx (698, полная) — берём «r»
+    hits = sorted(glob.glob(os.path.join(root, "**", "metadata*.xlsx"), recursive=True), key=lambda p: ("v00r" not in os.path.basename(p), p))
     if not hits:
         return None, None
     x = pd.read_excel(hits[0], sheet_name=None)
