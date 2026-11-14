@@ -40,16 +40,23 @@ def _shard(root, fs, name):
 
 
 def read_record(root, row, fs=200):
-    """Запись целиком: (19, n) float16, мкВ. row — строка meta (Series или dict)."""
+    """Одна запись: (19, n) float16, мкВ. row — строка meta (Series или dict).
+    Через mmap — для единичных записей; много записей читать через read_all (на /kaggle/input mmap очень медленный)."""
     n, off = int(row[f"n{fs}"]), int(row[f"off{fs}"])
     return np.array(_shard(root, fs, row[f"shard{fs}"])[off:off + 19 * n]).reshape(19, n)
 
 
-def read_all(root, meta, fs=200, threads=8):
-    """Все записи meta в словарь id -> (19, n) float16 (параллельно)."""
-    rows = [r for _, r in meta.iterrows()]
+def read_all(root, meta, fs=200, threads=4):
+    """Все записи meta в словарь id -> (19, n) float16: каждый файл-кусок читается целиком последовательно, записи режутся в памяти."""
+    def load(item):
+        name, g = item
+        arr = np.load(f"{root}/fs{fs}/{name}")
+        return [(i, arr[o:o + 19 * n].reshape(19, n).copy()) for i, o, n in zip(g["id"], g[f"off{fs}"], g[f"n{fs}"])]
+    out = {}
     with ThreadPoolExecutor(threads) as ex:
-        return dict(zip(meta["id"], ex.map(lambda r: read_record(root, r, fs), rows)))
+        for part in ex.map(load, list(meta.groupby(f"shard{fs}"))):
+            out.update(part)
+    return {i: out[i] for i in meta["id"]}
 
 
 def windows(X, L, S=None):
