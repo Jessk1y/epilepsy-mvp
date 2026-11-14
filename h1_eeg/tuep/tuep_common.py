@@ -160,25 +160,40 @@ def to_fs200(X, fs):
     return ss.resample_poly(np.asarray(X, np.float64), fr.numerator, fr.denominator, axis=-1)
 
 
-def load_record(path, extra_notch=()):
+def load_record(path, extra_notch=(), ref="avg", flt="prep"):
     """EDF -> (X float16 (19, n) мкВ, словарь сведений) или (None, {'error': …}).
 
-    Порядок: 19 каналов EL -> мкВ -> 200 Гц -> средний референт по 19 -> фильтры по записи целиком -> обрезка ±60 000 -> float16.
+    Порядок: 19 каналов EL -> мкВ -> 200 Гц -> референт -> фильтры по записи целиком -> обрезка ±60 000 -> float16.
+    ref: avg — средний по 19 каналам (основная подготовка); ears — относительно (A1 + A2) / 2, как у авторов DeepEpilepsy:
+         имена -REF — вычитается среднее каналов A1 и A2 файла, имена -LE — запись уже относительно связанных ушей, берётся как есть;
+         нет A1 или A2 (монтаж 03_tcp_ar_a) — файл не готовится.
+    flt: prep — 0,1–75 Гц + режекция сети; hp — только ФВЧ 0,1 Гц (без него постоянная составляющая EDF съедает точность float16).
     """
     try:
         _, _, labels = read_header(path)
         idx = channel_index(labels)
         if idx is None:
             return None, dict(error="нет всех 19 каналов 10–20: " + "|".join(labels)[:200])
-        X, fs = read_edf_channels(path, idx)
+        ears = []
+        if ref == "ears" and ref_kind(labels) != "LE":
+            pos = {}
+            for i, l in enumerate(labels):
+                pos.setdefault(norm_channel(l), i)
+            if "A1" not in pos or "A2" not in pos:
+                return None, dict(error="нет A1/A2: референт к ушам невозможен")
+            ears = [pos["A1"], pos["A2"]]
+        X, fs = read_edf_channels(path, idx + ears)
     except Exception as e:  # битые заголовки у TUH встречаются
         return None, dict(error=f"чтение: {type(e).__name__}: {str(e)[:150]}")
     if X.shape[1] < 10 * int(fs):
         return None, dict(error=f"короче 10 с ({X.shape[1]} отсчётов)")
     X = to_fs200(X, fs)
-    X = X - X.mean(0, keepdims=True)           # средний референт по 19 каналам (как у турецкого набора)
-    std_raw = float(np.std(X))
-    Xf = filt(X, extra_notch=extra_notch)
+    if ref == "avg":
+        X = X - X.mean(0, keepdims=True)       # средний референт по 19 каналам (как у турецкого набора)
+    elif ears:
+        X = X[:19] - X[19:].mean(0, keepdims=True)
+    std_raw = float(np.std(X) if ref == "avg" else np.std(X - X.mean(-1, keepdims=True)))
+    Xf = filt(X, extra_notch=extra_notch) if flt == "prep" else ss.sosfiltfilt(ss.butter(4, BAND[0], btype="highpass", fs=SFREQ, output="sos"), X, axis=-1)
     clipped = int((np.abs(Xf) > F16_MAX).sum())
     return np.clip(Xf, -F16_MAX, F16_MAX).astype(np.float16), dict(
         sfreq_orig=fs, dur_full_s=X.shape[1] / SFREQ, dur_s=X.shape[1] / SFREQ, std_uv=float(np.std(Xf)), std_raw_uv=std_raw, clipped=clipped)

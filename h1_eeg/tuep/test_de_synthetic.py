@@ -71,12 +71,85 @@ def unit_edf(tmp):
     assert why == "" and np.abs(X - src[i19]).max() < 0.2
     d = pd.DataFrame(dict(patient=["a", "a", "b"], y=[1, 1, 0], dur_s=[10.0, 30.0, 5.0], de=[0.0, 1.0, 0.5]))
     assert DE.patient_auc(d).s.round(3).to_dict() == {"a": 0.75, "b": 0.5}
+    # подготовка «как у авторов»: уши + только ФВЧ 0,1 Гц; постоянная составляющая EDF уходит, сеть 60 Гц и верх спектра остаются
+    import scipy.signal as ss
+    tt = np.arange(fs * sec) / fs
+    src2 = src + 500.0 + 15 * np.sin(2 * np.pi * 60 * tt)
+    src2[names.index("A1")] -= 15 * np.sin(2 * np.pi * 60 * tt)                                           # сеть не должна сократиться целиком
+    write_edf(p, LABELS_REF, fs, sec, src2)
+    X, info = C.load_record(p, ref="ears", flt="hp")
+    want = src2[i19] - (src2[names.index("A1")] + src2[names.index("A2")]) / 2
+    want = ss.sosfiltfilt(ss.butter(4, 0.1, btype="highpass", fs=fs, output="sos"), want, axis=-1)
+    assert X.dtype == np.float16 and np.abs(X.astype(float) - want)[:, 2000:-2000].max() < 0.3 and abs(float(X.astype(float).mean())) < 1.0
+    f, P = ss.welch(X.astype(float), fs, nperseg=400)
+    assert P[:, np.argmin(abs(f - 60))].mean() > 5 * P[:, np.argmin(abs(f - 55))].mean()                  # режекции нет
+    Xa, _ = C.load_record(p)                                                                              # основная подготовка не изменилась
+    f, P = ss.welch(Xa.astype(float), fs, nperseg=400)
+    assert abs(Xa.astype(float).mean(0)).max() < 0.5 and P[:, np.argmin(abs(f - 90))].mean() < 0.05 * P[:, np.argmin(abs(f - 30))].mean()
+    write_edf(p, [LABELS_REF[i] for i in keep], fs, sec, src2[keep])
+    assert C.load_record(p, ref="ears", flt="hp")[0] is None and "A1/A2" in C.load_record(p, ref="ears", flt="hp")[1]["error"]
+
+
+def unit_prepare(tmp):
+    """tuep_prepare.py --ref ears --filt hp: те же id, что в основной подготовке, минус файлы без ушных электродов."""
+    import test_synthetic as TS
+    root = os.path.join(tmp, "v3.1.0"); TS.make(root)
+    d = os.path.join(root, "edf", "epilepsy", "bbbbbbbb", "s002_2015", "03_tcp_ar_a"); os.makedirs(d)
+    lab = [l for l in TS.LABELS_REF if "A1" not in l and "A2" not in l]
+    TS.write_edf(os.path.join(d, "bbbbbbbb_s002_t000.edf"), lab, 250, 40, np.random.default_rng(5).normal(0, 10, (len(lab), 40 * 250)))
+    pa, pe = os.path.join(tmp, "prep_avg"), os.path.join(tmp, "prep_ears")
+    run(os.path.join(HERE, "tuep_prepare.py"), "--root", root, "--out", pa, "--threads", 2)
+    r = run(os.path.join(HERE, "tuep_prepare.py"), "--root", root, "--out", pe, "--threads", 2, "--ref", "ears", "--filt", "hp")
+    A, E = pd.read_csv(os.path.join(pa, "h1_shared_meta.csv")), pd.read_csv(os.path.join(pe, "h1_shared_meta.csv"))
+    assert set(A.id) - set(E.id) == {"bbbbbbbb_s002_t000"} and set(E.id) < set(A.id) and "нет A1/A2" in r.stdout
+    m = A.merge(E, on="id", suffixes=("", "_e"))
+    assert (m.n200 == m.n200_e).all() and (m.patient == m.patient_e).all() and (m.session == m.session_e).all() and (m.montage == m.montage_e).all()
+    import json
+    assert "A1 + A2" in json.load(open(os.path.join(pe, "h1_shared_info.json"), encoding="utf-8"))["reference"]
+
+
+def auth_conditions(tmp, prep, out, chosen):
+    """Условия авторов: сигнал из неполной подготовки (нет слоя 03_tcp_ar_a и одного пациента), протокол — по основной; отчёт с доп. папкой."""
+    prep2, out2 = os.path.join(tmp, "prep_ears_syn"), os.path.join(tmp, "ft_auth")
+    os.makedirs(prep2); make(prep2, short=True)                                                           # те же id и те же сигналы
+    mp = os.path.join(prep2, "h1_shared_meta.csv"); M = pd.read_csv(mp)
+    gone = sorted(M.patient[M.montage == "01_tcp_ar"].unique())[5]
+    M2 = M[(M.montage != "03_tcp_ar_a") & (M.patient != gone)]; M2.to_csv(mp, index=False)
+    have = set(zip(M2.patient[M2.n200 >= 6000], M2.session[M2.n200 >= 6000]))
+    scored = {p for p, s in chosen.items() if (p, s) in have}
+    assert 0 < len(scored) < len(chosen) - 1, (len(scored), len(chosen))
+    base = [os.path.join(HERE, "tuep_finetune.py"), "train", "--model", "de", "--de-toy", "--name", "dea", "--prep", prep2, "--proto-prep", prep, "--out", out2,
+            "--lowpass", 0, "--seeds", 0, "--max-epochs", 2, "--epoch-windows", 192, "--bs", 16, "--workers", 2, "--device", "cpu", "--lr-scale", 200]
+    r = run(*base)
+    assert "протокол (сеансы, слои, фолды, выбранный сеанс)" in r.stdout and os.path.isdir(os.path.join(out2, "evalcache_lp0_w60_L6000"))
+    run(*base, "--freeze-backbone", "--fold-list", 0)
+    runs = os.path.join(out2, "runs")
+    assert sorted(f for f in os.listdir(runs) if f.endswith(".csv")) == [f"dea_f{k}_s0.csv" for k in range(5)] + ["deafz_f0_s0.csv"]
+    d = pd.concat(pd.read_csv(os.path.join(runs, f"dea_f{k}_s0.csv")) for k in range(5))
+    F = FT.get_folds(FT.load_prep(prep)).set_index("patient").fold                                        # фолды — по основной подготовке
+    t = d[d.split == "test"]
+    assert (t.fold == t.patient.map(F)).all() and gone not in set(d.patient) and set(t.id) == set(M2.id[M2.n200 >= 6000])
+    rep = [os.path.join(HERE, "tuep_finetune.py"), "report", "--prep", prep, "--out", out2, "--extra-runs", os.path.join(out, "runs"),
+           "--ensemble", "dea", "bpampw", "--ensemble", "de", "bpampw"]
+    run(*rep)
+    T = pd.read_csv(os.path.join(out2, "tuep_ft_metrics.csv")).set_index("код")
+    assert set(T.index) == {"dea", "deafz", "de", "defz", "bpampw", "dea+bpampw", "de+bpampw"}, T.index.tolist()
+    assert T.n["dea"] == len(scored) and T.n["dea+bpampw"] == len(scored) and T.n["bpampw"] == len(chosen) and T.n["de+bpampw"] > len(scored), T.n.to_dict()
+    run(*rep, "--same-patients", "dea")
+    T2 = pd.read_csv(os.path.join(out2, "tuep_ft_metrics_same_dea.csv")).set_index("код")
+    assert (T2.n.drop(["deafz", "defz"]) == len(scored)).all() and T2.n["deafz"] == T2.n["defz"] <= len(scored), T2.n.to_dict()   # эти два — один фолд
+    TH = pd.read_csv(os.path.join(out2, "tuep_ft_threshold_metrics_same_dea.csv"))
+    assert {"accuracy", "precision", "recall (чувств.)", "специфичность"} <= set(TH.columns) and (TH.n <= len(scored)).all()
+    md = open(os.path.join(out2, "tuep_ft_summary_same_dea.md"), encoding="utf-8").read()
+    assert "на одних и тех же пациентах" in md and "условиях авторов" in md and not any(p in md for p in chosen)
+    assert os.path.exists(os.path.join(out2, "tuep_ft_summary.md"))                                       # полная сводка не затёрта
 
 
 def main():
     unit()
     with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as tmp:
         unit_edf(tmp)
+        unit_prepare(tmp)
         prep, out = os.path.join(tmp, "prep"), os.path.join(tmp, "ft")
         os.makedirs(prep); make(prep, short=True)
         meta = FT.load_prep(prep); S = FT.session_frame(meta); F = FT.get_folds(meta)
@@ -124,6 +197,7 @@ def main():
         assert set(P.patient[P.de_score.notna()]) == scored
         md = open(os.path.join(out, "tuep_ft_summary.md"), encoding="utf-8").read()
         assert "DeepEpilepsy авторов, дообучена на TUEP" in md and not any(p in md for p in chosen), "в сводке не должно быть кодов пациентов"
+        auth_conditions(tmp, prep, out, chosen)
         print("ТЕСТ ВЕТКИ DEEPEPILEPSY ПРОЙДЕН")
 
 

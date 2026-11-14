@@ -50,6 +50,8 @@ def main():
     ap.add_argument("--inventory", default="", help="inventory_files.csv из tuep_inventory.py: берём группу и признак TUSZ оттуда")
     ap.add_argument("--groups-csv", default="", help="csv patient,y, если группы нет ни в пути, ни в описи")
     ap.add_argument("--also-notch50", action="store_true", help="добавить режекцию 50 Гц (как при обучении моделей) к 60 Гц")
+    ap.add_argument("--ref", default="avg", choices=["avg", "ears"], help="ears — относительно (A1 + A2) / 2, как у авторов DeepEpilepsy; файлы без A1/A2 не готовятся")
+    ap.add_argument("--filt", default="prep", choices=["prep", "hp"], help="hp — только ФВЧ 0,1 Гц, без ФНЧ и режекции (вход, близкий к авторам DeepEpilepsy)")
     ap.add_argument("--threads", type=int, default=6)
     ap.add_argument("--limit", type=int, default=0, help="только первые N файлов (проверка)")
     a = ap.parse_args()
@@ -84,7 +86,7 @@ def main():
 
     def job(i):
         r = D.iloc[i]
-        X, info = C.load_record(r.path, extra_notch=extra)
+        X, info = C.load_record(r.path, extra_notch=extra, ref=a.ref, flt=a.filt)
         return i, X, info
 
     with ThreadPoolExecutor(a.threads) as ex:
@@ -112,13 +114,17 @@ def main():
     pd.DataFrame(failed, columns=["id", "patient", "session", "error"]).to_csv(os.path.join(a.out, "h1_shared_failed.csv"), index=False)
     total = sum(os.path.getsize(f) for f in glob.glob(os.path.join(a.out, "fs200", "*.npy")))
     info = dict(version=1, source="TUEP v3.1.0 (TUH, NEDC)", channels=C.EL, fs=[200],
-                reference="средний референт по 19 каналам 10–20 (для любого монтажа TUH)",
-                filter=dict(band_hz=list(C.BAND), butter_order=4, sosfiltfilt=True, notch_hz=C.NOTCH_HZ, notch_q=C.NOTCH_Q, extra_notch_hz=list(extra)),
+                reference="средний референт по 19 каналам 10–20 (для любого монтажа TUH)" if a.ref == "avg" else
+                          "(A1 + A2) / 2: -REF — по каналам A1, A2 файла, -LE — как есть; файлы без A1/A2 не подготовлены",
+                filter=dict(band_hz=list(C.BAND), butter_order=4, sosfiltfilt=True, notch_hz=C.NOTCH_HZ, notch_q=C.NOTCH_Q, extra_notch_hz=list(extra))
+                       if a.filt == "prep" else dict(highpass_hz=C.BAND[0], butter_order=4, sosfiltfilt=True),
                 dtype="float16", unit="мкВ", f16_clip=C.F16_MAX, scale_k=1.0, size_gb=round(total / 1e9, 2), n_records=len(meta),
                 n_patients=int(meta.patient.nunique()), n_failed=len(failed), montages=a.montages or "все", seconds=round(time.time() - t0))
     json.dump(info, open(os.path.join(a.out, "h1_shared_info.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print(info)
     print(pd.crosstab(meta.label, meta.montage))
+    if failed:
+        print("не подготовлено, по причинам:"); print(pd.Series([f["error"][:40] for f in failed]).value_counts().to_string())
 
 
 if __name__ == "__main__":

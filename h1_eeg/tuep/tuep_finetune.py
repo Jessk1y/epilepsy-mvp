@@ -45,7 +45,9 @@ DE_IDX = [EL.index(e) for e in DE_ORDER]
 MIRROR_PAIRS = {"Fp1": "Fp2", "F3": "F4", "C3": "C4", "P3": "P4", "O1": "O2", "F7": "F8", "T3": "T4", "T5": "T6"}
 MIRROR_PAIRS.update({v: k for k, v in list(MIRROR_PAIRS.items())})
 MIRROR = [EL.index(MIRROR_PAIRS.get(e, e)) for e in EL]
-NAMES = {"de": "DeepEpilepsy авторов, дообучена на TUEP", "defz": "DeepEpilepsy авторов, на TUEP учится только голова",
+NAMES = {"dea": "DeepEpilepsy в условиях авторов (уши, без ФНЧ и режекции), дообучена на TUEP",
+         "deafz": "DeepEpilepsy в условиях авторов (уши, без ФНЧ и режекции), учится только голова",
+         "de": "DeepEpilepsy авторов, дообучена на TUEP", "defz": "DeepEpilepsy авторов, на TUEP учится только голова",
          "revefz": "REVE v4, на TUEP учится только голова", "bpampw": "эталон: мощности, амплитуда, wPLI + лог. регрессия", "bpampwd": "эталон: мощности, амплитуда, wPLI, возраст, пол + лог. регрессия", "demo": "только возраст и пол + лог. регрессия", "reve": "REVE v4, дообучена на TUEP", "dino": "EEG-DINO v2, дообучена на TUEP", "toy": "игрушечная сеть (тест)",
          "bp": "эталон: мощности ритмов + лог. регрессия", "bpamp": "эталон: мощности ритмов и амплитуда + лог. регрессия",
          "tech": "контроль утечки: только монтаж, частота, длительность, год (без ЭЭГ)"}
@@ -375,7 +377,7 @@ def save_atomic(torch, obj, path):
 
 
 def run_one(a, torch, meta, S, F, chosen, fold, seed, dirs):
-    tag = f"{a.model}{'fz' if a.freeze_backbone else ''}_f{fold}_s{seed}"          # замороженная основа — отдельное имя (revefz)
+    tag = f"{a.name or a.model}{'fz' if a.freeze_backbone else ''}_f{fold}_s{seed}"          # замороженная основа — отдельное имя (revefz)
     out_csv, ck_path = os.path.join(dirs["runs"], tag + ".csv"), os.path.join(dirs["ckpt"], tag + ".pt")
     if os.path.exists(out_csv):
         print(f"[{tag}] готово, пропуск"); return None
@@ -384,8 +386,8 @@ def run_one(a, torch, meta, S, F, chosen, fold, seed, dirs):
     S_fit = S[S.patient.isin(fit_p)].reset_index(drop=True)
     long_ok = set(zip(meta.patient[meta.n200 >= L], meta.session[meta.n200 >= L]))
     short = np.array([(p, s) not in long_ok for p, s in zip(S_fit.patient, S_fit.session)])
-    if short.any():                                           # сеансы без единого файла длиной в окно в обучение не идут (как сеансы с приступами)
-        print(f"[{tag}] сеансов обучающей части без файла длиной {L // FS} с: {int((short & ~S_fit.has_seiz).sum())} — в обучение не идут")
+    if short.any():                                           # сеансы без единого файла длиной в окно в --prep в обучение не идут (как сеансы с приступами)
+        print(f"[{tag}] сеансов обучающей части без файла длиной {L // FS} с в --prep: {int((short & ~S_fit.has_seiz).sum())} — в обучение не идут")
         S_fit = S_fit.assign(has_seiz=S_fit.has_seiz | short)
     w, tab = session_weights(S_fit, a.balance, a.min_pat)
     ok = {(p, s) for p, s, wi in zip(S_fit.patient, S_fit.session, w) if wi > 0}
@@ -397,9 +399,8 @@ def run_one(a, torch, meta, S, F, chosen, fold, seed, dirs):
         test_rows = test_rows[:40]
     agg, n_win = (median if a.model == "de" else top20), n_windows(a.n_win)
     n_short = sum(int(r.n200) < L for r in val_rows + test_rows)
-    no_score = {r.patient for r in val_rows + test_rows if chosen.get(r.patient) == r.session} - \
-               {r.patient for r in val_rows + test_rows if chosen.get(r.patient) == r.session and int(r.n200) >= L}
-    if n_short:
+    no_score = [p for p in (val_p | test_p) if p in chosen and (p, chosen[p]) not in long_ok]
+    if n_short or no_score:
         print(f"[{tag}] файлов короче {L // FS} с (без оценки): {n_short}; пациентов, у которых выбранный сеанс остался без оценки: {len(no_score)}")
     print(f"[{tag}] пациентов: обучение {len(fit_p)}, отложенные {len(val_p)}, тест {len(test_p)} | сеансов в обучении {len(sampler.sess)} из {len(S_fit)} "
           f"| файлов: отложенные {len(val_rows)}, тест {len(test_rows)}")
@@ -495,7 +496,7 @@ def run_one(a, torch, meta, S, F, chosen, fold, seed, dirs):
 
 def cmd_train(a):
     import torch
-    for k in ("prep", "out", "reve_dir", "dino_dir", "dino_src", "folds", "exclude_sessions", "de_repo", "de_weights"):
+    for k in ("prep", "out", "reve_dir", "dino_dir", "dino_src", "folds", "exclude_sessions", "de_repo", "de_weights", "proto_prep"):
         setattr(a, k, expand(getattr(a, k)))
     set_window(a.model)
     if a.smoke:
@@ -503,8 +504,13 @@ def cmd_train(a):
     if not torch.cuda.is_available() and a.device.startswith("cuda"):
         print("CUDA недоступна — считаю на процессоре (годится только для игрушечной модели)"); a.device = "cpu"
     meta = load_prep(a.prep)
-    S = session_frame(meta, a.exclude_sessions)
-    F = get_folds(meta, a.folds)
+    proto = load_prep(a.proto_prep) if a.proto_prep else meta      # сеансы, фолды и выбранный сеанс — всегда по полному списку файлов
+    if a.proto_prep:
+        assert set(meta.id) <= set(proto.id), "в --prep есть файлы, которых нет в --proto-prep"
+        print(f"протокол (сеансы, слои, фолды, выбранный сеанс) — по {a.proto_prep}; сигнал — из {a.prep}: файлов {len(meta)} из {len(proto)}, "
+              f"пациентов {meta.patient.nunique()} из {proto.patient.nunique()}")
+    S = session_frame(proto, a.exclude_sessions)
+    F = get_folds(proto, a.folds)
     chosen, dropped = chosen_sessions(S)
     lp = f"lp{int(a.lowpass)}" if a.lowpass else "lp0"
     dirs = dict(runs=os.path.join(a.out, "runs"), ckpt=os.path.join(a.out, "ckpt"), weights=os.path.join(a.out, "weights"),
@@ -513,6 +519,8 @@ def cmd_train(a):
         if dirs[k]:
             os.makedirs(dirs[k], exist_ok=True)
     cfg = dict(lowpass=a.lowpass, balance=a.balance, min_pat=a.min_pat, n_win=a.n_win, exclude_sessions=bool(a.exclude_sessions), smoke=a.smoke)
+    if a.proto_prep:
+        cfg["signal_prep"] = os.path.basename(a.prep.rstrip("/"))
     cfg_path = os.path.join(a.out, "config.json")
     if os.path.exists(cfg_path):
         old = json.load(open(cfg_path, encoding="utf-8"))
@@ -574,6 +582,12 @@ def cmd_report(a):
     chosen, dropped = chosen_sessions(S)
     R = load_runs(os.path.join(a.out, "runs"))
     assert R, "нет готовых запусков в " + os.path.join(a.out, "runs")
+    for x in a.extra_runs:                                    # запуски из других папок (эталон, прежние модели) — для сравнения в одной таблице
+        for m, d in load_runs(expand(x)).items():
+            if m in R:
+                print(f"{m}: уже есть в {a.out}, из {x} не берётся")
+            else:
+                R[m] = d
     for ens in (a.ensemble or [["reve", "dino"]]):            # --ensemble можно повторять: каждая пара — отдельная строка таблицы
         if len(ens) < 2 or any(m not in R for m in ens):
             if len(ens) >= 2:
@@ -583,6 +597,14 @@ def cmd_report(a):
         d = pd.concat([R[m] for m in ens]).groupby(key, as_index=False).agg(score=("score", "mean"), k=("score", "size"), n_seeds=("n_seeds", "min"))
         R["+".join(ens)] = d[d.k == len(ens)].drop(columns="k")              # только файлы с оценкой у обеих моделей
         NAMES["+".join(ens)] = "пара: " + " + ".join(NAMES.get(m, m) for m in ens)
+    sfx, note = "", ""
+    if a.same_patients:                                       # все строки — на пациентах, у которых есть оценка этой модели
+        assert a.same_patients in R, f"нет запусков {a.same_patients}"
+        d0 = R[a.same_patients]
+        keep = set(patient_scores(d0[d0.split == "test"], chosen).patient)
+        R = {m: d[(d.split != "test") | d.patient.isin(keep)] for m, d in R.items()}
+        sfx = "_same_" + a.same_patients.replace("+", "_")
+        note = f" **Все строки посчитаны на одних и тех же пациентах — тех, у кого есть оценка `{a.same_patients}` ({len(keep)}).**"
     info = S.set_index(["patient", "session"])[["montage", "sfreq", "stratum", "has_seiz", "n_files"]]
     zs = pd.read_csv(a.zero_shot) if a.zero_shot else None
     P_all, rows, thr_rows, sens_rows = None, [], [], []
@@ -638,22 +660,22 @@ def cmd_report(a):
         P_all = P_all.merge(P[["patient", "score"] + [c for c in P if c.startswith("pred_")]].rename(
             columns=lambda c: c if c == "patient" else f"{m}_{c}"), on="patient", how="outer")
     T, TH, SN = pd.DataFrame(rows), pd.DataFrame(thr_rows), pd.DataFrame(sens_rows)
-    P_all.to_csv(os.path.join(a.out, "tuep_ft_patient_scores.csv"), index=False)          # с кодами пациентов — только на рабочей машине
-    T.to_csv(os.path.join(a.out, "tuep_ft_metrics.csv"), index=False); TH.to_csv(os.path.join(a.out, "tuep_ft_threshold_metrics.csv"), index=False)
-    SN.to_csv(os.path.join(a.out, "tuep_ft_session_rule_sensitivity.csv"), index=False)
+    P_all.to_csv(os.path.join(a.out, f"tuep_ft_patient_scores{sfx}.csv"), index=False)    # с кодами пациентов — только на рабочей машине
+    T.to_csv(os.path.join(a.out, f"tuep_ft_metrics{sfx}.csv"), index=False); TH.to_csv(os.path.join(a.out, f"tuep_ft_threshold_metrics{sfx}.csv"), index=False)
+    SN.to_csv(os.path.join(a.out, f"tuep_ft_session_rule_sensitivity{sfx}.csv"), index=False)
     hist = [json.load(open(p, encoding="utf-8")) for p in sorted(glob.glob(os.path.join(a.out, "runs", "*.json")))]
     H = pd.DataFrame([{k: h.get(k) for k in ("model", "fold", "seed", "best_epoch", "best_val_auc", "minutes", "n_bad")} for h in hist])
     cfg = json.load(open(os.path.join(a.out, "config.json"), encoding="utf-8")) if os.path.exists(os.path.join(a.out, "config.json")) else {}
     md = ["# TUEP: дообучение по 5 фолдам — сводка", "",
           f"Пациентов с оценкой: {len(P_all)} (выпали — все сеансы с приступами: {len(dropped)}). Один случайный сеанс без приступов на пациента (seed 0). "
-          f"Настройки: {cfg}. Ориентир DeepEpilepsy — 0,76; готовые модели без дообучения — 0,52 (results/tuep_run_2026-11-14.md).", "",
+          f"Настройки: {cfg}.{note} Ориентир DeepEpilepsy — 0,76; готовые модели без дообучения — 0,52 (results/tuep_run_2026-11-14.md).", "",
           "## ROC AUC по пациентам (тест всех фолдов вместе; 95 % ДИ — бутстреп по пациентам)", "", T.drop(columns="код").to_markdown(index=False), "",
           "## Пороговые метрики", "", TH.to_markdown(index=False) if len(TH) else "нет", "",
           "## Устойчивость к выбору сеанса", "", SN.pivot(index="модель", columns="сеанс", values="ROC AUC").to_markdown(), ""]
     if len(H):
         md += ["## Запуски", "", H.groupby("model").agg(запусков=("seed", "size"), лучшая_эпоха_медиана=("best_epoch", "median"),
                                                          отложенные_AUC_среднее=("best_val_auc", "mean"), минут_всего=("minutes", "sum")).round(3).to_markdown(), ""]
-    open(os.path.join(a.out, "tuep_ft_summary.md"), "w", encoding="utf-8").write("\n".join(md))
+    open(os.path.join(a.out, f"tuep_ft_summary{sfx}.md"), "w", encoding="utf-8").write("\n".join(md))
     print("\n".join(md)); print("→", a.out, "(в git — только tuep_ft_summary.md и tuep_ft_metrics.csv: в них нет кодов пациентов)")
 
 
@@ -662,6 +684,8 @@ def main():
     t = sp.add_parser("train")
     t.add_argument("--model", required=True, choices=["reve", "dino", "de", "toy"])
     t.add_argument("--prep", required=True); t.add_argument("--out", required=True)
+    t.add_argument("--proto-prep", default="", help="основная подготовка: по ней считаются сеансы, слои, фолды и выбранный сеанс, если в --prep часть файлов отсутствует (prep_ears)")
+    t.add_argument("--name", default="", help="код запусков вместо имени модели (например dea), чтобы не смешивать с прежними")
     t.add_argument("--reve-dir", default=""); t.add_argument("--dino-dir", default=""); t.add_argument("--dino-src", default="")
     t.add_argument("--de-repo", default="~/data/weights/dl_epilepsy_reeg", help="клон gitlab chum-epilepsy/dl_epilepsy_reeg (код модели)")
     t.add_argument("--de-weights", default="", help="DeepEpilepsy_large_50_30s_augment.pt; пусто — из кэша HF emilelemoine/DeepEpilepsy_v1")
@@ -683,6 +707,8 @@ def main():
     r.add_argument("--prep", required=True); r.add_argument("--out", required=True); r.add_argument("--folds", default="")
     r.add_argument("--exclude-sessions", default=""); r.add_argument("--zero-shot", default="", help="tuep_patient_scores.csv прогона без дообучения")
     r.add_argument("--ensemble", nargs="*", action="append", help="пара моделей (коды); можно повторять: --ensemble reve bpampw --ensemble de bpampw")
+    r.add_argument("--extra-runs", nargs="*", default=[], help="папки runs других прогонов (например ~/data/tuep_work/ft/runs): их модели добавляются в таблицу")
+    r.add_argument("--same-patients", default="", help="код модели: все строки считаются только на пациентах, у которых есть её оценка; файлы сводки получают суффикс _same_<код>")
     a = ap.parse_args()
     {"train": cmd_train, "report": cmd_report}[a.cmd](a)
 

@@ -142,7 +142,7 @@ python tuep_finetune.py report --prep ~/data/tuep_work/prep --out ~/data/tuep_wo
 |---|---|
 | `tuep_common.py` | имена каналов TUH, чтение EDF (без mne), 200 Гц, фильтры, разбор путей |
 | `tuep_inventory.py` | шаг 2 |
-| `tuep_prepare.py` | шаг 3 |
+| `tuep_prepare.py` | шаг 3; `--ref ears --filt hp` — подготовка для раздела 9 |
 | `tuep_protocol.py` | шаг 4: `folds`, `leakage`, `subgroup`, `eval` |
 | `PROTOCOL.md` | правила прогона, записанные до получения результатов |
 | `yadisk_pull.py` | скачивание TUEP с Яндекс Диска (докачка, md5) |
@@ -217,3 +217,35 @@ CUDA_VISIBLE_DEVICES=0 python tuep_deepepilepsy.py --prep ~/data/tuep_work/prep 
 ```
 
 Последняя строка вывода — ROC AUC обоих вариантов на общих пациентах и разность с 95 % ДИ. Знак класса у готовой модели не установлен, поэтому смотреть на удаление от 0,5 в любую сторону. Если ДИ разности не содержит 0 — готовить записи относительно ушей (только `01_tcp_ar` и `02_tcp_le`) и повторять дообучение на них; иначе референт ни при чём.
+
+## 9. DeepEpilepsy в условиях авторов: референт к ушам, без ФНЧ и режекции (15.11, последняя попытка)
+
+Раздел 8 дал `de` 0,510 и пару `de` + `bpampw` 0,594 — не лучше пары REVE (0,661). Здесь вход приближен к авторскому. Запуски называются `dea` / `deafz` и идут в отдельную папку `~/data/tuep_work/ft_de_auth`.
+
+| Что | Раздел 8 | Здесь |
+|---|---|---|
+| референт | средний по 19 каналам | (A1 + A2) / 2: `01_tcp_ar` — по каналам A1, A2 файла; `02_tcp_le` — как есть |
+| фильтры подготовки | 0,1–75 Гц + режекция 60 Гц | только ФВЧ 0,1 Гц (без него постоянная составляющая EDF съедает точность float16) |
+| фильтры при чтении | ФВЧ 0,3 + ФНЧ 45 Гц | только ФВЧ 0,3 Гц (`--lowpass 0`) |
+| `03_tcp_ar_a` | в тесте есть | **нет**: ушных электродов нет, файлы не готовятся, пациенты с таким выбранным сеансом остаются без оценки |
+
+Остальное как в разделе 8. Сеансы, слои, фолды и выбранный сеанс считаются по основной подготовке (`--proto-prep`), поэтому совпадают с прежними; из `prep_ears` берётся только сигнал. Эталон `bpampw` — прежний (на среднем референте), подтягивается в отчёт из `ft/runs`.
+
+**Задано заранее.** Варианты `dea` (учится всё) и `deafz` (только голова); пара — **`dea` + `bpampw`**. Сравнение — в сводке `_same_dea`, где все строки посчитаны на одних и тех же пациентах (у кого есть оценка `dea`). Засчитываем, если пара `dea+bpampw` выше пары `reve+bpampw` **и по ROC AUC, и внутри слоя** в этой сводке. Главные столбцы — «внутри слоя» и `01_tcp_ar`: без ФНЧ и режекции верх спектра и сеть 60 Гц сильно зависят от прибора, и рост только общего ROC AUC — это утечка, а не результат.
+
+```bash
+cd epilepsy-mvp && git pull && cd h1_eeg/tuep && source ~/venvs/tuep/bin/activate
+python -I test_de_synthetic.py                 # ~3 мин, процессор
+# подготовка: тот же --root и та же опись, что у основной; сначала проба на 20 файлах в отдельную папку
+python tuep_prepare.py --root ~/data/TUEP --out ~/data/tuep_work/prep_ears_probe --inventory ~/data/tuep_work/inventory/inventory_files.csv --ref ears --filt hp --limit 20
+python tuep_prepare.py --root ~/data/TUEP --out ~/data/tuep_work/prep_ears --inventory ~/data/tuep_work/inventory/inventory_files.csv --ref ears --filt hp --threads 6
+# пробный режим
+CUDA_VISIBLE_DEVICES=0 python tuep_finetune.py train --model de --name dea --prep ~/data/tuep_work/prep_ears --proto-prep ~/data/tuep_work/prep --out ~/data/tuep_work/ft_de_auth --lowpass 0 --smoke
+# полный прогон: dea, затем deafz
+mkdir -p ~/data/tuep_work/ft_de_auth && CUDA_VISIBLE_DEVICES=0 nohup sh -c "python tuep_finetune.py train --model de --name dea --prep ~/data/tuep_work/prep_ears --proto-prep ~/data/tuep_work/prep --out ~/data/tuep_work/ft_de_auth --lowpass 0 && python tuep_finetune.py train --model de --name dea --freeze-backbone --prep ~/data/tuep_work/prep_ears --proto-prep ~/data/tuep_work/prep --out ~/data/tuep_work/ft_de_auth --lowpass 0" > ~/data/tuep_work/ft_de_auth/dea.log 2>&1 &
+# сводки: полная (видно n) и на одних и тех же пациентах (по ней решаем); --prep здесь — основная подготовка
+python tuep_finetune.py report --prep ~/data/tuep_work/prep --out ~/data/tuep_work/ft_de_auth --extra-runs ~/data/tuep_work/ft/runs --zero-shot ~/data/tuep_work/out/tuep_patient_scores.csv --ensemble reve bpampw --ensemble dea bpampw --ensemble de bpampw
+python tuep_finetune.py report --prep ~/data/tuep_work/prep --out ~/data/tuep_work/ft_de_auth --extra-runs ~/data/tuep_work/ft/runs --zero-shot ~/data/tuep_work/out/tuep_patient_scores.csv --ensemble reve bpampw --ensemble dea bpampw --ensemble de bpampw --same-patients dea
+```
+
+Подготовка в конце печатает таблицу «класс × монтаж» и причины, по которым файлы не подготовлены (ожидаемая — «нет A1/A2» у `03_tcp_ar_a`). Наличие A1/A2 в файлах `01_tcp_ar` заранее не проверялось: если их нет у заметной части файлов, пациентов с оценкой станет мало — тогда остановиться до прогона. Место на диске: `prep_ears` — до ~17 ГБ, кэш окон в `ft_de_auth` — до ~12 ГБ (`--no-cache` — без кэша). Пороговые метрики (accuracy, precision, recall, специфичность) — в разделе «Пороговые метрики» каждой сводки и в `tuep_ft_threshold_metrics*.csv`.
