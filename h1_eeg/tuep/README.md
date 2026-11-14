@@ -163,3 +163,15 @@ python tuep_finetune.py report --prep ~/data/tuep_work/prep --out ~/data/tuep_wo
 6. Состав: входят ли в TUEP v3.1.0 тексты заключений врачей (`.txt`) и как формально поставлена группа «без эпилепсии» (диагнозы этих пациентов)? Формат и столбцы `metadata_v00r.xlsx` и списка `sessions_common_with_tusz.list`.
 7. Как цитировать v3.1.0 и есть ли обязательные формулировки благодарностей.
 8. Размер: подтвердить ~36 ГБ и 2 808 файлов (в описании строка «362288M»).
+
+## 7. DeepEpilepsy авторов без дообучения (15.11)
+
+Модель обучена ровно на нашей задаче (эпилепсия против других пациентов, рутинная ЭЭГ, CHUM). Код модели клонируется из gitlab авторов, веса — с HF при первом запуске. Те же 199 сеансов, что в основном прогоне:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 python tuep_deepepilepsy.py --prep ~/data/tuep_work/prep --out ~/data/tuep_work/out_de --sessions-from ~/data/tuep_work/out/tuep_patient_scores.csv --limit 20
+CUDA_VISIBLE_DEVICES=0 python tuep_deepepilepsy.py --prep ~/data/tuep_work/prep --out ~/data/tuep_work/out_de --sessions-from ~/data/tuep_work/out/tuep_patient_scores.csv
+python tuep_protocol.py eval --scores ~/data/tuep_work/out_de/tuep_record_scores.csv --meta ~/data/tuep_work/prep/h1_shared_meta.csv --results ../results --out ~/data/tuep_work/out_de
+```
+
+Порога с NMT для неё нет: в выводе — ROC AUC, калибровка по 10 / 20 пациентам и порог без разметки.

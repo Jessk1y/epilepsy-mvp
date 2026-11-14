@@ -197,8 +197,8 @@ def cmd_eval(a):
         m = pd.read_csv(a.meta)
         add = [c for c in ("year", "n_seiz", "montage", "sfreq_orig") if c in m and (c not in rec or rec[c].isna().all())]
         rec = rec.drop(columns=[c for c in add if c in rec]).merge(m[["id"] + add], on="id", how="left")
-    score_cols = [c for c in ["reve4", "dino2", "ens"] if c in rec.columns]
-    names = {"reve4": "REVE v4", "dino2": "EEG-DINO v2", "ens": "REVE v4 + EEG-DINO v2"}
+    score_cols = [c for c in ["reve4", "dino2", "ens", "de"] if c in rec.columns]
+    names = {"reve4": "REVE v4", "dino2": "EEG-DINO v2", "ens": "REVE v4 + EEG-DINO v2", "de": "DeepEpilepsy (авторов, без дообучения)"}
     os.makedirs(a.out, exist_ok=True)
     S = session_table(rec, score_cols)
     S.to_csv(os.path.join(a.out, "tuep_session_scores.csv"), index=False)
@@ -242,7 +242,7 @@ def cmd_eval(a):
             auc, lo, hi = boot_auc(yy, s)
             rows.append(dict(подгруппа=sname, модель=names[c], порог="—", **{"значение порога": np.nan}, n=len(yy), n_эпилепсия=int(yy.sum()),
                              **{"ROC AUC": f"{auc:.3f} ({lo:.2f}-{hi:.2f})"}))
-            for rn in RULES:
+            for rn in (RULES if c in thr else []):          # для DeepEpilepsy порога с NMT нет
                 t = thr[c][rn]; mm = metr_ci(yy, s, t)
                 rows.append(dict(подгруппа=sname, модель=names[c], порог=rn, **{"значение порога": round(t, 3)}, n=len(yy), n_эпилепсия=int(yy.sum()),
                                  **{"ROC AUC": f"{auc:.3f} ({lo:.2f}-{hi:.2f})", "accuracy": mm["acc"], "сбаланс. accuracy": mm["bacc"], "precision": mm["prec"],
