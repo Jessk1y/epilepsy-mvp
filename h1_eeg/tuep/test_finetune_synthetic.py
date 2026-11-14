@@ -96,7 +96,7 @@ def main():
         run(os.path.join(HERE, "tuep_finetune.py"), "report", "--prep", prep, "--out", out, "--zero-shot", zp, "--ensemble", "toy", "bp")
         P = pd.read_csv(os.path.join(out, "tuep_ft_patient_scores.csv")); T = pd.read_csv(os.path.join(out, "tuep_ft_metrics.csv"))
         assert len(P) == len(chosen) and P.patient.is_unique and P.toy_score.notna().all() and P.bp_score.notna().all(), P.shape
-        assert set(T["код"]) == {"toy", "bp", "bpamp", "tech", "toy+bp"}, T["код"].tolist()
+        assert set(T["код"]) == {"toy", "bp", "bpamp", "bpampw", "tech", "toy+bp"}, T["код"].tolist()
         assert (T.n == len(chosen)).all() and (T["фолдов"] == 5).all()
         auc = {c: float(v.split()[0]) for c, v in zip(T["код"], T["ROC AUC (95 % ДИ)"])}
         print("ROC AUC на синтетике:", auc)

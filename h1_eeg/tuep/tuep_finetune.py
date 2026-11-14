@@ -37,7 +37,7 @@ FS, L, HP, CAP_WIN, TOP, MARGIN, N_FOLDS = 200, 2000, 0.3, 60, 0.2, 1000, 5
 MIRROR_PAIRS = {"Fp1": "Fp2", "F3": "F4", "C3": "C4", "P3": "P4", "O1": "O2", "F7": "F8", "T3": "T4", "T5": "T6"}
 MIRROR_PAIRS.update({v: k for k, v in list(MIRROR_PAIRS.items())})
 MIRROR = [EL.index(MIRROR_PAIRS.get(e, e)) for e in EL]
-NAMES = {"reve": "REVE v4, дообучена на TUEP", "dino": "EEG-DINO v2, дообучена на TUEP", "toy": "игрушечная сеть (тест)",
+NAMES = {"revefz": "REVE v4, на TUEP учится только голова", "bpampw": "эталон: мощности, амплитуда, wPLI + лог. регрессия", "bpampwd": "эталон: мощности, амплитуда, wPLI, возраст, пол + лог. регрессия", "demo": "только возраст и пол + лог. регрессия", "reve": "REVE v4, дообучена на TUEP", "dino": "EEG-DINO v2, дообучена на TUEP", "toy": "игрушечная сеть (тест)",
          "bp": "эталон: мощности ритмов + лог. регрессия", "bpamp": "эталон: мощности ритмов и амплитуда + лог. регрессия",
          "tech": "контроль утечки: только монтаж, частота, длительность, год (без ЭЭГ)"}
 
@@ -266,7 +266,7 @@ def save_atomic(torch, obj, path):
 
 
 def run_one(a, torch, meta, S, F, chosen, fold, seed, dirs):
-    tag = f"{a.model}_f{fold}_s{seed}"
+    tag = f"{a.model}{'fz' if a.freeze_backbone else ''}_f{fold}_s{seed}"          # замороженная основа — отдельное имя (revefz)
     out_csv, ck_path = os.path.join(dirs["runs"], tag + ".csv"), os.path.join(dirs["ckpt"], tag + ".pt")
     if os.path.exists(out_csv):
         print(f"[{tag}] готово, пропуск"); return None
@@ -361,7 +361,7 @@ def run_one(a, torch, meta, S, F, chosen, fold, seed, dirs):
     t_test = time.time() - t0
     rows = [dict(split="val", fold=fold, seed=seed, id=r.id, patient=r.patient, session=r.session, y=r.y, dur_s=r.dur_s, score=st["best_val"][r.id]) for r in val_rows]
     rows += [dict(split="test", fold=fold, seed=seed, id=r.id, patient=r.patient, session=r.session, y=r.y, dur_s=r.dur_s, score=sc_test[r.id]) for r in test_rows]
-    info = dict(tag=tag, model=a.model, fold=fold, seed=seed, best_epoch=st["best_ep"], best_val_auc=st["best_auc"], hist=st["hist"], n_bad=st["n_bad"],
+    info = dict(tag=tag, model=tag.split("_f")[0], fold=fold, seed=seed, best_epoch=st["best_ep"], best_val_auc=st["best_auc"], hist=st["hist"], n_bad=st["n_bad"],
                 minutes=round((st["sec"] + t_test) / 60, 1), init=a.init, freeze_backbone=a.freeze_backbone, balance=a.balance, lowpass=a.lowpass,
                 epoch_windows=a.epoch_windows, bs=a.bs, lr_scale=a.lr_scale, n_fit_patients=len(fit_p), n_fit_sessions=len(sampler.sess))
     json.dump(info, open(os.path.join(dirs["runs"], tag + ".json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
