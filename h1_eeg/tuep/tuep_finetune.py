@@ -543,6 +543,104 @@ def cmd_train(a):
         print("пробный режим пройден; его результаты лежат отдельно в", a.out, "и в отчёт не попадают")
 
 
+# ---------------------------------------------------------------- итоговые модели для приложения (epilepsy-mvp/app)
+def cmd_final(a):
+    """Обучение на ВСЕХ пациентах TUEP (без тестовой и отложенной частей) и сохранение весов для приложения.
+    Всё как в запуске фолда (те же веса сеансов, окна, аугментации, скорости и расписание), но число эпох задано заранее:
+    --epochs или медиана лучших эпох готовых запусков этой модели в <out>/runs. Оценки качества эта команда не даёт — она в отчёте по фолдам."""
+    import torch
+    for k in ("prep", "out", "reve_dir", "dino_dir", "dino_src", "exclude_sessions", "de_repo", "de_weights"):
+        setattr(a, k, expand(getattr(a, k)))
+    set_window(a.model)
+    if not torch.cuda.is_available() and a.device.startswith("cuda"):
+        print("CUDA недоступна — считаю на процессоре (годится только для игрушечной модели)"); a.device = "cpu"
+    dev, cuda = a.device, a.device.startswith("cuda")
+    tag = f"{a.name or a.model}{'fz' if a.freeze_backbone else ''}"
+    epochs = a.epochs
+    if not epochs:
+        best = [json.load(open(p, encoding="utf-8"))["best_epoch"] for p in sorted(glob.glob(os.path.join(a.out, "runs", f"{tag}_f*_s*.json")))]
+        assert best, f"нет готовых запусков {tag} в {a.out}/runs — задайте --epochs"
+        epochs = max(1, int(round(float(np.median(best)))))
+        print(f"число эпох: {epochs} — медиана лучших эпох {len(best)} запусков по фолдам")
+    meta = load_prep(a.prep)
+    S = session_frame(meta, a.exclude_sessions)
+    long_ok = set(zip(meta.patient[meta.n200 >= L], meta.session[meta.n200 >= L]))
+    S = S.assign(has_seiz=S.has_seiz | np.array([(p, q) not in long_ok for p, q in zip(S.patient, S.session)])).reset_index(drop=True)
+    w, tab = session_weights(S, a.balance, a.min_pat)
+    ok = {(p, q) for p, q, wi in zip(S.patient, S.session, w) if wi > 0}
+    sampler = WindowSampler(meta[[k in ok for k in zip(meta.patient, meta.session)]], S, w)
+    print(f"обучение на всех пациентах: {S.patient[w > 0].nunique()} из {S.patient.nunique()}, сеансов {len(sampler.sess)}"); print(tab.to_string())
+    out_dir = os.path.join(a.out, "final"); os.makedirs(out_dir, exist_ok=True)
+    sos = make_sos(a.lowpass)
+    F_bce = torch.nn.functional.binary_cross_entropy_with_logits
+    for seed in a.seeds:
+        path = os.path.join(out_dir, f"{tag}_tuep_seed{seed}.pt")
+        if os.path.exists(path):
+            print(f"[{tag} seed {seed}] готово, пропуск"); continue
+        model, inp, groups, warm, back, train_in = build_model(a.model, a, torch, dev, seed)
+        steps_ep = int(np.ceil(a.epoch_windows / a.bs)); total = a.max_epochs * steps_ep      # расписание — как в запусках по фолдам
+        opt = torch.optim.AdamW(groups(model)); warm_n = max(1, int(warm * total))
+        sched = torch.optim.lr_scheduler.LambdaLR(opt, lambda q: (q + 1) / warm_n if q < warm_n else 0.5 * (1 + np.cos(np.pi * (q - warm_n) / max(1, total - warm_n))) * 0.99 + 0.01)
+        scaler = torch.amp.GradScaler("cuda", enabled=cuda)
+        amp = dict(device_type="cuda" if cuda else "cpu", dtype=torch.float16 if cuda else torch.bfloat16, enabled=cuda)
+        g = np.random.default_rng(1000 * 99 + seed)
+        params = [p for p in model.parameters() if p.requires_grad]
+        hist, t0 = [], time.time()
+        with ThreadPoolExecutor(a.workers) as pool:
+            for ep in range(epochs):
+                model.train(); losses = []
+                if a.freeze_backbone:
+                    getattr(model, back).eval()
+                for _ in range(steps_ep):
+                    items = sampler.draw(a.bs, g)
+                    X = np.stack(list(pool.map(lambda it: read_window(a.prep, it[0], it[1], it[2], it[3], sos), items)))
+                    t = torch.tensor([it[4] for it in items], device=dev, dtype=torch.float32)
+                    with torch.autocast(**amp):
+                        out = model(train_in(X, g))
+                    loss = F_bce(out.float(), t)
+                    opt.zero_grad()
+                    if torch.isfinite(loss):
+                        scaler.scale(loss).backward(); scaler.unscale_(opt); torch.nn.utils.clip_grad_norm_(params, 1.0)
+                        scaler.step(opt); scaler.update()
+                    sched.step(); losses.append(loss.item())
+                hist.append(round(float(np.nanmean(losses)), 4))
+                print(f"[{tag} seed {seed}] эпоха {ep + 1}/{epochs}: потери {hist[-1]:.3f}, {time.time() - t0:.0f} с", flush=True)
+        cfg = dict(model=tag, seed=seed, epochs=epochs, loss=hist, lowpass=a.lowpass, hp=HP, win_s=L // FS, n_win=n_windows(a.n_win), agg="top20",
+                   init=a.init, freeze_backbone=a.freeze_backbone, balance=a.balance, epoch_windows=a.epoch_windows, bs=a.bs, lr_scale=a.lr_scale,
+                   n_patients=int(S.patient[w > 0].nunique()), trained="все пациенты TUEP (итоговая модель для приложения)", date=time.strftime("%Y-%m-%d"))
+        save_atomic(torch, dict(state_dict={k: v.detach().cpu() for k, v in model.state_dict().items()}, config=cfg), path)
+        print(f"[{tag} seed {seed}] → {path}")
+        del model, opt
+    print("готово:", out_dir, "(веса в git не кладём)")
+
+
+def cmd_card(a):
+    """Паспорт пары для приложения: ROC AUC и пороги по оценкам ВНЕ обучения (тест всех фолдов вместе) -> <out>/final/pair_card.json.
+    Пороги — индекс Юдена и чувствительность 80 % по всем пациентам сразу; это порог «по умолчанию» до настройки под клинику."""
+    for k in ("prep", "out", "folds", "exclude_sessions"):
+        setattr(a, k, expand(getattr(a, k)))
+    meta = load_prep(a.prep)
+    S = session_frame(meta, a.exclude_sessions); chosen, _ = chosen_sessions(S)
+    R = load_runs(os.path.join(a.out, "runs"))
+    miss = [m for m in a.ensemble if m not in R]
+    assert not miss, f"нет запусков {miss} в {a.out}/runs"
+    key = ["split", "fold", "id", "patient", "session", "y", "dur_s"]
+    d = pd.concat([R[m] for m in a.ensemble]).groupby(key, as_index=False).agg(score=("score", "mean"), k=("score", "size"))
+    P = patient_scores(d[(d.k == len(a.ensemble)) & (d.split == "test")], chosen)
+    y, s = P.y.to_numpy(), P.score.to_numpy()
+    auc, lo, hi = TP.boot_auc(y, s)
+    thr = {"youden": TP.thr_youden(y, s), "sens80": TP.thr_recall80(y, s)}
+    card = dict(models=a.ensemble, n=int(len(P)), n_epilepsy=int(y.sum()), auc=round(float(auc), 3), auc_ci=[round(float(lo), 3), round(float(hi), 3)],
+                thresholds={k: round(float(v), 4) for k, v in thr.items()},
+                metrics={k: {m: round(float(v), 3) for m, v in TP.metr(y, (s >= t).astype(int)).items()} for k, t in thr.items()},
+                note="пороги выбраны по тем же оценкам вне обучения, по которым посчитаны метрики (оптимистично); итоговые модели обучены на всех пациентах",
+                date=time.strftime("%Y-%m-%d"))
+    os.makedirs(os.path.join(a.out, "final"), exist_ok=True)
+    path = os.path.join(a.out, "final", "pair_card.json")
+    json.dump(card, open(path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    print(json.dumps(card, ensure_ascii=False, indent=1)); print("→", path)
+
+
 # ---------------------------------------------------------------- сводный отчёт
 def boot_metr(y, pr, n=2000, seed=0):
     m0 = TP.metr(y, pr); r = np.random.default_rng(seed); B = []
@@ -709,8 +807,22 @@ def main():
     r.add_argument("--ensemble", nargs="*", action="append", help="пара моделей (коды); можно повторять: --ensemble reve bpampw --ensemble de bpampw")
     r.add_argument("--extra-runs", nargs="*", default=[], help="папки runs других прогонов (например ~/data/tuep_work/ft/runs): их модели добавляются в таблицу")
     r.add_argument("--same-patients", default="", help="код модели: все строки считаются только на пациентах, у которых есть её оценка; файлы сводки получают суффикс _same_<код>")
+    f = sp.add_parser("final", help="обучить на всех пациентах и сохранить веса для приложения")
+    f.add_argument("--model", required=True, choices=["reve", "dino", "de", "toy"]); f.add_argument("--prep", required=True); f.add_argument("--out", required=True)
+    f.add_argument("--name", default=""); f.add_argument("--epochs", type=int, default=0, help="0 — медиана лучших эпох запусков по фолдам из <out>/runs")
+    f.add_argument("--reve-dir", default=""); f.add_argument("--dino-dir", default=""); f.add_argument("--dino-src", default="")
+    f.add_argument("--de-repo", default="~/data/weights/dl_epilepsy_reeg"); f.add_argument("--de-weights", default=""); f.add_argument("--de-toy", action="store_true", help=argparse.SUPPRESS)
+    f.add_argument("--seeds", type=int, nargs="*", default=[0, 1, 2]); f.add_argument("--init", default="nmt", choices=["nmt", "base"])
+    f.add_argument("--freeze-backbone", action="store_true"); f.add_argument("--balance", default="strata", choices=["strata", "class"]); f.add_argument("--min-pat", type=int, default=3)
+    f.add_argument("--lowpass", type=float, default=45.0); f.add_argument("--exclude-sessions", default="")
+    f.add_argument("--max-epochs", type=int, default=8, help="длина расписания скорости — как в запусках по фолдам"); f.add_argument("--epoch-windows", type=int, default=4000)
+    f.add_argument("--bs", type=int, default=32); f.add_argument("--n-win", type=int, default=CAP_WIN); f.add_argument("--lr-scale", type=float, default=1.0)
+    f.add_argument("--workers", type=int, default=6); f.add_argument("--device", default="cuda:0")
+    c = sp.add_parser("card", help="паспорт пары (пороги и ROC AUC по оценкам вне обучения) для приложения")
+    c.add_argument("--prep", required=True); c.add_argument("--out", required=True); c.add_argument("--folds", default=""); c.add_argument("--exclude-sessions", default="")
+    c.add_argument("--ensemble", nargs="+", default=["reve", "bpampw"])
     a = ap.parse_args()
-    {"train": cmd_train, "report": cmd_report}[a.cmd](a)
+    {"train": cmd_train, "report": cmd_report, "final": cmd_final, "card": cmd_card}[a.cmd](a)
 
 
 if __name__ == "__main__":

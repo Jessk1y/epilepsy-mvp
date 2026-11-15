@@ -117,6 +117,27 @@ def fit_predict(X, meta, S, F, chosen, fold, balance, min_pat):
     return pd.concat([meta.loc[va, cols].assign(split="val", score=pv), meta.loc[te, cols].assign(split="test", score=pt)]).assign(fold=fold, seed=0), c, auc
 
 
+def save_final(X, meta, S, cs, a, out_dir):
+    """Итоговая модель эталона для приложения: обучение на всех пациентах (веса файлов — как в фолдах), C — чаще всего выбиравшееся
+    в фолдах (при равенстве — меньшее, т. е. более сильная регуляризация). Сохраняются только массивы — приложению не нужен sklearn."""
+    import time
+    from collections import Counter
+    from record_scoring import save_logreg
+    cnt = Counter(cs); c = min(k for k, v in cnt.items() if v == max(cnt.values()))
+    w, _ = FT.session_weights(S, a.balance, a.min_pat)
+    ws = {(p, s): wi for p, s, wi in zip(S.patient, S.session, w)}
+    dur = meta.groupby(["patient", "session"]).dur_s.transform("sum").to_numpy()
+    wf = np.array([ws.get(k, 0.0) for k in zip(meta.patient, meta.session)]) * meta.dur_s.to_numpy() / dur
+    tr = wf > 0
+    sc = StandardScaler().fit(X[tr])
+    m = LogisticRegression(C=c, max_iter=3000).fit(np.nan_to_num(sc.transform(X[tr])), meta.y.to_numpy()[tr], sample_weight=wf[tr] / wf[tr].mean())
+    os.makedirs(out_dir, exist_ok=True)
+    path = os.path.join(out_dir, f"baseline_{a.save_set}.npz")
+    save_logreg(path, sc, m, dict(set=a.save_set, C=c, C_by_fold=list(cs), n_features=int(X.shape[1]), n_files=int(tr.sum()), n_patients=int(meta.patient[tr].nunique()),
+                                  n_win=a.n_win, hp=FT.HP, bands=BANDS, trained="все пациенты TUEP (итоговая модель для приложения)", date=time.strftime("%Y-%m-%d")))
+    print(f"итоговая модель {a.save_set}: C = {c} (по фолдам {list(cs)}), файлов {int(tr.sum())}, пациентов {meta.patient[tr].nunique()} → {path}")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--prep", required=True); ap.add_argument("--out", required=True); ap.add_argument("--folds", default="")
@@ -126,6 +147,8 @@ def main():
     ap.add_argument("--root", default="", help="папка TUEP с EDF — для возраста и пола (наборы bpampwd, demo)")
     ap.add_argument("--inventory", default="", help="inventory_files.csv (по умолчанию <out>/../inventory/inventory_files.csv)")
     ap.add_argument("--sets", nargs="*", default=["bp", "bpamp", "tech", "bpampw", "bpampwd", "demo"])
+    ap.add_argument("--save-model", default="", help="папка: обучить набор --save-set на ВСЕХ пациентах и сохранить baseline_<набор>.npz для приложения (обычно <out>/final)")
+    ap.add_argument("--save-set", default="bpampw")
     a = ap.parse_args()
     for k in ("prep", "out", "folds", "exclude_sessions", "root", "inventory"):
         setattr(a, k, FT.expand(getattr(a, k)))
@@ -173,11 +196,16 @@ def main():
         if "bpampw" in sets:
             sets["bpampwd"] = np.concatenate([sets["bpampw"], D], 1)
     sets = {k: v for k, v in sets.items() if k in a.sets}
+    chosen_c = {}
     for name, Xm in sets.items():
         for k in sorted(F.fold.unique()):
             d, c, auc = fit_predict(Xm, meta, S, F, chosen, int(k), a.balance, a.min_pat)
+            chosen_c.setdefault(name, []).append(c)
             d.to_csv(os.path.join(a.out, "runs", f"{name}_f{k}_s0.csv"), index=False)
             print(f"{name}: фолд {k}, C = {c}, отложенные ROC AUC {auc:.3f}")
+    if a.save_model:
+        assert a.save_set in sets and a.save_set in ("bp", "bpamp", "bpampw"), "сохраняются только наборы по ЭЭГ: bp, bpamp, bpampw (и он должен быть в --sets)"
+        save_final(sets[a.save_set], meta, S, chosen_c[a.save_set], a, FT.expand(a.save_model))
     print("готово; сводка: python tuep_finetune.py report --prep … --out", a.out)
 
 
