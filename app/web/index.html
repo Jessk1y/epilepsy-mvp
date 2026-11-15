@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ЭпиАссистент — второе мнение для врача</title>
+<link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body>
+<header>
+  <div class="logo" id="logoHome"><span class="dot"></span>ЭпиАссистент <small>· второе мнение для врача</small></div>
+  <span id="modeTag"></span>
+  <nav class="tabs" id="tabs">
+    <button class="tab" data-tab="g1">Г1 · ЭЭГ: вероятность эпилепсии</button>
+    <button class="tab" data-tab="g2">Г2 · МРТ: поиск ФКД</button>
+  </nav>
+  <div class="hright"><span class="modelchip" id="modelChip"></span><button class="btn link" id="clinicLink">⚙ Настройка под клинику</button></div>
+</header>
+<main id="app"></main>
+<script type="module" src="/static/js/main.js"></script>
+</body></html>

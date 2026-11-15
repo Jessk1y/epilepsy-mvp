@@ -88,3 +88,6 @@ Thumbs.db
 !h1_eeg/results/*.csv
 !h2_mri/results/*.png
 !h2_mri/results/*.csv
+
+# Приложение: рабочий каталог (загруженные файлы, база, отчёты) — никогда в git
+app/var/
