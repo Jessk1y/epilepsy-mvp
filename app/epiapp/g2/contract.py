@@ -15,7 +15,7 @@
 
 Команда задаётся настройкой EPI_G2_CMD (например: «~/venvs/mri/bin/python ~/epilepsy-mvp/app/tools/g2_msdsa_cli.py»).
 """
-import csv, json, shlex, shutil, subprocess, time
+import csv, json, os, shlex, shutil, subprocess, time
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -126,7 +126,8 @@ class ExternalAdapter(G2Adapter):
         cmd = shlex.split(self.s.g2_cmd) + ["--t1", str(t1), "--flair", str(flair), "--out", str(out)]
         progress(0, 0.05)
         log = open(Path(workdir) / "model.log", "w", encoding="utf-8")
-        p = subprocess.Popen(cmd, stdout=log, stderr=subprocess.PIPE, text=True, encoding="utf-8", errors="replace")
+        p = subprocess.Popen(cmd, stdout=log, stderr=subprocess.PIPE, text=True, encoding="utf-8", errors="replace",
+                             env={**os.environ, "PYTHONIOENCODING": "utf-8", "PYTHONUTF8": "1"})
         while p.poll() is None:                              # ход внешней команды неизвестен: показываем этап по файлу progress.txt, если модель его пишет
             try:
                 st, fr = (out / "progress.txt").read_text().split()[:2]; progress(int(st), float(fr))

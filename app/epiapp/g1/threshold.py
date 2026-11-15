@@ -10,25 +10,34 @@ import numpy as np
 MIN_LABELED, MIN_PER_CLASS, MIN_UNLABELED = 20, 5, 20
 
 
-def _roc_points(y, s):
-    """Пороги (по убыванию), чувствительность и доля ложных тревог при «оценка >= порог»."""
+def _roc_counts(y, s):
+    """Пороги (по убыванию) и число верно / ложно отмеченных при «оценка >= порог»."""
     y, s = np.asarray(y, int), np.asarray(s, float)
     th = np.unique(s)[::-1]
-    tpr = np.array([((s >= t) & (y == 1)).sum() for t in th]) / max((y == 1).sum(), 1)
-    fpr = np.array([((s >= t) & (y == 0)).sum() for t in th]) / max((y == 0).sum(), 1)
-    return th, tpr, fpr
+    tps = np.array([int(((s >= t) & (y == 1)).sum()) for t in th])
+    fps = np.array([int(((s >= t) & (y == 0)).sum()) for t in th])
+    return th, tps, fps, max(int((y == 1).sum()), 1), max(int((y == 0).sum()), 1)
+
+
+def _roc_points(y, s):
+    th, tps, fps, n1, n0 = _roc_counts(y, s)
+    return th, tps / n1, fps / n0
 
 
 def thr_youden(y, s):
     """Порог с наибольшим «чувствительность + специфичность − 1»; при равенстве — самый высокий порог."""
     th, tpr, fpr = _roc_points(y, s)
-    return float(th[np.argmax(tpr - fpr)])
+    return float(th[np.argmax(tpr - fpr + 0.0)])
 
 
 def thr_sens80(y, s, target=0.8):
-    """Самый высокий порог, при котором чувствительность не ниже 80 %."""
-    th, tpr, _ = _roc_points(y, s)
-    return float(th[np.argmax(tpr >= target)])
+    """Порог для чувствительности не ниже 80 % — как thr_recall80 в экспериментах (sklearn.roc_curve): из кривой убраны точки,
+    лежащие на прямых участках, и берётся первая оставшаяся с чувствительностью >= 80 %. Поэтому чувствительность может быть и выше 80 %."""
+    th, tps, fps, n1, _ = _roc_counts(y, s)
+    if len(th) > 2:
+        keep = np.r_[True, np.logical_or(np.diff(fps, 2), np.diff(tps, 2)), True]
+        th, tps = th[keep], tps[keep]
+    return float(th[np.argmax(tps / n1 >= target)])
 
 
 def thr_median(s):

@@ -19,11 +19,11 @@ async function drawThumb(cv, sid, kind) {
 export const G2 = {
   // ---------------------------------------------------------------- загрузка
   async upload(root) {
-    const g = state.meta.g2, demo = state.meta.demo, files = {};
+    const g = state.meta.g2, demo = !g.upload, files = {};      // демо-снимки доступны, пока модель МРТ не подключена
     root.innerHTML = `<div class="card"><h2>Загрузите МРТ пациента</h2><p class="sub">Нужны две серии: T1 и FLAIR в формате NIfTI (.nii, .nii.gz). Папку DICOM сначала преобразуйте в NIfTI (dcm2niix).</p>
       <div class="row"><div class="drop col" data-kind="t1"><input type="file" accept=".nii,.gz"><div class="big">T1</div><div class="small">3D, лучше 1 мм</div><p><button class="btn pick" ${g.upload ? '' : 'disabled'}>Выбрать…</button></p><div class="small st"></div></div>
       <div class="drop col" data-kind="flair"><input type="file" accept=".nii,.gz"><div class="big">FLAIR</div><div class="small">лучше 3D тонкие срезы</div><p><button class="btn pick" ${g.upload ? '' : 'disabled'}>Выбрать…</button></p><div class="small st"></div></div></div>
-      ${g.upload ? '' : `<div class="note gray">${demo ? 'Демо-режим: модель МРТ не подключена, свои снимки загрузить нельзя — возьмите демо-снимки (это схема, а не снимок человека).' : 'Модель МРТ не подключена: ' + esc(g.reason || 'не задана команда модели') + '.'}</div>`}
+      ${g.upload ? '' : `<div class="note gray">Модель МРТ не подключена${state.meta.demo ? ' (демо-режим)' : ' (не задана команда модели, настройка EPI_G2_CMD)'}: свои снимки загрузить нельзя — возьмите демо-снимки (это схема, а не снимок человека).</div>`}
       <div id="upErr"></div>
       <div class="actions"><span class="small">Обработка на сервере клиники.</span><span>${demo ? '<button class="btn" id="demo5">Демо: FLAIR 5 мм</button> <button class="btn pri" id="demoOk">Взять демо-снимки →</button>' : ''}</span></div></div>`;
     const err = (e) => { $('#upErr', root).innerHTML = `<div class="note bad">${esc(e.message)}</div>`; };

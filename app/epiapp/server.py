@@ -19,7 +19,7 @@ def create_app(settings=None):
     s = settings or load_settings()
     svc = Service(s)
     app = FastAPI(title="ЭпиАссистент", version=__version__, docs_url="/api/docs", openapi_url="/api/openapi.json")
-    app.add_middleware(GZipMiddleware, minimum_size=2000)
+    app.add_middleware(GZipMiddleware, minimum_size=2000, compresslevel=1)   # быстрое сжатие: объёмы МРТ по 4–16 МБ
     app.state.svc = svc
     if s.demo:
         svc.warm_demo()
