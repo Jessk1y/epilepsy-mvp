@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Направление B · «Пульт» — тёмная рабочая станция</title>
+<style>
+/* ===== Направление B · «Пульт»: тёмная рабочая станция. Экран не прокручивается; просмотр в центре; всё, что нарисовала программа, — одним янтарным цветом. ===== */
+:root{--bg:#0d1013;--pan:#14181c;--pan2:#1b2026;--line:#272e36;--line2:#343d47;--ink:#dfe5ea;--ink2:#a9b4be;--ink3:#95a1ac;
+  --ai:#f3bd4b;--aibg:rgba(243,189,75,.12);--warn:#ff8f66;--bad:#ff6161;--ok:#6ccb98;--sel:#2a323b;
+  --f:"Segoe UI",system-ui,sans-serif;--m:"Cascadia Mono","Cascadia Code",Consolas,"DejaVu Sans Mono",monospace}
+*{box-sizing:border-box}html,body{margin:0;height:100%}
+body{font:13px/1.45 var(--f);color:var(--ink);background:var(--bg);display:flex;flex-direction:column;overflow:hidden;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer}[hidden]{display:none!important}
+:focus-visible{outline:2px solid #fff;outline-offset:1px}
+.m{font-family:var(--m);font-variant-numeric:tabular-nums}
+kbd{font:11px var(--m);color:var(--ink2);border:1px solid var(--line2);border-bottom-width:2px;border-radius:3px;padding:0 5px;background:var(--pan2)}
+
+.mock{display:flex;gap:2px;align-items:center;height:28px;flex:none;padding:0 12px;background:#000;color:#8c98a4;font-size:12px;border-bottom:1px dashed #333}
+.mock b{color:#fff;font-weight:600;margin-right:14px}.mock button{background:none;border:0;color:#8c98a4;padding:4px 10px;border-radius:3px}.mock button.on{background:#2a323b;color:#fff}
+.mock a{margin-left:auto;color:#8c98a4}html.shot .mock{display:none}
+
+/* верхняя полоса: открытые исследования как вкладки */
+.top{display:flex;align-items:stretch;height:38px;flex:none;background:var(--pan);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:8px;padding:0 16px;font-weight:650;letter-spacing:.2px;border-right:1px solid var(--line)}
+.brand i{width:10px;height:10px;background:var(--ai);transform:rotate(45deg)}
+.tab{display:flex;align-items:center;gap:8px;padding:0 14px;border:0;border-right:1px solid var(--line);background:none;color:var(--ink3)}
+.tab.on{background:var(--bg);color:var(--ink);box-shadow:inset 0 2px 0 var(--ai)}.tab small{font:11px var(--m);color:var(--ink3);border:1px solid var(--line2);padding:0 4px;border-radius:2px}
+.top .r{margin-left:auto;display:flex;align-items:center;gap:14px;padding:0 14px;color:var(--ink3);font-size:12px}
+.demo{font:700 11px var(--m);letter-spacing:1px;color:#0d1013;background:var(--ai);padding:1px 6px;border-radius:2px}
+.status{display:flex;gap:18px;align-items:center;height:26px;flex:none;padding:0 14px;background:var(--pan);border-top:1px solid var(--line);color:var(--ink3);font-size:12px;white-space:nowrap;overflow:hidden}
+.status .sp{margin-left:auto}.status b{color:var(--ink2);font-weight:500}
+section{flex:1;min-height:0;display:flex}
+.lab{font-size:10.5px;font-weight:650;letter-spacing:1px;text-transform:uppercase;color:var(--ink3)}
+.btn{height:30px;padding:0 12px;border:1px solid var(--line2);background:var(--pan2);border-radius:3px;display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.btn:hover{border-color:var(--ink3)}.btn.pri{background:var(--ink);color:#0d1013;border-color:var(--ink);font-weight:650}.btn.pri kbd{background:#c5ccd3;color:#0d1013;border-color:#9aa5af}
+.w{color:var(--warn)}.w::before{content:"▲ ";font-size:9px}.o{color:var(--ink2)}.o::before{content:"● ";font-size:8px;color:var(--ok)}.x{color:var(--bad)}.x::before{content:"■ ";font-size:8px}
+
+/* ---------- Список ---------- */
+.list{flex:1;min-width:0;display:flex;flex-direction:column}
+.lbar{display:flex;gap:10px;align-items:center;padding:8px 14px;border-bottom:1px solid var(--line)}
+.lbar .f{display:flex;border:1px solid var(--line2);border-radius:3px;overflow:hidden}.lbar .f span{padding:4px 10px;color:var(--ink3);border-left:1px solid var(--line2)}.lbar .f span:first-child{border:0}.lbar .f .on{background:var(--sel);color:var(--ink)}
+.lbar .hint{margin-left:auto;color:var(--ink3);font-size:12px}
+table.wl{width:100%;border-collapse:collapse}
+.wl th{position:sticky;top:0;text-align:left;font-size:10.5px;font-weight:650;letter-spacing:1px;text-transform:uppercase;color:var(--ink3);padding:7px 14px;border-bottom:1px solid var(--line);background:var(--bg)}
+.wl td{padding:8px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
+.wl tr.on td{background:var(--sel)}.wl tr.on td:first-child{box-shadow:inset 2px 0 0 var(--ai)}
+.wl tbody tr:hover td{background:#171c21}.wl tr.on:hover td{background:var(--sel)}
+.wl .k{font:11px var(--m);color:var(--ink2);border:1px solid var(--line2);padding:0 4px;border-radius:2px}
+.wl .sc{font:600 14px var(--m);color:var(--ai)}.wl .d{color:var(--ink3)}
+.wl .todo{color:var(--ink);font-weight:600}.wl .todo::before{content:"";display:inline-block;width:6px;height:6px;background:var(--ai);border-radius:50%;margin-right:8px;vertical-align:1px}
+.prev{width:400px;flex:none;border-left:1px solid var(--line);background:var(--pan);display:flex;flex-direction:column}
+.prev .img{height:250px;background:#000;position:relative;flex:none}.prev canvas{position:absolute;inset:0;width:100%;height:100%}
+.prev .img span{position:absolute;right:8px;bottom:6px;font:10px var(--m);color:var(--ai);letter-spacing:1px}
+.prev .b{padding:14px 16px;flex:1;overflow:auto}
+.prev h2{font-size:16px;font-weight:650;margin:0}.prev .sub{color:var(--ink3);margin:0 0 12px}
+.kv{display:grid;grid-template-columns:120px 1fr;gap:5px 12px;margin:0 0 14px}.kv dt{color:var(--ink3)}.kv dd{margin:0}
+.prev .act{border-top:1px solid var(--line);padding:10px 16px;display:flex;gap:8px}
+
+/* ---------- Рабочее место: общая сетка ---------- */
+.center{flex:1;min-width:0;display:flex;flex-direction:column}
+.tool{display:flex;gap:6px;align-items:center;height:36px;flex:none;padding:0 10px;border-bottom:1px solid var(--line);background:var(--pan)}
+.tool .sel{height:26px;display:inline-flex;align-items:center;gap:6px;padding:0 9px;border:1px solid var(--line2);border-radius:3px;color:var(--ink2);background:var(--pan2);white-space:nowrap}
+.tool .sel::after{content:"▾";color:var(--ink3);font-size:10px}.tool .sel.on{background:var(--sel);color:var(--ink);border-color:var(--ink3)}.tool .sel.t::after{content:none}
+.tool .gap{width:1px;height:18px;background:var(--line2);margin:0 4px}.tool .note{margin-left:auto;color:var(--ink3);font-size:12px}
+.right{width:330px;flex:none;border-left:1px solid var(--line);background:var(--pan);display:flex;flex-direction:column;min-height:0}
+.right .scroll{flex:1;overflow:auto}
+.blk{padding:12px 16px;border-bottom:1px solid var(--line)}
+.blk > .lab{display:flex;justify-content:space-between;margin-bottom:8px}.blk > .lab span{letter-spacing:0;text-transform:none;font-weight:400}
+.big{display:flex;align-items:baseline;gap:12px}.big b{font:600 44px/1 var(--m);color:var(--ai);letter-spacing:-1px}
+.big div{font-weight:650;font-size:14px;line-height:1.25}.big div small{display:block;font-weight:400;color:var(--ink3);font-size:12px}
+.rows{display:grid;grid-template-columns:1fr auto;gap:5px 10px}.rows span:nth-child(odd){color:var(--ink2)}.rows span:nth-child(even){text-align:right;font-family:var(--m)}
+.quiet{color:var(--ink3);font-size:12px;margin:8px 0 0}
+.decide{flex:none;border-top:1px solid var(--line2);padding:12px 16px;background:var(--pan2)}
+.decide .two{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:8px 0}.decide .btn{justify-content:center}.decide .pri{width:100%}
+
+/* ЭЭГ */
+.sigwrap{flex:1;min-height:0;position:relative;background:#0a0c0e}.sigwrap canvas{position:absolute;inset:0;width:100%;height:100%}
+.time{flex:none;padding:8px 10px 10px;border-top:1px solid var(--line);background:var(--pan)}
+.time .hd{display:flex;gap:16px;color:var(--ink3);font-size:11.5px;margin-bottom:5px}.time .hd i{display:inline-block;width:10px;height:8px;margin-right:5px;vertical-align:0}
+.tl{position:relative;height:14px;background:#0a0c0e;border:1px solid var(--line)}
+.tl i{position:absolute;top:0;bottom:0;background:rgba(255,143,102,.55)}.tl b{position:absolute;top:-3px;bottom:-3px;border:1.5px solid #fff;border-radius:2px}
+.parts{height:34px;margin-top:4px;background:#0a0c0e;border:1px solid var(--line)}.parts svg{display:block;width:100%;height:100%}
+.tick{display:flex;justify-content:space-between;font:10.5px var(--m);color:var(--ink3);margin-top:3px}
+
+.signote{position:absolute;right:10px;top:8px;background:rgba(13,16,19,.88);border:1px solid var(--line2);color:var(--ink2);font-size:12px;padding:3px 9px;border-radius:3px}
+/* МРТ */
+.grid{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:1px;background:var(--line)}
+.vp{position:relative;background:#000;min-width:0;min-height:0}.vp canvas{position:absolute;inset:0;width:100%;height:100%}
+.vp .c{position:absolute;left:8px;top:6px;font-size:11.5px;color:var(--ink2)}.vp .c b{color:#fff;font-weight:600}
+.vp .s{position:absolute;left:8px;bottom:6px;font:11px var(--m);color:var(--ink3)}
+.vp .dm{position:absolute;right:8px;bottom:6px;font:10px var(--m);color:var(--ai);letter-spacing:1px}
+.vp.act{outline:1px solid var(--ink3);outline-offset:-1px}
+.cand{display:grid;grid-template-columns:22px 1fr auto;gap:2px 8px;padding:9px 16px;border-bottom:1px solid var(--line);align-items:baseline}
+.cand.on{background:var(--sel);box-shadow:inset 2px 0 0 var(--ai)}
+.cand .n{font:600 12px var(--m);color:var(--ink3)}.cand .p{font:600 16px var(--m);color:var(--ai)}.cand small{grid-column:2/4;color:var(--ink3);font:11.5px var(--m)}
+.cand.dim{opacity:.55}.cand.dim .p{color:var(--ink2);font-size:13px}
+.cand .mk{grid-column:2/4;display:flex;gap:6px;margin-top:7px}.cand .mk .btn{height:26px;padding:0 9px;font-size:12px}
+.wp{display:grid;grid-template-columns:repeat(8,1fr);border:1px solid var(--line2);border-radius:3px;overflow:hidden;font:11.5px var(--m)}
+.wp span{text-align:center;padding:4px 0;border-left:1px solid var(--line);color:var(--ink3)}.wp span:first-child{border:0}.wp .on{background:var(--ai);color:#0d1013;font-weight:700}
+.inalert{padding:9px 16px;border-bottom:1px solid var(--line);background:rgba(255,143,102,.08);color:#ffc4ae;font-size:12.5px}.inalert b{color:var(--warn)}
+</style></head>
+<body>
+<div class="mock"><b>Макет · B «Пульт»</b><button data-go="home">Главная</button><button data-go="eeg">Результат ЭЭГ</button><button data-go="mri">Рабочее место МРТ</button><a href="README.md">сравнение направлений</a></div>
+<header class="top">
+  <div class="brand"><i></i>ЭпиАссистент</div>
+  <button class="tab" data-go="home">Список</button>
+  <button class="tab" data-go="eeg"><small>ЭЭГ</small>демо_ЭЭГ_017</button>
+  <button class="tab" data-go="mri"><small>МРТ</small>Демо-пациент</button>
+  <div class="r"><span>Клиника</span><span class="demo">ДЕМО</span></div>
+</header>
+
+<!-- ============================== ГЛАВНАЯ: СПИСОК ============================== -->
+<section data-screen="home">
+  <div class="list">
+    <div class="lbar">
+      <button class="btn pri">+ Новое исследование <kbd>N</kbd></button>
+      <div class="f"><span class="on">Все 6</span><span>Ждут врача 2</span><span>ЭЭГ 4</span><span>МРТ 2</span></div>
+      <span class="hint">Файл .edf или .nii можно перетащить прямо в окно</span>
+    </div>
+    <div style="flex:1;overflow:auto"><table class="wl">
+      <thead><tr><th>Время</th><th>Вид</th><th>Исследование</th><th>Вход</th><th>Программа</th><th></th><th>Врач</th></tr></thead>
+      <tbody>
+        <tr class="on"><td class="m d">15.11 20:40</td><td><span class="k">МРТ</span></td><td>Демо-пациент</td><td><span class="w">FLAIR 5 мм</span></td><td><span class="sc">0,96</span></td><td class="d">1 кандидат · левое полушарие</td><td><span class="todo">ждёт вас</span></td></tr>
+        <tr><td class="m d">15.11 20:38</td><td><span class="k">ЭЭГ</span></td><td>демо_ЭЭГ_017.edf</td><td><span class="w">3 замечания</span></td><td><span class="sc">0,66</span></td><td class="d">выше порога 0,58</td><td><span class="todo">ждёт вас</span></td></tr>
+        <tr><td class="m d">15.11 19:54</td><td><span class="k">ЭЭГ</span></td><td>демо_ЭЭГ_004.edf</td><td><span class="o">без замечаний</span></td><td><span class="sc">0,81</span></td><td class="d">выше порога 0,58</td><td class="d">согласен · отчёт выдан</td></tr>
+        <tr><td class="m d">15.11 19:51</td><td><span class="k">МРТ</span></td><td>Демо-пациент</td><td><span class="o">без замечаний</span></td><td><span class="sc">0,96</span></td><td class="d">1 кандидат · левое полушарие</td><td class="d">очаг · отчёт выдан</td></tr>
+        <tr><td class="m d">14.11 16:12</td><td><span class="k">ЭЭГ</span></td><td>демо_ЭЭГ_021.edf</td><td><span class="o">без замечаний</span></td><td><span class="sc" style="color:var(--ink2)">0,31</span></td><td class="d">ниже порога 0,58</td><td class="d">согласен</td></tr>
+        <tr><td class="m d">14.11 15:47</td><td><span class="k">ЭЭГ</span></td><td>демо_ЭЭГ_002.edf</td><td><span class="x">не подходит</span></td><td class="d">—</td><td class="d">запись короче 1 минуты</td><td></td></tr>
+      </tbody>
+    </table></div>
+  </div>
+  <aside class="prev">
+    <div class="img"><canvas id="prevCv"></canvas><span>СХЕМА · ДЕМО</span></div>
+    <div class="b">
+      <div class="lab" style="margin-bottom:4px">МРТ · поиск ФКД</div>
+      <h2>Демо-пациент</h2><p class="sub">15.11.2026 · T1 1,2 мм · FLAIR 5 мм</p>
+      <dl class="kv">
+        <dt>Программа</dt><dd>1 кандидат, вероятность <span class="m" style="color:var(--ai)">0,96</span>, левое полушарие</dd>
+        <dt>Вход</dt><dd><span class="w">FLAIR 5 мм</span> — часть очагов могла быть пропущена</dd>
+        <dt>Врач</dt><dd>кандидат не отмечен</dd>
+      </dl>
+    </div>
+    <div class="act"><button class="btn pri" data-go="mri">Открыть <kbd>⏎</kbd></button><button class="btn">Заключение</button></div>
+  </aside>
+</section>
+
+<!-- ============================== ЭЭГ ============================== -->
+<section data-screen="eeg">
+  <div class="center">
+    <div class="tool">
+      <span class="sel">Средний референт</span><span class="sel">Усиление авто</span><span class="sel">10 с на экран</span><span class="sel">0,5–70 Гц</span>
+      <span class="gap"></span><span class="sel t">◀</span><span class="m" style="color:var(--ink2);padding:0 4px;white-space:nowrap">0:18–0:28</span><span class="sel t">▶</span><span class="sel t">К артефакту</span>
+      <span class="note"><kbd>←</kbd><kbd>→</kbd> листать</span>
+    </div>
+    <div class="sigwrap"><canvas id="eegB"></canvas></div>
+    <div class="time">
+      <div class="hd"><span>Вся запись · 12:40</span><span><i style="background:rgba(255,143,102,.55)"></i>артефакты, ≈31 %</span><span><i style="background:var(--ai);height:2px;vertical-align:3px"></i>оценка программы по шести частям записи</span><span><i style="border-top:1px dashed var(--ink2);height:0;vertical-align:3px"></i>порог клиники 0,58</span><span style="margin-left:auto;color:var(--ink2)">Оценка относится к записи целиком: мест разрядов программа не указывает</span></div>
+      <div class="tl" id="tlB"></div>
+      <div class="parts" id="partsB"></div>
+      <div class="tick"><span>0:00</span><span>2:07</span><span>4:13</span><span>6:20</span><span>8:27</span><span>10:33</span><span>12:40</span></div>
+    </div>
+  </div>
+  <aside class="right">
+    <div class="scroll">
+      <div class="blk">
+        <div class="lab">Оценка программы <span>вся запись</span></div>
+        <div class="big"><b>0,66</b><div>выше порога клиники<small>порог 0,58 · по 20 записям клиники</small></div></div>
+        <div id="scaleB" style="margin-top:12px"></div>
+        <p class="quiet">Точки — записи клиники с известным диагнозом: закрашенные — с эпилепсией (9 из 10 выше порога), пустые — без (10 из 10 ниже).</p>
+      </div>
+      <div class="blk">
+        <div class="lab">Доверие к оценке <span class="w" style="font-size:12px">снижено</span></div>
+        <div class="rows">
+          <span>Длительность</span><span class="w">12:40</span>
+          <span>Каналы 10–20</span><span class="w">17/19 · O2, T4</span>
+          <span>Артефакты</span><span class="w">≈31 %</span>
+          <span>Разброс по частям</span><span>0,64–0,69</span>
+          <span>Частота</span><span>250→200 Гц</span>
+        </div>
+      </div>
+      <div class="blk">
+        <div class="lab">Модель</div>
+        <div>Демо-модель (без нейросети)</div>
+        <p class="quiet">Оценка посчитана формулой и клинического смысла не имеет.</p>
+      </div>
+    </div>
+    <div class="decide">
+      <div class="lab">Решение врача</div>
+      <div class="two"><button class="btn">Согласен <kbd>С</kbd></button><button class="btn">Не согласен <kbd>Н</kbd></button></div>
+      <button class="btn pri" style="justify-content:center">Заключение <kbd>⏎</kbd></button>
+    </div>
+  </aside>
+</section>
+
+<!-- ============================== МРТ ============================== -->
+<section data-screen="mri">
+  <div class="center">
+    <div class="tool">
+      <span class="sel t">T1</span><span class="sel t on">FLAIR</span><span class="gap"></span>
+      <span class="sel t on">Карта <kbd style="margin-left:4px">К</kbd></span><span class="sel">Прозрачность 70 %</span><span class="sel">Окно авто</span>
+      <span class="note"><kbd>1</kbd>–<kbd>3</kbd> кандидат · <kbd>↑</kbd><kbd>↓</kbd> срезы · <kbd>К</kbd> карта</span>
+    </div>
+    <div class="grid">
+      <div class="vp act"><canvas data-p="ax"></canvas><div class="c"><b>Аксиальный</b> · FLAIR + карта</div><div class="s">99/144</div></div>
+      <div class="vp"><canvas data-p="cor"></canvas><div class="c"><b>Корональный</b></div><div class="s">109/176</div></div>
+      <div class="vp"><canvas data-p="sag"></canvas><div class="c"><b>Сагиттальный</b></div><div class="s">44/144</div></div>
+      <div class="vp"><canvas data-p="zoom"></canvas><div class="c"><b>Кандидат №1 без карты</b> · T1 ×2</div><div class="s">99/144</div><div class="dm">СХЕМА · ДЕМО</div></div>
+    </div>
+  </div>
+  <aside class="right">
+    <div class="inalert"><b>▲ FLAIR 5 мм.</b> При толстых срезах очаг находится у 47 % пациентов против 94 % при срезах до 3,5 мм.</div>
+    <div class="scroll">
+      <div class="blk" style="border:0;padding-bottom:6px"><div class="lab" style="margin:0">Кандидаты <span>1 выше рабочей точки</span></div></div>
+      <div class="cand on"><span class="n">1</span><span>левое полушарие</span><span class="p">0,96</span><small>1,5 см³ · −36; +13; +41</small>
+        <div class="mk"><button class="btn">Очаг <kbd>О</kbd></button><button class="btn">Не очаг <kbd>Н</kbd></button><button class="btn">Не уверен</button></div></div>
+      <div class="cand dim"><span class="n">2</span><span>правое полушарие</span><span class="p">0,74</span><small>1,5 см³ · +34; −43; +9 · ниже рабочей точки</small></div>
+      <div class="cand dim"><span class="n">3</span><span>правое полушарие</span><span class="p">0,41</span><small>0,4 см³ · +9; +37; −12 · ниже рабочей точки</small></div>
+      <div class="blk">
+        <div class="lab">Рабочая точка</div>
+        <div class="wp"><span>0,3</span><span>0,4</span><span>0,5</span><span>0,6</span><span>0,7</span><span>0,8</span><span class="on">0,9</span><span>0,95</span></div>
+        <div class="rows" style="margin-top:10px"><span>Очаг найден у пациентов с ФКД</span><span>56 %</span><span>Ложных находок на человека без ФКД</span><span>0,13</span></div>
+        <p class="quiet">Открытые данные IDEAS: 34 пациента с ФКД, 23 без. Источник: ms_dsa_net_stage2b_cv.ipynb, разд. 9. К демо-снимкам не относится.</p>
+      </div>
+      <div class="blk"><div class="lab">Наибольшая вероятность по срезам</div><div id="profB"></div></div>
+    </div>
+    <div class="decide">
+      <div class="lab">Решение врача</div>
+      <p class="quiet" style="margin:6px 0 8px">Отметьте кандидата №1 — после этого откроется заключение.</p>
+      <button class="btn pri" style="justify-content:center;opacity:.4">Заключение <kbd>⏎</kbd></button>
+    </div>
+  </aside>
+</section>
+
+<footer class="status"><span>Модель ЭЭГ: <b>Демо-модель</b></span><span>Порог клиники: <b class="m">0,58</b></span><span>Модель МРТ: <b>Демо (синтетическая карта)</b></span><span>Рабочая точка: <b class="m">0,90</b></span><span class="sp">Второе мнение · решение принимает врач · данные остаются на сервере клиники</span></footer>
+
+<script src="assets/demo-data.js"></script><script src="assets/demo-kit.js"></script>
+<script>
+if (location.search.includes('shot')) document.documentElement.classList.add('shot');
+const { D, fmt } = Kit, $ = s => document.querySelector(s);
+function scaleB() {
+  const W = 298, X = v => 4 + v * (W - 8), thr = D.g1.thr, sc = D.g1.score;
+  let s = `<svg viewBox="0 0 ${W} 58" style="display:block;width:100%">`;
+  s += `<rect x="${X(0)}" y="8" width="${W - 8}" height="6" fill="#272e36"/><rect x="${X(thr)}" y="8" width="${X(1) - X(thr)}" height="6" fill="#3d4650"/>`;
+  s += `<line x1="${X(thr)}" x2="${X(thr)}" y1="2" y2="46" stroke="#dfe5ea" stroke-dasharray="3 2"/>`;
+  s += `<path d="M${X(sc)} 3 l6 8 l-6 8 l-6 -8z" fill="#f3bd4b"/>`;
+  D.clinic.filter(r => r[1] !== null).forEach(([v, l]) => { s += l ? `<circle cx="${X(v)}" cy="28" r="3" fill="#a9b4be"/>` : `<circle cx="${X(v)}" cy="40" r="2.6" fill="none" stroke="#a9b4be" stroke-width="1.2"/>`; });
+  s += `<text x="${X(0)}" y="56" font-size="10" fill="#7d8a96" font-family="Consolas,monospace">0</text><text x="${X(thr)}" y="56" font-size="10" fill="#dfe5ea" text-anchor="middle" font-family="Consolas,monospace">${fmt(thr)}</text><text x="${X(1)}" y="56" font-size="10" fill="#7d8a96" text-anchor="end" font-family="Consolas,monospace">1</text>`;
+  $('#scaleB').innerHTML = s + '</svg>';
+}
+function timeB() {
+  const g = D.g1, dur = g.dur;
+  $('#tlB').innerHTML = g.artifacts.map(([a, b]) => `<i style="left:${a / dur * 100}%;width:${(b - a) / dur * 100}%"></i>`).join('') + `<b style="left:${18 / dur * 100}%;width:${10 / dur * 100}%"></b>`;
+  const y = v => (34 - v * 34).toFixed(1); let d = '';
+  g.parts.forEach((p, i) => { d += `${i ? 'L' : 'M'}${(p.t0 / dur * 1000).toFixed(1)},${y(p.score)} L${(p.t1 / dur * 1000).toFixed(1)},${y(p.score)} `; });
+  $('#partsB').innerHTML = `<svg viewBox="0 0 1000 34" preserveAspectRatio="none"><line x1="0" x2="1000" y1="${y(g.thr)}" y2="${y(g.thr)}" stroke="#a9b4be" stroke-dasharray="5 4" vector-effect="non-scaling-stroke"/><path d="${d}" stroke="#f3bd4b" fill="none" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>`;
+}
+function profB() {
+  const p = D.profile, n = p.length, W = 298, H = 54; let d = '';
+  p.forEach((v, i) => { d += `${i ? 'L' : 'M'}${(i / (n - 1) * W).toFixed(1)},${(H - 4 - v * (H - 8)).toFixed(1)} `; });
+  const yt = H - 4 - .9 * (H - 8), xk = D.pos[2] / (n - 1) * W;
+  $('#profB').innerHTML = `<svg viewBox="0 0 ${W} ${H + 12}" style="display:block;width:100%"><line x1="0" x2="${W}" y1="${yt}" y2="${yt}" stroke="#a9b4be" stroke-dasharray="3 3"/><path d="${d}" fill="none" stroke="#f3bd4b" stroke-width="1.5"/><line x1="${xk}" x2="${xk}" y1="0" y2="${H}" stroke="#fff" stroke-width="1"/><text x="0" y="${H + 10}" font-size="10" fill="#7d8a96">низ</text><text x="${W}" y="${H + 10}" font-size="10" fill="#7d8a96" text-anchor="end">верх</text><text x="${xk}" y="${H + 10}" font-size="10" fill="#dfe5ea" text-anchor="middle">срез 99</text></svg>`;
+}
+const mriOpt = { seq: 'flair', ramp: 'amber', op: .7, cross: 'rgba(255,255,255,.45)', ring: '#f3bd4b', ringW: 1.2, ringDash: [4, 3], label: '#7d8a96', font: '11px "Segoe UI",sans-serif', pad: 14 };
+Kit.screens(h => {
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('on', t.dataset.go === h));
+  if (h === 'home') Kit.slice($('#prevCv'), 'ax', { ...mriOpt, cross: null, pad: 8 });
+  if (h === 'eeg') { scaleB(); timeB(); Kit.eeg($('#eegB'), D.sigArt, { color: '#c9d3dc', bad: '#ff6161', label: '#7d8a96', grid: 'rgba(255,255,255,.07)', art: 'rgba(255,143,102,.10)', artEdge: 'rgba(255,143,102,.8)', font: '11px Consolas,monospace', labelW: 46, lw: 1, gain: .13, scale: '#7d8a96' }); }
+  if (h === 'mri') { profB(); document.querySelectorAll('.vp canvas').forEach(cv => cv.dataset.p === 'zoom' ? Kit.slice(cv, 'ax', { seq: 't1', overlay: false, zoom: 2.2, cross: null, ring: '#f3bd4b', ringW: 1, ringDash: [4, 3], ringLabel: false, sides: false }) : Kit.slice(cv, cv.dataset.p, mriOpt)); }
+});
+</script>
+</body></html>
