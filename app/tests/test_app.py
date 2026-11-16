@@ -85,3 +85,29 @@ def test_g2_demo_flow(client):
     rep = client.post("/api/reports", json=dict(study_id=s["id"], conclusion="Очаг в левой лобной доле.", thr=0.5)).json()
     page = client.get(rep["url"]).text
     assert "№2" in page and "порог 0,50" in page and "левое полушарие" in page
+
+
+def test_doctor_decision_goes_to_list_and_report(client):
+    """Решение врача видно в списке исследований и попадает в отчёт: согласие по ЭЭГ, отметки кандидатов по МРТ."""
+    # --- ЭЭГ: согласие с оценкой
+    s = client.post("/api/g1/studies/demo?kind=ok").json()
+    assert s["report"] is None
+    wait(client, client.post(f"/api/g1/studies/{s['id']}/run").json())
+    client.post(f"/api/g1/studies/{s['id']}/decision", json=dict(agree=False))
+    rep = client.post("/api/reports", json=dict(study_id=s["id"], conclusion="Признаков эпилепсии нет.")).json()
+    assert "не согласен с оценкой программы" in client.get(rep["url"]).text
+    row = next(x for x in client.get("/api/g1/studies").json() if x["id"] == s["id"])
+    assert row["report"] == rep["id"] and row["decision"]["agree"] is False
+    assert client.get(f"/api/g1/studies/{s['id']}").json()["report"] == rep["id"]
+    # --- МРТ: отметка у кандидата; ключ — координаты, округлённые как в браузере (Math.round)
+    from epiapp.report import cand_key
+    assert cand_key(dict(xyz=[-36.25, 13.0, 40.5])) == "-36;13;41" and cand_key(dict(xyz=[-0.4, 2.5, -2.5])) == "0;3;-2"
+    g = client.post("/api/g2/studies/demo?kind=ok").json()
+    wait(client, client.post(f"/api/g2/studies/{g['id']}/run").json())
+    g = client.get(f"/api/g2/studies/{g['id']}").json()
+    cand = g["result"]["candidates"][0]
+    client.post(f"/api/g2/studies/{g['id']}/decision", json=dict(thr=g["result"]["default_thr"], marks={cand_key(cand): "not"}))
+    row = next(x for x in client.get("/api/g2/studies").json() if x["id"] == g["id"])
+    assert row["decision"]["marks"] and row["created"] and row["report"] is None
+    rep = client.post("/api/reports", json=dict(study_id=g["id"], conclusion="Очага нет.", thr=g["result"]["default_thr"])).json()
+    assert "врач: не очаг" in client.get(rep["url"]).text

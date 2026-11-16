@@ -108,6 +108,11 @@ class Store:
     def report(self, rid):
         return self.one("SELECT * FROM reports WHERE id = ?", (rid,))
 
+    def last_report_id(self, study_id):
+        """Номер последнего выданного отчёта по исследованию или None."""
+        r = self.one("SELECT id FROM reports WHERE study_id = ? ORDER BY created DESC LIMIT 1", (study_id,))
+        return r["id"] if r else None
+
     # ---- прочее
     def get(self, k, default=None):
         r = self.one("SELECT v FROM kv WHERE k = ?", (k,))

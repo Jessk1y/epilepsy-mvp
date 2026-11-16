@@ -172,7 +172,8 @@ class Service:
         """Исследование Г1 для интерфейса: проверка, результат и вывод относительно действующего порога."""
         st = self._study(sid, "g1")
         out = dict(id=st["id"], name=st["name"], code=st["code"], created=st["created"], date=_date(st["created"]), demo=bool(st["demo"]),
-                   status=st["status"], check=st["check"], decision=st["decision"], error=st["error"], result=None)
+                   status=st["status"], check=st["check"], decision=st["decision"], error=st["error"], result=None,
+                   report=self.store.last_report_id(st["id"]))
         if st["result"]:
             r, m, t = dict(st["result"]), get_model(self.s, st["model_id"]), None
             if st["model_id"] == self.model().id:
@@ -192,7 +193,7 @@ class Service:
             c = (st["check"] or {}).get("summary", {})
             out.append(dict(id=st["id"], name=st["name"], date=_date(st["created"]), created=st["created"], status=st["status"], demo=bool(st["demo"]),
                             dur_text=c.get("dur_text", ""), low_quality=(st["check"] or {}).get("low_quality", False),
-                            score=(st["result"] or {}).get("score"), decision=st["decision"]))
+                            score=(st["result"] or {}).get("score"), decision=st["decision"], report=self.store.last_report_id(st["id"])))
         return out
 
     def g1_signal(self, sid, t0, sec, montage, hp, lp):
@@ -285,13 +286,15 @@ class Service:
         f = st["files"] or {}
         return dict(id=st["id"], name=st["name"], code=st["code"], date=_date(st["created"]), created=st["created"], demo=bool(st["demo"]), status=st["status"],
                     check=st["check"], result=st["result"], decision=st["decision"], error=st["error"], card=self.g2.card,
-                    files={k: v["name"] for k, v in f.items() if isinstance(v, dict)}, demo_kind=f.get("demo_kind"))
+                    files={k: v["name"] for k, v in f.items() if isinstance(v, dict)}, demo_kind=f.get("demo_kind"),
+                    report=self.store.last_report_id(st["id"]))
 
     def g2_list(self):
         out = []
         for st in self.store.studies("g2"):
             r = st["result"] or {}
-            out.append(dict(id=st["id"], name=st["name"], date=_date(st["created"]), status=st["status"], demo=bool(st["demo"]),
+            out.append(dict(id=st["id"], name=st["name"], date=_date(st["created"]), created=st["created"], status=st["status"], demo=bool(st["demo"]),
+                            decision=st["decision"], default_thr=r.get("default_thr"), report=self.store.last_report_id(st["id"]),
                             flair5=(st["check"] or {}).get("flair5", False), n_cand=len(r.get("candidates", [])) if r else None,
                             top=max([c["peak_prob"] for c in r.get("candidates", [])], default=None) if r else None))
         return out

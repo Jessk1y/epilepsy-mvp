@@ -1,6 +1,6 @@
 // Просмотрщик срезов МРТ на canvas: три плоскости, наложение карты вероятности, контуры кандидатов, перекрестие.
 // Объёмы приходят с сервера в одной сетке (RAS: i — вправо, j — вперёд, k — вверх), по байту на воксель.
-// Показ — в радиологической ориентации, как в макете: правое полушарие пациента слева на экране.
+// Показ — в радиологической ориентации: правое полушарие пациента слева на экране.
 import { api } from './api.js';
 
 export const PLANES = { ax: 'Аксиальный', cor: 'Корональный', sag: 'Сагиттальный' };
@@ -40,7 +40,7 @@ export class Mri {
   // картинка среза (серый снимок + карта) в отдельном canvas размером w × h вокселей
   render(plane, pos, o) {
     const { nx, ny, nz } = this, g = this.geom(plane), base = this.v[o.seq], prob = this.v.prob;
-    const key = plane; let off = this._buf[key];
+    const key = plane + (o.zoom ? 'z' : ''); let off = this._buf[key];
     if (!off) { off = this._buf[key] = document.createElement('canvas'); off.width = g.w; off.height = g.h; }
     const ctx = off.getContext('2d'), img = ctx.createImageData(g.w, g.h), d = img.data, op = o.overlay ? o.op : 0;
     for (let y = 0; y < g.h; y++) for (let x = 0; x < g.w; x++) {
@@ -48,9 +48,9 @@ export class Mri {
       if (plane === 'ax') { i = nx - 1 - x; j = ny - 1 - y; k = pos.k; } else if (plane === 'cor') { i = nx - 1 - x; j = pos.j; k = nz - 1 - y; } else { i = pos.i; j = ny - 1 - x; k = nz - 1 - y; }
       const q = i + nx * (j + ny * k), b = base[q], p = prob[q] / 255, t = (y * g.w + x) * 4;
       let r = b, gr = b, bl = b;
-      if (op > 0 && p > 0.08) {                              // цвет карты: красный -> оранжевый -> жёлтый, как в макете
+      if (op > 0 && p > 0.08) {                              // цвет карты — янтарный «цвет программы»: чем выше вероятность, тем светлее
         const a = op * Math.min(1, (p - 0.05) / 0.45), u = Math.min(1, p / 0.9);
-        const cr = 255, cg = 32 + (243 - 32) * u * u, cb = 32 + (90 - 32) * u;
+        const cr = 255, cg = 150 + 90 * u, cb = 20 + 60 * u * u;
         r = r * (1 - a) + cr * a; gr = gr * (1 - a) + cg * a; bl = bl * (1 - a) + cb * a;
       }
       d[t] = r; d[t + 1] = gr; d[t + 2] = bl; d[t + 3] = 255;
@@ -58,34 +58,42 @@ export class Mri {
     ctx.putImageData(img, 0, 0);
     return off;
   }
-  // рисование плоскости на видимом canvas. o: {seq, op, overlay, cands, wp, cross, demo, caption, sel}
+  // рисование плоскости на видимом canvas. o: {seq, op, overlay, cands, sel, cross, zoom}
+  // zoom > 1 — увеличение с центром в перекрестии (окно «под перекрестием»). Подписи плоскости и среза — в разметке, не на canvas.
   draw(cv, plane, pos, o) {
     const dpr = window.devicePixelRatio || 1, W = cv.clientWidth, H = cv.clientHeight; if (!W || !H) return;
     cv.width = W * dpr; cv.height = H * dpr;
     const c = cv.getContext('2d'); c.setTransform(dpr, 0, 0, dpr, 0, 0); c.fillStyle = '#000'; c.fillRect(0, 0, W, H);
-    const g = this.geom(plane), s = Math.min(W / g.pw, H / g.ph), dw = g.pw * s, dh = g.ph * s, ox = (W - dw) / 2, oy = (H - dh) / 2;
+    const g = this.geom(plane), pad = o.zoom ? 0 : 14, s = Math.min((W - 2 * pad) / g.pw, (H - 2 * pad) / g.ph) * (o.zoom || 1), dw = g.pw * s, dh = g.ph * s;
+    const [px, py] = this.toScreen(plane, pos);
+    let ox = (W - dw) / 2, oy = (H - dh) / 2;
+    if (o.zoom) { ox = W / 2 - (px + .5) * dw / g.w; oy = H / 2 - (py + .5) * dh / g.h; }
     cv._t = { ox, oy, sx: dw / g.w, sy: dh / g.h, plane };
     c.imageSmoothingEnabled = true; c.imageSmoothingQuality = 'high';
     c.drawImage(this.render(plane, pos, o), ox, oy, dw, dh);
     const X = x => ox + (x + .5) * dw / g.w, Y = y => oy + (y + .5) * dh / g.h;
     const zs = plane === 'ax' ? this.z[2] : plane === 'cor' ? this.z[1] : this.z[0];
+    let gap = 8;
     (o.cands || []).forEach(L => {                            // контур кандидата: виден на срезах, проходящих через него
       const p = { i: L.ijk[0], j: L.ijk[1], k: L.ijk[2] }, rmm = Math.cbrt(3 * L.volume_ml * 1000 / (4 * Math.PI)) + 2;
       const dmm = Math.abs(this.slice(plane, pos) - this.slice(plane, p)) * zs; if (dmm > rmm) return;
-      const [x, y] = this.toScreen(plane, p), rr = Math.max(5, Math.sqrt(rmm * rmm - dmm * dmm) * s * 1.2);
-      const col = L.below ? '#8899aa' : '#4fd1ff';
-      c.strokeStyle = col; c.lineWidth = L.n === o.sel && !L.below ? 2 : 1.2; c.setLineDash([4, 3]); c.beginPath(); c.arc(X(x), Y(y), rr, 0, 6.2832); c.stroke(); c.setLineDash([]);
-      c.fillStyle = col; c.font = '700 12px system-ui,sans-serif'; c.fillText(String(L.n), X(x) + rr + 3, Y(y) - rr + 4);
+      const [x, y] = this.toScreen(plane, p), rr = Math.max(6, Math.sqrt(rmm * rmm - dmm * dmm) * s * 1.2), on = L.n === o.sel;
+      const col = L.below ? '#95a1ac' : '#f3bd4b';
+      c.strokeStyle = col; c.lineWidth = on ? 1.8 : 1.1; c.setLineDash(on ? [] : [4, 3]); c.beginPath(); c.arc(X(x), Y(y), rr, 0, 6.2832); c.stroke(); c.setLineDash([]);
+      if (!o.zoom) { c.fillStyle = col; c.font = '600 12px Consolas,monospace'; c.fillText(String(L.n), X(x) + rr * .72 + 4, Y(y) - rr * .72 - 2); }
+      if (on && Math.hypot(x - px, y - py) < 2) gap = rr + 5;
     });
-    if (o.cross) {
-      const [x, y] = this.toScreen(plane, pos);
-      c.strokeStyle = 'rgba(63,169,245,.75)'; c.lineWidth = .8; c.beginPath(); c.moveTo(X(x), oy); c.lineTo(X(x), oy + dh); c.moveTo(ox, Y(y)); c.lineTo(ox + dw, Y(y)); c.stroke();
+    if (o.cross) {                                            // перекрестие с разрывом в центре: не закрывает то, на что указывает
+      const x = X(px) + .5, y = Y(py) + .5;
+      c.strokeStyle = 'rgba(255,255,255,.45)'; c.lineWidth = 1; c.beginPath();
+      c.moveTo(x, Math.max(0, oy)); c.lineTo(x, y - gap); c.moveTo(x, y + gap); c.lineTo(x, Math.min(H, oy + dh));
+      c.moveTo(Math.max(0, ox), y); c.lineTo(x - gap, y); c.moveTo(x + gap, y); c.lineTo(Math.min(W, ox + dw), y); c.stroke();
     }
-    c.fillStyle = '#8fa3b5'; c.font = '11px system-ui,sans-serif'; c.textAlign = 'left'; c.fillText(LAB[plane][0], ox + 4, oy + 13);
-    c.textAlign = 'right'; c.fillText(LAB[plane][1], ox + dw - 4, oy + 13);
-    if (o.demo) { c.fillStyle = '#c9a227'; c.font = '10px system-ui,sans-serif'; c.fillText('СХЕМА · ДЕМО', ox + dw - 4, oy + dh - 6); }
-    c.textAlign = 'left';
-    if (o.caption) { c.fillStyle = '#8fa3b5'; c.font = '11px system-ui,sans-serif'; c.fillText(o.caption, ox + 4, oy + dh - 6); }
+    if (!o.zoom) {                                            // стороны: в радиологической ориентации правое полушарие — слева
+      c.fillStyle = '#95a1ac'; c.font = '11px "Segoe UI",system-ui,sans-serif'; c.textBaseline = 'middle';
+      c.textAlign = 'left'; c.fillText(LAB[plane][0], 8, H / 2); c.textAlign = 'right'; c.fillText(LAB[plane][1], W - 8, H / 2);
+      c.textAlign = 'left'; c.textBaseline = 'alphabetic';
+    }
   }
   // щелчок по плоскости -> новое положение перекрестия
   pick(cv, ev, pos) {
@@ -114,6 +122,8 @@ export async function loadCands(studyId, wp, lo) {
   }
   return { above, below };
 }
+// ключ кандидата для отметок врача: координаты, округлённые до миллиметра (как на сервере, report.cand_key)
+export const candKey = (c) => c.xyz.map(v => { const r = Math.round(v); return String(r === 0 ? 0 : r); }).join(';');
 export const xyzText = (c) => c.xyz.map(v => (v >= 0 ? '+' : '−') + Math.abs(Math.round(v))).join('; ');
 export function opText(card, thr, fmt) {
   const row = (card.table || []).find(x => Math.abs(x.thr - thr) < 1e-6);

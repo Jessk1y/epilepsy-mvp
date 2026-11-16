@@ -1,6 +1,6 @@
 """Отчёт для врача. Выдаётся только с заключением врача; содержимое собирает сервер из сохранённого исследования
 (а не из того, что прислал браузер), снимок отчёта хранится в базе. Печать и PDF — средствами браузера."""
-import html, time
+import html, math, time
 
 from .service import AppError
 
@@ -42,9 +42,20 @@ def g1_rows(svc, st):
         rows.append(("Устойчивость", f"оценки по частям записи — от {_f(r['spread'][0])} до {_f(r['spread'][1])}"))
     if c["low_quality"]:
         rows.append(("Качество входа", "ниже нормы: " + ", ".join(c.get("low_reasons", [])) + " — доверие к оценке снижено"))
+    d = st["decision"] or {}
+    if d.get("agree") is not None:
+        rows.append(("Решение врача", "согласен с оценкой программы" if d["agree"] else "не согласен с оценкой программы"))
     rows.append(("Модель", html.escape(r["model_title"]) + (" — ДЕМО, оценка не имеет клинического смысла" if r["model_card"].get("demo") else "")))
     rows.append(("Ограничения", "Модель не локализует события: оценка относится ко всей записи. " + " ".join(html.escape(x) for x in r["model_card"]["limits"])))
     return rows
+
+
+MARKS = {"lesion": "очаг", "not": "не очаг", "unsure": "не уверен"}
+
+
+def cand_key(k):
+    """Ключ кандидата для отметок врача: координаты, округлённые до миллиметра (номер меняется с рабочей точкой)."""
+    return ";".join(str(math.floor(x + 0.5)) for x in k["xyz"])      # как Math.round в браузере (web/js/mri.js, candKey)
 
 
 def g2_rows(svc, st, thr):
@@ -53,9 +64,14 @@ def g2_rows(svc, st, thr):
     cands = svc.g2_candidates(st["id"], thr)["candidates"]
     s = c["summary"]
     rows = [("Снимки", f"T1 {s['t1']} · FLAIR {s['flair']}" + (" (толстые срезы — низкое качество)" if c.get("flair5") else ""))]
+    marks = (st["decision"] or {}).get("marks") or {}
+
+    def mark(k):                                            # отметка врача у кандидата; ключ — округлённые координаты
+        m = MARKS.get(marks.get(cand_key(k)))
+        return f" — <b>врач: {m}</b>" if m else ""
     if cands:
         txt = "<br>".join(f"№{k['n']}: вероятность {_f(k['peak_prob'])}, {_f(k['volume_ml'], 1)} см³, "
-                          f"({'; '.join(f'{round(x):+d}'.replace('-', '−') for x in k['xyz'])}) мм, {k['hemi']} полушарие" for k in cands)
+                          f"({'; '.join(f'{round(x):+d}'.replace('-', '−') for x in k['xyz'])}) мм, {k['hemi']} полушарие{mark(k)}" for k in cands)
     else:
         txt = "нет"
     rows.append(("Кандидаты выше рабочей точки", txt))
@@ -76,20 +92,21 @@ def g2_rows(svc, st, thr):
 
 PAGE = """<!doctype html><html lang="ru"><head><meta charset="utf-8"><title>Отчёт для врача · {kind} · {date}</title>
 <style>
-body{{margin:0;font:15px/1.55 system-ui,"Segoe UI",sans-serif;background:#f5f3fa;color:#2b3346}}
-.report{{max-width:760px;margin:24px auto;background:#fff;border:1px solid #e7e3f0;padding:36px 44px;box-shadow:0 2px 10px rgba(0,0,0,.05)}}
-h1{{font-size:20px;margin:0 0 4px}}h3{{margin:18px 0 8px;font-size:16px}}.small{{font-size:13px;color:#6b7387}}
-dl{{display:grid;grid-template-columns:220px 1fr;gap:6px 12px;margin:14px 0}}dt{{color:#6b7387}}dd{{margin:0}}
-.concl{{border:1px solid #e7e3f0;border-radius:8px;padding:10px 12px;white-space:pre-wrap;min-height:60px}}
-.demo{{background:#fff3cd;color:#7a5600;border:1px solid #efd27f;border-radius:4px;padding:2px 8px;font-size:12px;font-weight:700}}
-.sign{{display:flex;justify-content:space-between;margin-top:26px}}.sign span{{border-top:1px solid #2b3346;padding-top:4px;min-width:220px;text-align:center;font-size:13px;color:#6b7387}}
-.btn{{font:inherit;border:1px solid #5f72c9;background:#5f72c9;color:#fff;border-radius:12px;padding:9px 16px;cursor:pointer;font-weight:600}}
+body{{margin:0;font:15px/1.55 "Segoe UI",system-ui,sans-serif;background:#e6e9ec;color:#12161a;font-variant-numeric:tabular-nums}}
+.report{{max-width:760px;margin:20px auto;background:#fff;border:1px solid #c9d0d7;padding:40px 48px}}
+h1{{font-size:22px;margin:2px 0 4px}}h3{{margin:22px 0 8px;font-size:15px}}.small{{font-size:13px;color:#57626d}}
+.head{{border-bottom:2px solid #12161a;padding-bottom:14px;margin-bottom:6px}}
+dl{{display:grid;grid-template-columns:210px 1fr;margin:0}}dt,dd{{margin:0;padding:8px 0;border-bottom:1px solid #e3e7ea}}dt{{color:#57626d}}
+.concl{{border-left:3px solid #12161a;padding:4px 0 4px 14px;white-space:pre-wrap;min-height:56px;font-size:16px}}
+.demo{{background:#f3bd4b;color:#12161a;padding:1px 7px;font-size:11px;font-weight:700;letter-spacing:.8px}}
+.sign{{display:flex;justify-content:space-between;margin:34px 0 18px}}.sign span{{border-top:1px solid #12161a;padding-top:4px;min-width:220px;text-align:center;font-size:13px;color:#57626d}}
+.btn{{font:inherit;border:1px solid #12161a;background:#12161a;color:#fff;border-radius:3px;padding:8px 16px;cursor:pointer;font-weight:600}}
 .bar{{max-width:760px;margin:16px auto 0;display:flex;justify-content:flex-end;gap:10px}}
-@media print{{.noprint{{display:none!important}}body{{background:#fff}}.report{{border:0;box-shadow:none;margin:0 auto}}}}
+@media print{{.noprint{{display:none!important}}body{{background:#fff}}.report{{border:0;margin:0 auto;padding:0}}}}
 </style></head><body>
 <div class="bar noprint"><button class="btn" onclick="print()">Печать / PDF</button></div>
-<div class="report"><div class="small">ЭпиАссистент · {kind} · {clinic} {demo}</div><h1>Отчёт для врача</h1>
-<div class="small">{who} · {file} · {date} · № {rid}</div>
+<div class="report"><div class="head"><div class="small">ЭпиАссистент · {kind} · {clinic} {demo}</div><h1>Отчёт для врача</h1>
+<div class="small">{who} · {file} · {date} · № {rid}</div></div>
 <dl>{rows}</dl>
 <h3>Заключение врача</h3><div class="concl">{conclusion}</div>
 <div class="sign"><span>{doctor}</span><span>подпись</span></div>
@@ -98,7 +115,7 @@ dl{{display:grid;grid-template-columns:220px 1fr;gap:6px 12px;margin:14px 0}}dt{
 
 def render(rep):
     p, e = rep["payload"], html.escape
-    demo = '<span class="demo">ДЕМО · данные выдуманы</span>' if p["demo"] else ""
+    demo = '<span class="demo">ДЕМО · ДАННЫЕ ВЫДУМАНЫ</span>' if p["demo"] else ""
     who = "Пациент: Демо-пациент (данные выдуманы)" if p["demo"] else ("Код пациента: " + e(p["code"]) if p["code"] else "Код пациента: не указан")
     rows = "".join(f"<dt>{e(k)}</dt><dd>{v}</dd>" for k, v in p["rows"])
     return PAGE.format(kind=e(p["kind"]), date=e(p["date"]), clinic=e(p["clinic"]), demo=demo, who=who, file=e(p["file"]), rid=e(rep["id"]), rows=rows,
