@@ -149,6 +149,8 @@ python tuep_finetune.py report --prep ~/data/tuep_work/prep --out ~/data/tuep_wo
 | `tuep_infer.py` | шаг 5 |
 | `tuep_finetune.py` | шаги 6 и 8: `train` (дообучение по фолдам: `reve`, `dino`, `de`; продолжение после обрыва, `--smoke`), `report` (сводка, `--ensemble` можно повторять) |
 | `tuep_baseline.py` | шаг 6: эталон «мощности ритмов + логистическая регрессия» и контроль утечки без ЭЭГ — по тем же фолдам |
+| `tuep_variants.py` | раздел 11: новые варианты предобработки и признаков, бустинг, признаки REVE; вложенный выбор лучшего по отложенной части |
+| `test_variants_synthetic.py` | лёгкий тест раздела 11 на синтетике: `python -I test_variants_synthetic.py` (~5 мин на ноутбуке) |
 | `tuep_audit.py` | проверка подготовленных данных и оценок на рабочей машине (ревью 14.11): `python tuep_audit.py --work ~/data/tuep_work --root ~/data/TUEP` |
 | `test_finetune_synthetic.py` | лёгкий тест шага 6 на синтетике: `python -I test_finetune_synthetic.py` |
 | `tuep_deepepilepsy.py` | DeepEpilepsy авторов без дообучения (раздел 7) и проверка референта и фильтра (раздел 8) |
@@ -274,3 +276,36 @@ ls ~/data/tuep_work/ft/final    # baseline_bpampw.npz  pair_card.json  reve_tuep
 - `card`: пороги выбраны по тем же оценкам, по которым посчитаны метрики, — это порог «по умолчанию» до настройки под клинику.
 - Проверка на синтетике (игрушечная сеть, процессор, ~1 мин): `python -m pytest ../../app/tests/test_tuep_final.py -q` — команды отрабатывают,
   а оценка записи в памяти (`h1_eeg/src/record_scoring.py`, им пользуется приложение) совпадает с `eval_windows` и признаками эталона.
+
+## 11. Новые варианты предобработки и признаков с вложенным выбором (18.11)
+
+Задача: проверить биполярный монтаж, выброс плохих окон, всю запись, новые признаки (1/f, пик альфа, θ/α и δ/α, Хьорт, длина линии,
+эксцесс, асимметрия распределения и полушарий, wPLI по узлам во всех диапазонах), градиентный бустинг и признаки REVE + ручные в одной
+лог. регрессии. На этих 199 пациентах уже проверено ~20 вариантов, поэтому **лучший выбирается не по тесту**: в каждом фолде — кандидат
+с наибольшим ROC AUC отложенной части (фолд k+1), в итог идёт его оценка на тесте фолда k. Кандидаты (список задан в коде до запуска,
+`variants()`, `pool=True`): прежние `bpampw` и пара `reve + bpampw`, 11 новых вариантов и пары «REVE v4 (дообученная) + вариант».
+Варианты `x_*` (по одной новой группе признаков, только признаки REVE) — только в поисковой таблице. Описание настроек и порогов
+выброса — в начале `tuep_variants.py`.
+
+Признаки REVE: веса REVE v4, дообученной на TUEP по фолдам, не сохранялись (`--save-weights` не задавался, контрольные точки удаляются),
+получить их можно только повторным обучением. Поэтому берётся **готовая REVE v4** (после NMT, TUEP не видела): предпоследний слой головы
+(256) × 3 запуска, среднее по 60 окнам — 768 признаков на файл.
+
+```bash
+source ~/venvs/tuep/bin/activate && cd ~/epilepsy-mvp && git pull && cd h1_eeg/tuep      # путь к репозиторию — ваш
+python -I test_variants_synthetic.py                                                        # тест, ~2–5 мин
+python tuep_variants.py features --prep ~/data/tuep_work/prep --out ~/data/tuep_work/ft --procs 12 --limit 60   # проба: время по настройкам
+CUDA_VISIBLE_DEVICES=0 python tuep_variants.py embed --prep ~/data/tuep_work/prep --out ~/data/tuep_work/ft --reve-dir ~/data/weights/h1-reve-v4 --limit 20
+nohup sh -c "python tuep_variants.py features --prep ~/data/tuep_work/prep --out ~/data/tuep_work/ft --procs 12 &&   CUDA_VISIBLE_DEVICES=0 python tuep_variants.py embed --prep ~/data/tuep_work/prep --out ~/data/tuep_work/ft --reve-dir ~/data/weights/h1-reve-v4 &&   python tuep_variants.py run --prep ~/data/tuep_work/prep --out ~/data/tuep_work/ft" > ~/data/tuep_work/ft/variants.log 2>&1 &
+tail -f ~/data/tuep_work/ft/variants.log
+cat ~/data/tuep_work/ft/variants/tuep_variants_summary.md                                   # сводка (без кодов пациентов)
+```
+
+- Всё пишется в `~/data/tuep_work/ft/variants/`; признаки кэшируются (`feats_<настройка>.npz`, `reve_emb.npz`), готовые модели фолдов
+  (`runs/*.csv`) не пересчитываются — прерванный расчёт можно просто запустить снова.
+- Без `embed` (нет видеокарты или весов) варианты `v6_*` пропускаются, остальное считается.
+- Правило вывода (задано заранее): улучшение — только если вложенный выбор выше пары 0,661 **и** внутри слоя выше 0,633; разница < ~0,05
+  на 199 пациентах не различима; рост общего AUC без роста внутри слоя — признак утечки. Сводка печатает вердикт по этому правилу.
+- В сводке есть строка о доле выброшенных окон по классам и её ROC AUC как предсказателя: если доля сама угадывает класс, выброс несёт
+  сведения об аппаратуре.
+
